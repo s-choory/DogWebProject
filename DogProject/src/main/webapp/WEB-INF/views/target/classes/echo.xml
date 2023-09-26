@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<bean id="echoBean" class="com.spring.EchoBean">
+	<property name="mesg" value="홍길동"></property>
+</bean>
+
+<bean id="echoBean2" class="com.spring.EchoBean">
+	<constructor-arg name="aaa" value="이순신"></constructor-arg>
+</bean>
+
+<bean id="echoBean3" class="com.spring.EchoBean">
+	<property name="mesg">
+		<value>lee순신</value>
+	</property>
+</bean>
+</beans>

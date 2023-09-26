@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.1.xsd">
+	
+	<!-- Root Context: defines shared resources visible to all other web components -->
+		<context:property-placeholder location="classpath:com/config/jdbc.properties"/>
+	
+	<bean id = "dataSource" class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close">
+		<property name="driverClassName" value="${jdbc.driver}"></property>
+		<property name="url" value="${jdbc.url}"></property>
+		<property name="username" value="${jdbc.userid}"></property>
+		<property name="password" value="${jdbc.passwd}"></property>
+	</bean>
+	
+	<bean id = "transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref = "dataSource"></property>
+	</bean>
+	<tx:annotation-driven transaction-manager="transactionManager"></tx:annotation-driven>
+	
+	<bean id="mysqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"></property>
+		<property name="mapperLocations">
+			<list>
+				<value>classpath:com/config/AccompanyingFacilitiesMapper.xml</value>
+				<value>classpath:com/config/UsersMapper.xml</value>
+				<value>classpath:com/config/GoodsMapper.xml</value>
+				<value>classpath:com/config/CartMapper.xml</value>
+				<value>classpath:com/config/DogTypeMapper.xml</value>
+				<value>classpath:com/config/ReviewsMapper.xml</value>
+				<value>classpath:com/config/OrdersMapper.xml</value>
+				<value>classpath:com/config/PostsMapper.xml</value>
+			</list>
+		</property>
+		<property name="typeAliases">
+			<list>
+				<value>com.dto.AccompanyingFacilitiesDTO</value> <!-- dto 클래스에서 alias명 지정 @Alias('alias명') -->
+				<value>com.dto.UsersDTO</value> <!-- dto 클래스에서 alias명 지정 @Alias('alias명') -->
+				<value>com.dto.GoodsDTO</value> <!-- dto 클래스에서 alias명 지정 @Alias('alias명') -->
+				<value>com.dto.CartDTO</value>
+				<value>com.dto.DogTypeDTO</value>
+				<value>com.dto.ReviewsDTO</value>
+				<value>com.dto.OrdersDTO</value>
+				<value>com.dto.PostsDTO</value>
+				<value>com.dto.PageDTO</value> 
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="mySqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg name = "sqlSessionFactory" ref="mysqlSessionFactory"></constructor-arg>
+	</bean>
+</beans>

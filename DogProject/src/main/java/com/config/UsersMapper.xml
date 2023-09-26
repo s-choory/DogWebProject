@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="UsersMapper">	<!-- Mapper 생성 후 Configuration 수정 -->
+
+<select id="loginChk" parameterType="Users" resultType="Users">
+	SELECT * FROM Users where UserID = #{UserID} and Password = #{Password}
+</select>
+
+<select id="idChk" parameterType="String" resultType="int">
+	SELECT count(*) FROM Users where UserID = #{UserID}
+</select>
+
+<insert id="memberAdd" parameterType="Users">
+	INSERT INTO Users (UserID, UserName, UserAlias, Password, Post, Email1, Email2, RodeAddress, HouseAddress, DetailAddress, UserImg, PhoneNumber, DogName, DogType, UserType) 
+	values (#{UserID}, #{UserName}, #{UserAlias}, #{Password}, #{Post},#{Email1}, #{Email2}, #{RodeAddress}, #{HouseAddress}, #{DetailAddress}, null, #{PhoneNumber}, #{DogName}, #{DogType}, 'user')
+</insert>
+
+<select id="aliasChk" parameterType="String" resultType="int">
+	SELECT count(*) FROM Users where UserAlias = #{UserAlias}
+</select>
+</mapper>
