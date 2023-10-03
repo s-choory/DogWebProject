@@ -11,18 +11,24 @@
 	<link rel="stylesheet" href="resources/css/font-awesome.min.css">
 </head>
 <script type="text/javascript">
-<%	String msg = request.getParameter("msg");
+<%	String msg = (String)session.getAttribute("msg");
 	if(msg != null){%>
 		alert("<%= msg %>");
-<% } %>
+<% } 
+	session.removeAttribute("msg");
+%>
 
 	function memadd(){
-		var link = 'http://localhost:8096/test/membership_agree';
+		var link = 'membership_agree';
 		location.href=link;
-		location.replace(link);
-		window.open(link);
 	}
 	
+	function findID(){
+		location.href = "findID";
+	}
+	function findPW(){
+		location.href = "findPW";
+	}
 </script>
 
 <body>
@@ -49,7 +55,7 @@
 								<input type="text" class="form-control" id="name" name="UserID" placeholder="UserID">
 							</div>
 							<div class="col-md-12 form-group">
-								<input type="text" class="form-control" id="name" name="Password" placeholder="Password">
+								<input type="password" class="form-control" id="name" name="Password" placeholder="Password">
 							</div>
 							<div class="col-md-12 form-group">
 								<button type="submit" value="submit" class="primary-btn">Log In</button>
@@ -58,6 +64,8 @@
 								<button type="button" class="primary-btn" onclick="memadd()">Create an Account</button>
 							</div>
 						</form>
+								<button class="primary-btn" onclick="findID()">Find ID</button>
+								<button class="primary-btn" onclick="findPW()">Find PW</button>
 					</div>
 				</div>
 				

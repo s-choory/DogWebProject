@@ -29,6 +29,18 @@ public class UsersDAO {
 		return session.selectOne("UsersMapper.aliasChk", UserAlias);
 	}
 
+	public UsersDTO findID(UsersDTO uDTO) {
+		return session.selectOne("UsersMapper.findID", uDTO);
+	}
+
+	public UsersDTO findPW(UsersDTO uDTO) {
+		return session.selectOne("UsersMapper.findPW", uDTO);
+	}
+
+	public int updatePW(UsersDTO uDTO) {
+		return session.update("UsersMapper.updatePW", uDTO);
+	}
+
 
 	
 	

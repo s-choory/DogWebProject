@@ -1,6 +1,5 @@
 package com.service;
 
-import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,6 +28,16 @@ public class UsersService {
 		return dao.aliasChk(UserAlias);
 	}
 
-	
+	public UsersDTO findID(UsersDTO uDTO) {
+		return dao.findID(uDTO);
+	}
+
+	public UsersDTO findPW(UsersDTO uDTO) {
+		return dao.findPW(uDTO);
+	}
+
+	public int updatePW(UsersDTO uDTO) {
+		return dao.updatePW(uDTO);
+	}
 	
 }

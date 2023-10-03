@@ -20,4 +20,16 @@
 <select id="aliasChk" parameterType="String" resultType="int">
 	SELECT count(*) FROM Users where UserAlias = #{UserAlias}
 </select>
+
+<select id="findID" parameterType="Users" resultType="Users">
+	SELECT * FROM USERS WHERE UserName=#{UserName} and PhoneNumber=#{PhoneNumber}
+</select>
+
+<select id="findPW" parameterType="Users" resultType="Users">
+	SELECT * FROM USERS WHERE UserName=#{UserName} and PhoneNumber=#{PhoneNumber} and UserID=#{UserID}
+</select>
+
+<update id="updatePW" parameterType="Users">
+	UPDATE Users SET Password = #{Password} where UserID = #{UserID}
+</update>
 </mapper>
