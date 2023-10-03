@@ -1,6 +1,9 @@
 package com.controller;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
+import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -14,6 +17,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.dto.UsersDTO;
 import com.service.UsersService;
+
+import net.nurigo.sdk.NurigoApp;
+import net.nurigo.sdk.message.model.Message;
+import net.nurigo.sdk.message.request.SingleMessageSendingRequest;
+import net.nurigo.sdk.message.response.SingleMessageSentResponse;
+import net.nurigo.sdk.message.service.DefaultMessageService;
 
 @Controller
 public class UsersController {
@@ -29,14 +38,14 @@ public class UsersController {
 	}
 	
 	@RequestMapping(value = "/loginChk", method = RequestMethod.POST)
-	public String loginChk(Model model, HttpSession session, UsersDTO dto) {
+	public String loginChk(HttpSession session, UsersDTO dto) {
 		UsersDTO checkedDTO = service.loginChk(dto);
 		String href = "redirect:/login";
 		if(checkedDTO != null) {
 			href = "redirect:/main";		
 			session.setAttribute("User",checkedDTO);
 		}else {
-			model.addAttribute("msg", "아이디 또는 패스워드를 잘못 입력했습니다.");
+			session.setAttribute("msg", "아이디 또는 패스워드를 잘못 입력했습니다.");
 		}
 		return href;
 	}
@@ -98,4 +107,107 @@ public class UsersController {
 		return str;
 	}
 	
+	//아이디찾기
+	@RequestMapping(value="/findID", method = RequestMethod.GET)
+	public String findID() {
+		return "member/findID";
+	}
+
+	//비밀번호찾기1
+	@RequestMapping(value="/findPW", method = RequestMethod.GET)
+	public String findPW() {
+		return "member/findPW";
+	}
+	//비밀번호찾기2. 아이디 있는지 검사
+	@RequestMapping(value="/findPW2", method = RequestMethod.GET)
+	public String findPW2(String UserID, Model model) {
+		int n = service.idChk(UserID);
+		if(n == 1) {
+			model.addAttribute("UserID", UserID);
+			return "member/findPW2";
+		}else {
+			model.addAttribute("msg", "해당 아이디가 존재하지 않습니다.");
+			return "redirect:/findPW";
+		}
+	}
+	
+	//휴대폰 인증번호 보내기
+	@RequestMapping(value="/sendNumber", method = RequestMethod.POST)
+	@ResponseBody
+	public String sendNumber(String PhoneNumber){
+		System.out.println(PhoneNumber);
+        Random rand  = new Random();
+        String numStr = "";
+        for(int i=0; i<6; i++) {
+            String ran = Integer.toString(rand.nextInt(10));
+            numStr+=ran;
+        }
+        
+//		String apiKey = "NCSCTEIDBZTOQ6LU";
+//		String apiSecretKey = "V99CEJPQLFJC0YV44KCXAMUMK0MTH174";
+//		String domain = "https://api.coolsms.co.kr";
+//		DefaultMessageService messageService = NurigoApp.INSTANCE.initialize(apiKey, apiSecretKey, domain);
+//
+//        System.out.println("수신자 번호 : " + PhoneNumber);
+//        System.out.println("인증번호 : " + numStr);
+//        
+//        Message message = new Message();
+//        message.setFrom("01092681933");
+//        message.setTo("01092681933");
+//        message.setText("DogProject\n"+
+//        "인증번호는["+numStr+"]입니다.");
+//        
+//        SingleMessageSentResponse response = messageService.sendOne(new SingleMessageSendingRequest(message));
+//        System.out.println(response);
+        return numStr;
+	}
+	
+	//아이디 찾기 확인
+	@RequestMapping(value="/findIDConfirm", method = RequestMethod.GET)
+	public String findIDConfirm(UsersDTO uDTO, Model model) {
+		//DB에는 010-1234-1234형태로 저장되어있기 때문에 하이픈을 추가한다.
+		String PhoneNumber = uDTO.getPhoneNumber();
+		String insertion = "-";
+		
+		StringBuffer stringBuffer = new StringBuffer(PhoneNumber);
+		stringBuffer.insert(3, insertion);
+		stringBuffer.insert(8, insertion);
+		String result = stringBuffer.toString();
+		uDTO.setPhoneNumber(result);
+		
+		UsersDTO user = service.findID(uDTO);
+		if(user != null) {
+			model.addAttribute("UserID", user.getUserID());
+		}
+		return "member/findIDConfirm";
+	}
+	
+	//비밀번호 찾기 확인
+	@RequestMapping(value = "/findPWConfirm", method = RequestMethod.POST)
+	public String findPWConfirm(UsersDTO uDTO, Model model) {
+		//DB에는 010-1234-1234형태로 저장되어있기 때문에 하이픈을 추가한다.
+		String PhoneNumber = uDTO.getPhoneNumber();
+		String insertion = "-";
+		
+		StringBuffer stringBuffer = new StringBuffer(PhoneNumber);
+		stringBuffer.insert(3, insertion);
+		stringBuffer.insert(8, insertion);
+		String result = stringBuffer.toString();
+		uDTO.setPhoneNumber(result);
+		System.out.println(uDTO);
+		
+		UsersDTO user = service.findPW(uDTO);
+		if(user != null) {
+			model.addAttribute("user", user);
+		}
+		return "member/findPWConfirm";
+	}
+	
+	//비밀번호 변경
+	@RequestMapping(value="/changePW", method = RequestMethod.POST)
+	public String changePW(UsersDTO uDTO, HttpSession session) {
+		int n = service.updatePW(uDTO);
+		session.setAttribute("msg", "비밀번호를 변경했습니다.");
+		return "redirect:/login";
+	}
 }

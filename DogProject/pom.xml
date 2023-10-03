@@ -171,6 +171,19 @@
     <artifactId>thumbnailator</artifactId>
     <version>0.4.20</version>
 </dependency>
+
+<!-- 휴대폰 인증번호 디펜던시 -->
+<dependency>
+    <groupId>net.nurigo</groupId>
+    <artifactId>sdk</artifactId>
+    <version>4.3.0</version>
+</dependency>
+<!-- json이다 -->
+<dependency>
+    <groupId>org.json</groupId>
+    <artifactId>json</artifactId>
+    <version>20230618</version>
+</dependency>
               
 	</dependencies>
     <build>
