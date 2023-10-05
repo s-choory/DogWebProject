@@ -1,11 +1,8 @@
 package com.controller;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Locale;
 import java.util.Random;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,20 +12,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.config.SecurityConfig;
 import com.dto.UsersDTO;
 import com.service.UsersService;
-
-import net.nurigo.sdk.NurigoApp;
-import net.nurigo.sdk.message.model.Message;
-import net.nurigo.sdk.message.request.SingleMessageSendingRequest;
-import net.nurigo.sdk.message.response.SingleMessageSentResponse;
-import net.nurigo.sdk.message.service.DefaultMessageService;
 
 @Controller
 public class UsersController {
 	
 	@Autowired
 	UsersService service;
+	
+	SecurityConfig SecurityConfig = new SecurityConfig();
 	
 	/* member */
 	//로그인
@@ -39,16 +33,26 @@ public class UsersController {
 	
 	@RequestMapping(value = "/loginChk", method = RequestMethod.POST)
 	public String loginChk(HttpSession session, UsersDTO dto) {
+		
 		UsersDTO checkedDTO = service.loginChk(dto);
+		
 		String href = "redirect:/login";
 		if(checkedDTO != null) {
-			href = "redirect:/main";		
-			session.setAttribute("User",checkedDTO);
+			//DB에 저장된 비번과 파라미터로 받은 비번 비교
+			if(SecurityConfig.getPasswordEncoder().matches(dto.getPassword(), checkedDTO.getPassword())) {
+				session.setAttribute("User",checkedDTO);
+				href = "redirect:/main";		
+			} else {
+				session.setAttribute("msg", "패스워드를 잘못 입력했습니다");
+			}
 		}else {
-			session.setAttribute("msg", "아이디 또는 패스워드를 잘못 입력했습니다.");
+			session.setAttribute("msg", "아이디를 잘못 입력했습니다.");
 		}
 		return href;
 	}
+	
+	
+	
 	@RequestMapping(value="/logout")
 	public String logout(HttpSession session) {
 		session.removeAttribute("User");
@@ -90,12 +94,20 @@ public class UsersController {
 	//회원등록
 	@RequestMapping(value = "/memberAdd", method = RequestMethod.POST)
 	public String memberAdd(HttpSession session, Model model, UsersDTO user) {
+		
 		String str = "redirect:/membership_sign";
 		String s = idChk(user.getUserID());
 		if(s.equals("사용불가 아이디입니다")) {	//UserID 중복일때
 			model.addAttribute("msg", "회원가입 실패");
 			return str;
 		}
+		
+		//암호화
+		String password = user.getPassword();
+		System.out.println("암호화 전 : " + password);
+		String encodePW = SecurityConfig.getPasswordEncoder().encode(password);
+		System.out.println("암호화 후 : " + encodePW);
+		user.setPassword(encodePW);
 		
 		int n = service.memberAdd(user);
 		

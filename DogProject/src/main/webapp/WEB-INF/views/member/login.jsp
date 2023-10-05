@@ -63,6 +63,7 @@
 							<div class="col-md-12 form-group">
 								<button type="button" class="primary-btn" onclick="memadd()">Create an Account</button>
 							</div>
+							    <input name="${_csrf.parameterName}" type="hidden" value="${_csrf.token}"/>
 						</form>
 								<button class="primary-btn" onclick="findID()">Find ID</button>
 								<button class="primary-btn" onclick="findPW()">Find PW</button>
