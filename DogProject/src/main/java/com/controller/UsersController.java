@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.dto.UsersDTO;
@@ -37,8 +38,12 @@ public class UsersController {
 		return "member/login";
 	}
 	
-	@RequestMapping(value = "/loginChk", method = RequestMethod.GET)
-	public String loginChk(HttpSession session, UsersDTO dto) {
+	@RequestMapping(value = "/loginChk", method = RequestMethod.POST)
+	public String loginChk(HttpSession session,  @RequestParam("UserID") String userID,
+            @RequestParam("Password") String password, UsersDTO dto) {
+		dto.setUserID(userID);
+		dto.setUserID(password);
+		System.out.println("userId: "+userID+"\tpassWord"+password);
 		System.out.println(dto);
 //		UsersDTO checkedDTO = service.loginChk(dto);
 //		System.out.println("loginChk호출됨");
