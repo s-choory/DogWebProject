@@ -224,6 +224,11 @@ public class UsersController {
 	//비밀번호 변경
 	@RequestMapping(value="/changePW", method = RequestMethod.POST)
 	public String changePW(UsersDTO uDTO, HttpSession session) {
+		//암호화
+		String password = uDTO.getPassword();
+		String encodePW = SecurityConfig.getPasswordEncoder().encode(password);
+		uDTO.setPassword(encodePW);
+		
 		int n = service.updatePW(uDTO);
 		session.setAttribute("msg", "비밀번호를 변경했습니다.");
 		return "redirect:/login";
