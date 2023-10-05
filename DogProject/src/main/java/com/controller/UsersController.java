@@ -16,6 +16,12 @@ import com.config.SecurityConfig;
 import com.dto.UsersDTO;
 import com.service.UsersService;
 
+import net.nurigo.sdk.NurigoApp;
+import net.nurigo.sdk.message.model.Message;
+import net.nurigo.sdk.message.request.SingleMessageSendingRequest;
+import net.nurigo.sdk.message.response.SingleMessageSentResponse;
+import net.nurigo.sdk.message.service.DefaultMessageService;
+
 @Controller
 public class UsersController {
 	
@@ -155,22 +161,22 @@ public class UsersController {
             numStr+=ran;
         }
         
-//		String apiKey = "NCSCTEIDBZTOQ6LU";
-//		String apiSecretKey = "V99CEJPQLFJC0YV44KCXAMUMK0MTH174";
-//		String domain = "https://api.coolsms.co.kr";
-//		DefaultMessageService messageService = NurigoApp.INSTANCE.initialize(apiKey, apiSecretKey, domain);
-//
-//        System.out.println("수신자 번호 : " + PhoneNumber);
-//        System.out.println("인증번호 : " + numStr);
-//        
-//        Message message = new Message();
-//        message.setFrom("01092681933");
-//        message.setTo("01092681933");
-//        message.setText("DogProject\n"+
-//        "인증번호는["+numStr+"]입니다.");
-//        
-//        SingleMessageSentResponse response = messageService.sendOne(new SingleMessageSendingRequest(message));
-//        System.out.println(response);
+		String apiKey = "NCSCTEIDBZTOQ6LU";
+		String apiSecretKey = "V99CEJPQLFJC0YV44KCXAMUMK0MTH174";
+		String domain = "https://api.coolsms.co.kr";
+		DefaultMessageService messageService = NurigoApp.INSTANCE.initialize(apiKey, apiSecretKey, domain);
+
+        System.out.println("수신자 번호 : " + PhoneNumber);
+        System.out.println("인증번호 : " + numStr);
+        
+        Message message = new Message();
+        message.setFrom("01092681933");
+        message.setTo("01092681933");
+        message.setText("DogProject\n"+
+        "인증번호는["+numStr+"]입니다.");
+        
+        SingleMessageSentResponse response = messageService.sendOne(new SingleMessageSendingRequest(message));
+        System.out.println(response);
         return numStr;
 	}
 	
