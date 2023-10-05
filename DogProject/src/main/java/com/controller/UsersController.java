@@ -1,35 +1,28 @@
 package com.controller;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Locale;
 import java.util.Random;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.dto.UsersDTO;
 import com.service.UsersService;
-
-import net.nurigo.sdk.NurigoApp;
-import net.nurigo.sdk.message.model.Message;
-import net.nurigo.sdk.message.request.SingleMessageSendingRequest;
-import net.nurigo.sdk.message.response.SingleMessageSentResponse;
-import net.nurigo.sdk.message.service.DefaultMessageService;
 
 @Controller
 public class UsersController {
 	
 	@Autowired
 	UsersService service;
+	@Autowired
+	BCryptPasswordEncoder passwordEncoder;
 	
 	/* member */
 	//로그인
@@ -39,21 +32,20 @@ public class UsersController {
 	}
 	
 	@RequestMapping(value = "/loginChk", method = RequestMethod.POST)
-	public String loginChk(HttpSession session,  @RequestParam("UserID") String userID,
-            @RequestParam("Password") String password, UsersDTO dto) {
-		dto.setUserID(userID);
-		dto.setUserID(password);
-		System.out.println("userId: "+userID+"\tpassWord"+password);
+	public String loginChk(HttpSession session, UsersDTO dto) {
 		System.out.println(dto);
-//		UsersDTO checkedDTO = service.loginChk(dto);
-//		System.out.println("loginChk호출됨");
+		passwordEncoder.encode(dto.getPassword());
+		
+		
+		UsersDTO checkedDTO = service.loginChk(dto);
+		System.out.println("loginChk호출됨");
 		String href = "redirect:/login";
-//		if(checkedDTO != null) {
-//			href = "redirect:/main";		
-//			session.setAttribute("User",checkedDTO);
-//		}else {
-//			session.setAttribute("msg", "아이디 또는 패스워드를 잘못 입력했습니다.");
-//		}
+		if(checkedDTO != null) {
+			href = "redirect:/main";		
+			session.setAttribute("User",checkedDTO);
+		}else {
+			session.setAttribute("msg", "아이디 또는 패스워드를 잘못 입력했습니다.");
+		}
 		return href;
 	}
 	@RequestMapping(value="/logout")
