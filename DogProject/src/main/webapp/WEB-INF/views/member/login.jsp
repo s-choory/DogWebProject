@@ -50,7 +50,7 @@
 					<div class="login_form_inner">
 						<h3>Log in to enter</h3>
 						<!-- Form Area -->
-						<form class="row login_form" action="loginChk" method="post" id="contactForm" novalidate="novalidate">
+						<form class="row login_form" action="" method="post" id="contactForm" novalidate="novalidate">
 							<div class="col-md-12 form-group">
 								<input type="text" class="form-control" id="name" name="UserID" placeholder="UserID">
 							</div>
@@ -63,6 +63,7 @@
 							<div class="col-md-12 form-group">
 								<button type="button" class="primary-btn" onclick="memadd()">Create an Account</button>
 							</div>
+							    <input name="${_csrf.parameterName}" type="hidden" value="${_csrf.token}"/>
 						</form>
 								<button class="primary-btn" onclick="findID()">Find ID</button>
 								<button class="primary-btn" onclick="findPW()">Find PW</button>

@@ -37,16 +37,18 @@ public class UsersController {
 		return "member/login";
 	}
 	
-	@RequestMapping(value = "/loginChk", method = RequestMethod.POST)
+	@RequestMapping(value = "/loginChk", method = RequestMethod.GET)
 	public String loginChk(HttpSession session, UsersDTO dto) {
-		UsersDTO checkedDTO = service.loginChk(dto);
+		System.out.println(dto);
+//		UsersDTO checkedDTO = service.loginChk(dto);
+//		System.out.println("loginChk호출됨");
 		String href = "redirect:/login";
-		if(checkedDTO != null) {
-			href = "redirect:/main";		
-			session.setAttribute("User",checkedDTO);
-		}else {
-			session.setAttribute("msg", "아이디 또는 패스워드를 잘못 입력했습니다.");
-		}
+//		if(checkedDTO != null) {
+//			href = "redirect:/main";		
+//			session.setAttribute("User",checkedDTO);
+//		}else {
+//			session.setAttribute("msg", "아이디 또는 패스워드를 잘못 입력했습니다.");
+//		}
 		return href;
 	}
 	@RequestMapping(value="/logout")
