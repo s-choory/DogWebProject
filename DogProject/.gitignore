@@ -118,6 +118,10 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+<<<<<<< HEAD
+
+=======
+>>>>>>> refs/heads/login-Security
 # Ignore pom.properties
 pom.properties
 
