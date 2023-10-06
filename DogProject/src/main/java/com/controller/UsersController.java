@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.config.SecurityConfig;
-import com.config.XSSFilter;
 import com.dto.UsersDTO;
 import com.service.UsersService;
 
