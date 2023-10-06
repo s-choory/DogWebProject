@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.config.SecurityConfig;
+import com.config.XSSFilter;
 import com.dto.UsersDTO;
 import com.service.UsersService;
 
@@ -26,17 +27,18 @@ import net.nurigo.sdk.message.service.DefaultMessageService;
 public class UsersController {
 	
 	@Autowired
-	UsersService service;
+	private UsersService service;
 	
-	SecurityConfig SecurityConfig = new SecurityConfig();
+	private SecurityConfig SecurityConfig = new SecurityConfig();
 	
 	/* member */
-	//로그인
+	//로그인페이지
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String login(Model model) {
 		return "member/login";
 	}
 	
+	//로그인 조건 체크
 	@RequestMapping(value = "/loginChk", method = RequestMethod.POST)
 	public String loginChk(HttpSession session, UsersDTO dto) {
 		

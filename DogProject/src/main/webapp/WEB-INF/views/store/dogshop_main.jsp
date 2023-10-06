@@ -373,7 +373,7 @@ $(function () {
 				<input type="button" value="닫기" id="closehidden">
 			</div>
 			<!--  히든으로  -->
-			<form id="myForm" action="/test/goodsRetrieve" method="POST">
+			<form id="myForm" action="goodsRetrieve" method="post">
 				<!--  특정값 넘기기 위해  폼 추가  -->
 				<div>
 					<input type="hidden" name="gProductID" value="<%=gProductID2%>"
