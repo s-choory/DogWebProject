@@ -642,12 +642,12 @@
 									</span>
 									<span style="color: gray; font-size: 11px;">(평점과 이미지는 수정할 수 없습니다.)</span>
 								</div>
-								<div class="select_img" id="select_img" contenteditable="true">
-									<img src="<%= rThumbImg %>" />
+								<div class="select_img" id="select_img">
+								<% if(rThumbImg != null) { %><img src="<%= rThumbImg %>" /><% } %>
 								</div>
 								<textarea id="review-content" name="ReviewContent"
 									style="width: 80%; height: 60px; resize: none;"
-									placeholder="리뷰를 입력하세요.&#10;해당 상품의 구입내역을 가진 회원만 리뷰 작성 가능합니다."><%= ReviewContent %></textarea>
+									placeholder="수정할 리뷰를 입력하세요"><% if(ReviewContent != null) { %><%= ReviewContent %><% } %></textarea>
 								<button id="review-button" class="submit-button">수정</button>
 							</form>
 

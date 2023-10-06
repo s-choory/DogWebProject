@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.config.XSSFilter;
 import com.dto.CartDTO;
 import com.dto.GoodsDTO;
 import com.dto.OrdersDTO;
@@ -31,6 +32,8 @@ public class StoreController {
 	GoodsService service;
 	@Resource(name="uploadPath")
 	private String uploadPath;
+	
+	private XSSFilter xss = new XSSFilter();
 	
 	/* store */
 	//스토어메인
@@ -102,6 +105,12 @@ public class StoreController {
 		m.addAttribute("list", list);
 		
 	    List<ReviewsDTO> rList = service.selectReview(gProductID);
+	    //필터처리
+	    for (ReviewsDTO rDTO : rList) {
+	    	if(rDTO.getReviewContent() != null) {
+	    		rDTO.setReviewContent(xss.xssFilter(rDTO.getReviewContent()));
+	    	}
+		}
 	    m.addAttribute("ReviewList", rList);
 	    return "store/goodsRetrieve"; 
 	}
@@ -190,6 +199,9 @@ public class StoreController {
 		}
 		rDTO.setOrderID(oDTO.getOrderID());
 		rDTO.setUserAlias(uDTO.getUserAlias());
+		
+		//리뷰 저장할 때, DB에는 '<, >' 형태로 저장하기. 상품 상세페이지에서 리뷰 뿌릴때는 필터처리하여 '&lt, &gt' 로 변환.
+		rDTO.setReviewContent(xss.xssDecoding(rDTO.getReviewContent()));
 		//파일이 없을 때 fileName이 null이기 때문에 조건문추가
 		if(fileName != null) {
 			rDTO.setrImg(ymdPath + File.separator + fileName);
