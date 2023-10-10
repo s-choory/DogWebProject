@@ -16,21 +16,28 @@ import com.config.SecurityConfig;
 import com.dto.UsersDTO;
 import com.service.UsersService;
 
+import net.nurigo.sdk.NurigoApp;
+import net.nurigo.sdk.message.model.Message;
+import net.nurigo.sdk.message.request.SingleMessageSendingRequest;
+import net.nurigo.sdk.message.response.SingleMessageSentResponse;
+import net.nurigo.sdk.message.service.DefaultMessageService;
+
 @Controller
 public class UsersController {
 	
 	@Autowired
-	UsersService service;
+	private UsersService service;
 	
-	SecurityConfig SecurityConfig = new SecurityConfig();
+	private SecurityConfig SecurityConfig = new SecurityConfig();
 	
 	/* member */
-	//로그인
+	//로그인페이지
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String login(Model model) {
 		return "member/login";
 	}
 	
+	//로그인 조건 체크
 	@RequestMapping(value = "/loginChk", method = RequestMethod.POST)
 	public String loginChk(HttpSession session, UsersDTO dto) {
 		
@@ -155,22 +162,22 @@ public class UsersController {
             numStr+=ran;
         }
         
-//		String apiKey = "NCSCTEIDBZTOQ6LU";
-//		String apiSecretKey = "V99CEJPQLFJC0YV44KCXAMUMK0MTH174";
-//		String domain = "https://api.coolsms.co.kr";
-//		DefaultMessageService messageService = NurigoApp.INSTANCE.initialize(apiKey, apiSecretKey, domain);
-//
-//        System.out.println("수신자 번호 : " + PhoneNumber);
-//        System.out.println("인증번호 : " + numStr);
-//        
-//        Message message = new Message();
-//        message.setFrom("01092681933");
-//        message.setTo("01092681933");
-//        message.setText("DogProject\n"+
-//        "인증번호는["+numStr+"]입니다.");
-//        
-//        SingleMessageSentResponse response = messageService.sendOne(new SingleMessageSendingRequest(message));
-//        System.out.println(response);
+		String apiKey = "NCSCTEIDBZTOQ6LU";
+		String apiSecretKey = "V99CEJPQLFJC0YV44KCXAMUMK0MTH174";
+		String domain = "https://api.coolsms.co.kr";
+		DefaultMessageService messageService = NurigoApp.INSTANCE.initialize(apiKey, apiSecretKey, domain);
+
+        System.out.println("수신자 번호 : " + PhoneNumber);
+        System.out.println("인증번호 : " + numStr);
+        
+        Message message = new Message();
+        message.setFrom("01092681933");
+        message.setTo("01092681933");
+        message.setText("DogProject\n"+
+        "인증번호는["+numStr+"]입니다.");
+        
+        SingleMessageSentResponse response = messageService.sendOne(new SingleMessageSendingRequest(message));
+        System.out.println(response);
         return numStr;
 	}
 	
@@ -218,6 +225,11 @@ public class UsersController {
 	//비밀번호 변경
 	@RequestMapping(value="/changePW", method = RequestMethod.POST)
 	public String changePW(UsersDTO uDTO, HttpSession session) {
+		//암호화
+		String password = uDTO.getPassword();
+		String encodePW = SecurityConfig.getPasswordEncoder().encode(password);
+		uDTO.setPassword(encodePW);
+		
 		int n = service.updatePW(uDTO);
 		session.setAttribute("msg", "비밀번호를 변경했습니다.");
 		return "redirect:/login";

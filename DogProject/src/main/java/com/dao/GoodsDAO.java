@@ -41,9 +41,7 @@ public class GoodsDAO {
 	}
 
 	public OrdersDTO OrderSelect(HashMap<String, Object> map) {
-		System.out.println("map이올시다"+map);
 		OrdersDTO oDTO = session.selectOne("OrdersMapper.OrderSelect", map);
-		System.out.println("DAO의 ODTO: "+oDTO);
 		return oDTO;
 	}
 
