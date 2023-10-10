@@ -544,7 +544,7 @@
 			</div>
 			<div class="select_img" contenteditable="true"><img src="" /></div><br>
 			<label for="rImg" class="attach-button">사진 첨부</label>
-			<input type="file" id="rImg" name=file style="display: none;"/>
+			<input type="file" id="rImg" name="files" multiple style="display: none;"/>
 			<textarea id="review-content" name="ReviewContent"
 				style="width: 80%; height: 60px; resize: none;"
 				placeholder="리뷰를 입력하세요.&#10;해당 상품의 구입내역을 가진 회원만 리뷰 작성 가능합니다."></textarea>
@@ -565,7 +565,14 @@
 				 String ReviewContent = rList.get(i).getReviewContent();
 				 String rImg = rList.get(i).getrImg();
 				 String rThumbImg = rList.get(i).getrThumbImg();
+				 String [] rImgList = null;
+				 String [] rThumbImgList = null;
+				 if(rImg != null && rThumbImg != null){
+					 rImgList = rImg.split("@");
+					 rThumbImgList = rThumbImg.split("@");
+				 }
 				 
+				 // 평점 합계
 				 double sum = 0;
 				 int n = 0;
 				 if(Rating != 0){
@@ -587,12 +594,12 @@
 						</span> <br> <span
 							style="font-size: 11px; color: gray; font-weight: bolder;"><%= CreationTime %></span>
 					</div> <%if(ReviewContent != null){ %>
-					<p><%= ReviewContent %></p> <% } %> <%if(rThumbImg != null){ %> <img
-					src="<%= rThumbImg %>" class="img" data-xxx="<%=rImg%>">
-					<div class="modal" id="<%=rImg%>">
+					<p><%= ReviewContent %></p> <% } %> <%if(rThumbImgList != null){ for ( int m = 1; m < rThumbImgList.length; m++) {%> 
+					<img src="<%= rThumbImgList[0]+rThumbImgList[m] %>" class="img" data-xxx="<%=rImgList[0]+rImgList[m]%>">
+					<div class="modal" id="<%=rImgList[0]+rImgList[m] %>">
 						<span class="close">&times;</span> <img class="modal_content"
 							id="img01">
-					</div> <%} %> <!-- 댓글 수정 폼-->
+					</div> <% }} %> <!-- 댓글 수정 폼-->
 					<form class="collapse multi-collapse-{{id}}">
 						                    
 						<div class="form-group">
@@ -643,7 +650,12 @@
 									<span style="color: gray; font-size: 11px;">(평점과 이미지는 수정할 수 없습니다.)</span>
 								</div>
 								<div class="select_img" id="select_img">
-								<% if(rThumbImg != null) { %><img src="<%= rThumbImg %>" /><% } %>
+								<% if(rThumbImgList != null) { for ( int k = 1; k < rThumbImgList.length; k++) {%>
+								<img class="img" src="<%= rThumbImgList[0] + rThumbImgList[k] %>" data-xxx="<%=rImgList[0]+rImgList[k]%>" />
+								<div class="modal" id="<%=rImgList[0]+rImgList[k] %>">
+									<span class="close">&times;</span> <img class="modal_content"
+										id="img01">
+								</div><% } } %>
 								</div>
 								<textarea id="review-content" name="ReviewContent"
 									style="width: 80%; height: 60px; resize: none;"
@@ -664,13 +676,19 @@
 	<script type="text/javascript">
 		//사진첨부
 		$("#rImg").change(function(){
-			if(this.files && this.files[0]){
-				var reader = new FileReader;
-				reader.onload = function(data){
-					$(".select_img img").attr("src", data.target.result).width(500);
-				}
-				reader.readAsDataURL(this.files[0]);
-			}
+		    if (this.files && this.files.length > 0) {
+		        $(".select_img").empty(); // 이미지 미리보기 영역 초기화
+
+		        for (var i = 0; i < this.files.length; i++) {
+		            var reader = new FileReader();
+		            reader.onload = function(data) {
+		                var imgElement = $('<img>').attr('src', data.target.result).width(500);
+		                var divElement = $('<div>').addClass('preview-image').append(imgElement);
+		                $(".select_img").append(divElement);
+		            }
+		            reader.readAsDataURL(this.files[i]);
+		        }
+		    }
 		});
 		
 		//모달창 이벤트 

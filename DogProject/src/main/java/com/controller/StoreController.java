@@ -30,8 +30,6 @@ public class StoreController {
 
 	@Autowired
 	GoodsService service;
-	@Resource(name="uploadPath")
-	private String uploadPath;
 	
 	private XSSFilter xss = new XSSFilter();
 	
@@ -165,14 +163,16 @@ public class StoreController {
 	
 	//리뷰등록
 	@RequestMapping(value = "/reviewAdd", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
-	public String reviewAdd(MultipartFile file,HttpSession session, ReviewsDTO rDTO, Model model) throws Exception{
+	public String reviewAdd(MultipartFile[] files,HttpSession session, ReviewsDTO rDTO, Model model) throws Exception{
 		//이미지 처리, 매개변수 MultipartFile도 추가했다.
+		System.out.println(files);
 		String ymdPath = null;
-		String fileName = null;
-		if(file != null) {
-			String imgUploadPath = uploadPath + File.separator + "imgUpload";
-			ymdPath = UploadFileUtils.calcPath(imgUploadPath);
-			fileName =  UploadFileUtils.fileUpload(imgUploadPath, file.getOriginalFilename(), file.getBytes(), ymdPath);
+		String fileName = "";
+		String imgUploadPath = File.separator + "imgUpload";
+		ymdPath = UploadFileUtils.calcPath(imgUploadPath);
+		// 여러개의 이미지 이름 사이사이에 기호 '@'를 넣어 저장. split으로 파일을 분리하기위함
+		for(int i=0; i<files.length; i++) {
+			fileName +=  "@"+UploadFileUtils.fileUpload(imgUploadPath, files[i].getOriginalFilename(), files[i].getBytes(), ymdPath);
 		}
 		int ProductID = rDTO.getProductID();
 		
@@ -200,12 +200,18 @@ public class StoreController {
 		rDTO.setOrderID(oDTO.getOrderID());
 		rDTO.setUserAlias(uDTO.getUserAlias());
 		
-		//리뷰 저장할 때, DB에는 '<, >' 형태로 저장하기. 상품 상세페이지에서 리뷰 뿌릴때는 필터처리하여 '&lt, &gt' 로 변환.
+		//리뷰 저장할 때, 텍스트 '&lt, &gt'를 DB에는 '<, >' 형태로 저장하기. 상품 상세페이지에서 리뷰 뿌릴때는 필터처리하여 '&lt, &gt' 로 변환.
 		rDTO.setReviewContent(xss.xssDecoding(rDTO.getReviewContent()));
 		//파일이 없을 때 fileName이 null이기 때문에 조건문추가
 		if(fileName != null) {
 			rDTO.setrImg(ymdPath + File.separator + fileName);
-			rDTO.setrThumbImg(ymdPath + File.separator + "s" + File.separator + "s_" + fileName);
+			String [] fName = fileName.split("@");
+			String fString = ymdPath;
+			//인덱스 0번은 아무것도 없는 값이기 떄문에 1부터 시작
+			for (int i = 1; i < fName.length; i++) {
+				fString += "@" + File.separator + "s" + File.separator + "s_" + fName[i];
+			}
+			rDTO.setrThumbImg(fString);
 		}
 		int n = service.addReview(rDTO);
 		//리뷰등록에 성공했다면 orderFlag를 true로 바꿔주고 등록 성공 메시지.
@@ -229,8 +235,8 @@ public class StoreController {
 	//리뷰 업데이트
 	@RequestMapping(value = "/updateReview", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
 	public String reviewUpdate(ReviewsDTO rDTO, Model model){
+		rDTO.setReviewContent(xss.xssDecoding(rDTO.getReviewContent()));
 		int n = service.reviewUpdate(rDTO);
-		System.out.println(n);
 		if(n == 1) {
 			model.addAttribute("msg", "리뷰가 수정되었습니다.");
 		}
