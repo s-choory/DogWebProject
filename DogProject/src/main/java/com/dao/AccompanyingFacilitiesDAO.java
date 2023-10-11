@@ -19,18 +19,7 @@ public class AccompanyingFacilitiesDAO {
 		return session.selectList("AccompanyingFacilitiesMapper.selectList", dto);
 	}
 
-	public List<AccompanyingFacilitiesDTO> searchList(AccompanyingFacilitiesDTO dto) {
-		return session.selectList("AccompanyingFacilitiesMapper.searchList",dto);
-		
-	}
-
 	public List<AccompanyingFacilitiesDTO> selectListChange(Map<String, Object> map) {
-		System.out.println(map.get("RodeAddress"));
-		System.out.println(map.get("Category2"));
-		System.out.println(map.get("Latitude1"));
-		System.out.println(map.get("Latitude2"));
-		System.out.println(map.get("Longitude1"));
-		System.out.println(map.get("Longitude2"));
 		return session.selectList("AccompanyingFacilitiesMapper.selectListChange", map);
 	}
 

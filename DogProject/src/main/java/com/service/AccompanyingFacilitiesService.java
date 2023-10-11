@@ -20,10 +20,6 @@ public class AccompanyingFacilitiesService {
 		return dao.selectList(dto);
 	}
 
-	public List<AccompanyingFacilitiesDTO> searchList(AccompanyingFacilitiesDTO dto) {
-		return dao.searchList(dto);
-	}
-
 	public List<AccompanyingFacilitiesDTO> selectListChange(Map<String, Object> map) {
 		return dao.selectListChange(map);
 	}

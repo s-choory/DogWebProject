@@ -29,22 +29,22 @@ public class MapController {
 	public String map(Model model, AccompanyingFacilitiesDTO dto) {
 		List<AccompanyingFacilitiesDTO> list = service.selectList(dto);
 		model.addAttribute("list",list);
-		
 		return "guide/map";
 	}
 	
 	@RequestMapping(value = "/changeMap", method = RequestMethod.GET)
 	@ResponseBody
 	public List<AccompanyingFacilitiesDTO> changeMap(Model model, String swLatlng, String neLatlng, String RodeAddress, String Category2, Map<String,Object> map) {
-		if(RodeAddress == "")
-			RodeAddress = null;
-		if(Category2 == "")
-			Category2 = null;
+		if (RodeAddress == null || RodeAddress.isEmpty() || RodeAddress.equals("null")) {
+		    RodeAddress = null;
+		}
+		if (Category2 == null || Category2.isEmpty() || Category2.equals("null")) {
+		    Category2 = null;
+		}
 		map = getLatlng(swLatlng, neLatlng, map);
 		map.put("RodeAddress", RodeAddress);
 		map.put("Category2", Category2);
 		List<AccompanyingFacilitiesDTO> list = service.selectListChange(map);
-		System.out.println(list);
 		return list;
 	}
 	
@@ -62,15 +62,6 @@ public class MapController {
 		map.put("Longitude2", Double.parseDouble(neLatlngArray[1]));
 		return map;
 	}
-	
-	@RequestMapping(value = "/map/search", method = RequestMethod.GET)
-	public String mapSearch(Model model, AccompanyingFacilitiesDTO dto) {
-		List<AccompanyingFacilitiesDTO> list2 = service.searchList(dto);
-		model.addAttribute("RodeAddress", dto.getRodeAddress());
-		model.addAttribute("list2",list2);
-		return "forward:/map";
-	}
-	
 	
 	//동물병원 찾기
 	@RequestMapping(value = "/gmap", method = RequestMethod.GET)
