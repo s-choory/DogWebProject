@@ -320,7 +320,7 @@
 
 				<div class="product-options">
 					<img src="resources/storeimages/<%=gImage%>.jpg" align="left"
-						style="width: 400px; height: 300px;">
+						style="width: 90%; height: 300px;">
 				</div>
 				<!-- 상품 제목과 상세 정보 -->
 				<div class="product-options" style="margin-right: 30px;">

@@ -18,33 +18,22 @@ public class UsersDTO {
 	private String PhoneNumber;
 	private String DogName;
 	private String DogType;
-	private String UserImg;
 	private String UserType;
 	public UsersDTO() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	
-	public String getUserImg() {
-		return UserImg;
-	}
-
-	public void setUserImg(String userImg) {
-		UserImg = userImg;
-	}
-
 	@Override
 	public String toString() {
 		return "UsersDTO [UserID=" + UserID + ", UserName=" + UserName + ", UserAlias=" + UserAlias + ", Email1="
 				+ Email1 + ", Email2=" + Email2 + ", Post=" + Post + ", Password=" + Password + ", RodeAddress="
 				+ RodeAddress + ", HouseAddress=" + HouseAddress + ", DetailAddress=" + DetailAddress + ", PhoneNumber="
-				+ PhoneNumber + ", DogName=" + DogName + ", DogType=" + DogType + ", UserImg=" + UserImg + ", UserType="
-				+ UserType + "]";
+				+ PhoneNumber + ", DogName=" + DogName + ", DogType=" + DogType + ", UserType=" + UserType + "]";
 	}
 
 	public UsersDTO(String userID, String userName, String userAlias, String email1, String email2, int post,
 			String password, String rodeAddress, String houseAddress, String detailAddress, String phoneNumber,
-			String dogName, String dogType, String userImg, String userType) {
+			String dogName, String dogType, String userType) {
 		super();
 		UserID = userID;
 		UserName = userName;
@@ -59,7 +48,6 @@ public class UsersDTO {
 		PhoneNumber = phoneNumber;
 		DogName = dogName;
 		DogType = dogType;
-		UserImg = userImg;
 		UserType = userType;
 	}
 
