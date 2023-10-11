@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ReviewsMapper">      
+
+<select id="selectReview" parameterType="string" resultType="Reviews">
+	SELECT * FROM REVIEWS WHERE ProductID = #{ProductID} order by CreationTime desc
+</select>
+
+<insert id="addReview" parameterType="Reviews">
+  INSERT INTO REVIEWS VALUES(
+    REVIEWS_REVIEWID_SEQ.nextval,
+    #{OrderID},
+    #{ProductID},
+    #{UserAlias},
+    sysdate,
+    #{Rating},
+    #{ReviewContent},
+    
+    <choose>
+      <when test="rImg != null and rImg != ''">
+        #{rImg}
+      </when>
+      <otherwise>
+        null
+      </otherwise>
+    </choose>,
+    
+    <choose>
+      <when test="rThumbImg != null and rThumbImg != ''">
+        #{rThumbImg}
+      </when>
+      <otherwise>
+        null
+      </otherwise>
+    </choose>
+    , 'undeleted'
+  )
+</insert>
+
+</mapper>                
