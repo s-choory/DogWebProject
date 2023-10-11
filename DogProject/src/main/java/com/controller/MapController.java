@@ -38,7 +38,7 @@ public class MapController {
 		if (RodeAddress == null || RodeAddress.isEmpty() || RodeAddress.equals("null")) {
 		    RodeAddress = null;
 		}
-		if (Category2 == null || Category2.isEmpty() || Category2.equals("null")) {
+		if (Category2 == null || Category2.isEmpty() || Category2.equals("null") || Category2.equals("categoryFilter")) {
 		    Category2 = null;
 		}
 		map = getLatlng(swLatlng, neLatlng, map);
