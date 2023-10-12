@@ -536,6 +536,8 @@
 <% 
     UsersDTO dto = (UsersDTO) session.getAttribute("User"); 	
 	
+	String DetailAddress = dto.getDetailAddress();
+	int Post = dto.getPost();
     String UserName = dto.getUserName();
     String UserAlias = dto.getUserAlias();
     String PhoneNumber = dto.getPhoneNumber();
@@ -627,9 +629,11 @@
 										            <option value="google.com">google.com</option>
 										        </select>
 								 				</p>
-								 				<p class="user">주소:
-								 				<input type="text"  id="sample4_roadAddress" name="RodeAddress" value="<%=RodeAddress%>" style="width: 250px;">
-								 				<input type="text"  id="sample4_jibunAddress" name="HouseAddress" value="<%=HouseAddress%>" style="width: 250px;">
+								 				<p class="user">주소:  
+								 				<input type="text"  id="sample4_postcode"     name="Post"        value="<%=Post%>" readonly><Br>
+								 				<input type="text"  id="sample4_roadAddress"  name="RodeAddress" value="<%=RodeAddress%>" style="width: 350px;" readonly><Br>
+								 				<input type="text"  id="sample4_jibunAddress" name="HouseAddress" value="<%=HouseAddress%>" style="width: 350px;" readonly><Br>
+								 				<input type="text"  id="DetailAddress_xxx" name="DetailAddress" value="<%=DetailAddress%>" style="width: 350px;" placeholder="상세주소를 입력해주세요.">
 								 				<input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기" id="zipcode-button">
 								 				</p>
 							 					
@@ -880,6 +884,7 @@
                 }
 
                 // 우편번호와 주소 정보를 해당 필드에 넣는다.  //우편번호 : data.zonecode
+                document.getElementById('sample4_postcode').value = data.zonecode; //5자리 새우편번호 사용
                 document.getElementById('sample4_roadAddress').value = fullRoadAddr;
                 document.getElementById('sample4_jibunAddress').value = data.jibunAddress;
 
