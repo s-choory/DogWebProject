@@ -30,6 +30,8 @@ public class StoreController {
 
 	@Autowired
 	GoodsService service;
+	@Resource(name="uploadPath")
+	private String uploadPath;
 	
 	private XSSFilter xss = new XSSFilter();
 	
@@ -245,5 +247,13 @@ public class StoreController {
 		return "forward:/goodsRetrieve?gProductID="+ProductID;
 	}
 	
+	// 검색기능  
+			@RequestMapping(value = "/search", method = RequestMethod.GET)
+			public String storeSearch(@RequestParam("SearchName") String SearchName,Model model) {
+				List<GoodsDTO>list  = service.searchList(SearchName);
+				model.addAttribute("list",list);
+				
+				return "store/dogshop_main";
+			}
 	
 }

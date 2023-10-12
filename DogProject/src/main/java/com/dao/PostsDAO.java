@@ -16,5 +16,13 @@ public class PostsDAO {
 	public List<PostsDTO> selectList() {
 		return session.selectList("PostsMapper.selectList");
 	}
+	
+	public List<PostsDTO> selectList2(String userID) {
+		return session.selectList("PostsMapper.selectList2", userID);
+	}
+
+	public List<PostsDTO> selectgetList(String userID) {
+		return session.selectList("PostsMapper.selectgetList", userID);
+	}
 
 }

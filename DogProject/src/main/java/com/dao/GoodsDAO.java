@@ -64,5 +64,9 @@ public class GoodsDAO {
 	public int reviewUpdate(ReviewsDTO rDTO) {
 		return session.update("ReviewsMapper.reviewUpdate", rDTO);
 	}
+	
+	public List<GoodsDTO> searchList(String SearchName) {
+		return session.selectList("GoodsMapper.searchList", SearchName);
+	}
 
 }

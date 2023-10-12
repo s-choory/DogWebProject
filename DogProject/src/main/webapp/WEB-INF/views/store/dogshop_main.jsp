@@ -87,7 +87,25 @@ $(function () {
 	        $('#myForm').submit();
 	    });
     
-    
+//  검색 기능 이벤트 처리 (버튼 누를시)
+	 
+ 	$("#searchbtn").on("click",function(){
+ 		console.log("검색버튼 눌림");
+ 		console.log($("#searchid").val());
+ 		var SearchName = $("#searchid").val();
+ 		$('#searchForm').submit();
+ 	});
+	
+ 	//엔터 눌러도 검색 가능하게  
+ 	$("#searchid").on("keyup", function(event) {
+ 		  if (event.keyCode === 13) { // Enter 키의 keyCode는 13입니다.
+ 			console.log("검색버튼 눌림");
+ 	 		console.log($("#searchid").val());
+ 	 		var SearchName = $("#searchid").val();
+ 	 		$('#searchForm').submit();
+ 		  }//end if
+ 	});
+       
     
     
     
@@ -277,6 +295,14 @@ $(function () {
 <body>
 <jsp:include page = "../common/top.jsp" flush="true"/><br>
 <jsp:include page = "../common/side.jsp" flush="true"/><br>
+<!--  검색      -->
+<form id="searchForm" action="/test/search" method="get">
+	<div class="search" id="search">
+		<input type="text" id="searchid" class="searchid" name="SearchName" placeholder="제품을 입력하세요 ex)터그, 식탁 ">
+		<button id="searchbtn">검색</button>
+	</div>
+</form>
+<!--  검색  끝    -->
 <div class="shop_click">
 	<ul>
 		<li><a href="dogshop_main?gCategory=장난감">장난감</a></li>

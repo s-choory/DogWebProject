@@ -34,7 +34,9 @@
 		ORDER BY Count DESC
 </select>
 
-
+<select id="searchList" resultType="com.dto.GoodsDTO" parameterType="String">
+	SELECT * FROM products WHERE PRODUCTNAME LIKE '%'||#{SearchName}||'%' OR category LIKE '%'||#{SearchName}||'%'
+</select>
 
 <!-- 
 

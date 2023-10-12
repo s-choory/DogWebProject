@@ -41,7 +41,21 @@ public class UsersDAO {
 		return session.update("UsersMapper.updatePW", uDTO);
 	}
 
+	public int ProfilImg(UsersDTO dTO) {
+		return session.update("UsersMapper.profilChange", dTO);
+	}
 
+	public int profilImgDelete(String userID) {
+		return session.update("UsersMapper.profilDelete", userID);
+	}
+
+	public UsersDTO userinfo(String userID) {
+		return session.selectOne("UsersMapper.userinfo", userID);
+	}
+
+	public UsersDTO profilUpdate(UsersDTO dto) {
+		return session.selectOne("UsersMapper.profilUpdate", dto);
+	}
 	
 	
 }
