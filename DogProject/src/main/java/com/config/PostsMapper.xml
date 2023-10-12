@@ -9,6 +9,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	select * from Posts where posttype = 'undeleted'
 </select>
 
+<!-- mypage list 화면 출력 및 페이징 관련 SQL문 -->
+ <select id="selectList2" resultType="Posts" parameterType="String">
+	select * from Posts where AUTHORID = #{userID}
+</select>
+
+<!-- 특정 페이징 getTotalCount -->
+<select id="getTotalCount" parameterType="String" resultType="int">
+ 	SELECT COUNT(*) FROM Posts WHERE AUTHORID = #{UserID}
+</select>
+
+<select id="selectgetList" parameterType="String" resultType="Posts">
+	SELECT * FROM Posts WHERE AUTHORID = #{userID}
+</select>
+
 <!-- 카테고리 totalCount -->
 <select id="totalCount" parameterType="map" resultType="int">
       select count(*)
@@ -39,6 +53,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     	</if>
 </select>
 
+<select id="selectOrder2" parameterType="map" resultType="com.dto.PostsDTO">
+	    SELECT *
+	    FROM posts
+	    WHERE AUTHORID = #{userID}
+	    <if test="order == '좋아요 누른 글' ">
+    		
+    	</if>
+</select>
 
 <!-- 검색조건 TotalCount -->
 <select id="selectTotalCount" parameterType="map" resultType="int">
@@ -62,5 +84,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </where>
 </select>
 
+ 
  
 </mapper>

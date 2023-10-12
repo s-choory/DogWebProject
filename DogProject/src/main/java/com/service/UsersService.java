@@ -40,4 +40,20 @@ public class UsersService {
 		return dao.updatePW(uDTO);
 	}
 	
+	public int ProfilImg(UsersDTO dTO) {
+		return dao.ProfilImg(dTO);
+	}
+
+	public int profilImgDelete(String userID) {
+		return dao.profilImgDelete(userID);
+	}
+
+	public UsersDTO userinfo(String userID) {
+		return dao.userinfo(userID);
+	}
+
+	public UsersDTO profilUpdate(UsersDTO dto) {
+		return dao.profilUpdate(dto);
+	}
+	
 }

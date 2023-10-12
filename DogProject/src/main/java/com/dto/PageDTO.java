@@ -5,6 +5,9 @@ import java.util.List;
 import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.type.Alias;
 
+import com.dao.PageDAO;
+import com.dao.PostsDAO;
+
 @Alias("Page")
 public class PageDTO {
 
@@ -66,6 +69,15 @@ public class PageDTO {
 	public String toString() {
 		return "PageDTO [list=" + list + ", curPage=" + curPage + ", perPage=" + perPage + ", totalCount=" + totalCount
 				+ ", perBlock=" + perBlock + ", row=" + row + "]";
+	}
+	
+	public int getTotalCount(String userID) {
+		PageDAO dao = new PageDAO();
+		return totalCount = dao.selecTotalCount2(userID);
+	}
+	public List<PostsDTO> getList(String userID) {
+		PostsDAO dao = new PostsDAO();
+		return list = dao.selectgetList(userID);
 	}
 	
 }// end DTO

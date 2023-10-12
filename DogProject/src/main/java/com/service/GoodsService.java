@@ -75,6 +75,11 @@ public class GoodsService {
 	public int reviewUpdate(ReviewsDTO rDTO) {
 		return dao.reviewUpdate(rDTO);
 	}
+	
+	public List<GoodsDTO> searchList(String SearchName) {
+		return dao.searchList(SearchName);
+	}
+	
 
 	
 }

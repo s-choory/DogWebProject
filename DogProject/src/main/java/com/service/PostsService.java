@@ -17,4 +17,8 @@ public class PostsService {
 		return dao.selectList();
 	}
 	
+	public List<PostsDTO> selectList2(String userID) {
+		return dao.selectList2(userID);
+	}
+	
 }// end class

@@ -57,7 +57,37 @@ public class PageDAO {
 		return pDTO;
 	}
 	
-	
+	// 특정 페이징 계산
+		public PageDTO selectSearch2(HashMap<String, String> map, int curPage, PageDTO pDTO) {
+			int perPage = pDTO.getPerPage();   //한페이지 2개씩 
+			int offset = (curPage - 1) * perPage;
+			List<PostsDTO> list =  session.selectList("PostsMapper.selectSearch" , map , new RowBounds(offset, perPage));
+			//레코드 시작 번호, 읽어올 갯수 
+			
+			pDTO.setCurPage(curPage);//현재 페이지번호
+			pDTO.setList(list);//페이지 에 해당 데이터
+			pDTO.setTotalCount(selectTotalCount(map));//전체 레코드 갯수 저장
+			System.out.println(pDTO);
+			return pDTO;
+		}
+
+		public int selecTotalCount2(String UserID) {
+			return session.selectOne("PostsMapper.getTotalCount", UserID);
+		}
+
+		public PageDTO selectOrder2(HashMap<String, String> map, int curPage, PageDTO pDTO) {
+			int perPage = pDTO.getPerPage();   //한페이지 2개씩 
+			int offset = (curPage - 1) * perPage;
+			List<PostsDTO> list =  session.selectList("PostsMapper.selectOrder2" , map , new RowBounds(offset, perPage));
+			//레코드 시작 번호, 읽어올 갯수 
+		
+			
+			pDTO.setCurPage(curPage);//현재 페이지번호
+			pDTO.setList(list);//페이지 에 해당 데이터
+			//pDTO.setTotalCount(totalCount(map));//전체 레코드 갯수 저장
+			System.out.println(pDTO);
+			return pDTO;
+		}
 
 	
 }// end class
