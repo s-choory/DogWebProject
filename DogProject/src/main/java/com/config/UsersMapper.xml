@@ -5,7 +5,7 @@
 <mapper namespace="UsersMapper">	<!-- Mapper 생성 후 Configuration 수정 -->
 
 <select id="loginChk" parameterType="Users" resultType="Users">
-	SELECT * FROM Users where UserID = #{UserID} and Password = #{Password}
+	SELECT * FROM Users where UserID = #{UserID} 
 </select>
 
 <select id="idChk" parameterType="String" resultType="int">
