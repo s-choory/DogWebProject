@@ -56,7 +56,9 @@
         HouseAddress= #{HouseAddress},
         PhoneNumber= #{PhoneNumber},
         DogName= #{DogName}, 
-        DogType= #{DogType}
+        DogType= #{DogType},
+        Post = #{Post},
+        DetailAddress = #{DetailAddress}
    		WHERE userID=#{userID}
 </update>
 
