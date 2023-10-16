@@ -30,7 +30,11 @@ public class GoodsService {
 	public List<GoodsDTO> select() {
 		return dao.select();
 	}
-
+	
+	public List<GoodsDTO> random(){
+		return dao.random();
+	}
+	
 	public GoodsDTO selectone(String gProductID) {
 		return dao.selectone(gProductID);
 	}

@@ -19,6 +19,10 @@ public class GoodsDAO {
 	public List<GoodsDTO> select() {
 		return session.selectList("GoodsMapper.selectAll");
 	}
+	
+	public List<GoodsDTO> random() {
+		return session.selectList("GoodsMapper.random");
+	}
 
 	public GoodsDTO selectone(String gProductID) {
 		return session.selectOne("GoodsMapper.selectOne", gProductID);

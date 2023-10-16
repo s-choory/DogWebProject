@@ -21,4 +21,12 @@ public class PostsService {
 		return dao.selectList2(userID);
 	}
 	
+	public List<PostsDTO> popular(){
+		return dao.popular();
+	}
+	
+	public int addPost(PostsDTO post) {
+		dao.addPost(post);
+		return post.getPostID();
+	}
 }// end class
