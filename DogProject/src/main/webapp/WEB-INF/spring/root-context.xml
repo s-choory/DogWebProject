@@ -47,6 +47,7 @@
 				<value>com.dto.OrdersDTO</value>
 				<value>com.dto.PostsDTO</value>
 				<value>com.dto.PageDTO</value> 
+				<value>com.dto.LIKESDTO</value> 
 			</list>
 		</property>
 	</bean>

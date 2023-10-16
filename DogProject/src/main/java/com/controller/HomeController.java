@@ -90,7 +90,7 @@ public class HomeController {
 		//System.out.println("search>>>>"+search);
 		
 		//pdto의 total은 전체 total이라 특정userid의 total로 바꿔줘야함
-		int totalCountByUser = Pageservice.selecTotalCount2(UserID);
+		int totalCountByUser = Pageservice.selecTotalCount2(UserID,order);
 		System.out.println("제발제발제발제발>>>>>>>>"+totalCountByUser);
 		pDTO.setTotalCount(totalCountByUser);
 		System.out.println(pDTO.getTotalCount());
@@ -99,7 +99,7 @@ public class HomeController {
 		//pdto부분 수정해야함 현재 모든 글쓰기 정보가 나옴 
 		PageDTO pDTO2;
 		pDTO2 = Pageservice.selectAll2(Integer.parseInt(curPage), pDTO, order, UserID);
-		
+		System.out.println("좋아요 누른 글  order에 넘긴 경우 >>>>>>>>"+ pDTO2);
 		System.out.println("curPage>>>>>>"+curPage);
 		System.out.println("pDTO2.getTotalCount()>>>>>>"+pDTO.getTotalCount());
 		System.out.println("pDTO2.getList()>>>>>>"+pDTO.getList());

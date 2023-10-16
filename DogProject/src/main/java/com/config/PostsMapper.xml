@@ -15,8 +15,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 </select>
 
 <!-- 특정 페이징 getTotalCount -->
-<select id="getTotalCount" parameterType="String" resultType="int">
- 	SELECT COUNT(*) FROM Posts WHERE AUTHORID = #{UserID}
+<select id="getTotalCount" parameterType="map" resultType="int">
+ 	<choose>
+    	<when test="order == '좋아요 누른 글'">
+        	SELECT COUNT(*) FROM Posts p
+			INNER JOIN "LIKES" l ON l."categoryID" = p.PostID AND l."CATEGORIES" = 'post'
+			WHERE l."userID" = #{UserID}
+    	</when>
+    	<otherwise>
+        	SELECT COUNT(*) FROM Posts WHERE AUTHORID = #{UserID}
+    	</otherwise>
+    </choose>
 </select>
 
 <select id="selectgetList" parameterType="String" resultType="Posts">
@@ -53,14 +62,42 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     	</if>
 </select>
 
+<select id="selectOrder3" parameterType="hashmap" resultType="com.dto.PostsDTO">
+SELECT * FROM Posts p
+			INNER JOIN "LIKES" l ON l."categoryID" = p.PostID AND l."CATEGORIES" = 'post'
+			WHERE l."userID" =  #{userID} 
+</select> 
+
+<select id="selectOrder2" parameterType="hashmap" resultType="com.dto.PostsDTO">
+        	 SELECT * FROM Posts WHERE AUTHORID = #{userID}
+</select> 
+
+<!-- 
 <select id="selectOrder2" parameterType="map" resultType="com.dto.PostsDTO">
 	    SELECT *
 	    FROM posts
 	    WHERE AUTHORID = #{userID}
 	    <if test="order == '좋아요 누른 글' ">
     		
+    		
     	</if>
+</select> 
+
+<select id="selectOrder2" parameterType="map" resultType="com.dto.PostsDTO">
+	    <choose>
+    	<when test="order == '좋아요 누른 글'">
+        	SELECT * FROM Posts p
+			INNER JOIN "LIKE" l ON l."categoryID" = p.PostID AND l."category" = 'post'
+			WHERE l."userID" = #{UserID}
+    	</when>
+    	<otherwise>
+        	SELECT * FROM Posts WHERE AUTHORID = #{UserID}
+    	</otherwise>
+    </choose>
 </select>
+
+
+-->
 
 <!-- 검색조건 TotalCount -->
 <select id="selectTotalCount" parameterType="map" resultType="int">

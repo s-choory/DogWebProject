@@ -40,12 +40,12 @@ public class PageService {
 		        map.put("order", order);
 		        // 카테고리별 정렬 함수
 		    }
-		    
+		    System.out.println("pageService에서 찍어본 map>> "+map);
 		    return dao.selectOrder2(map, curPage, pDTO);
 		}
 		
-		public int selecTotalCount2(String userID) {
-			return dao.selecTotalCount2(userID);
+		public int selecTotalCount2(String userID, String order) {
+			return dao.selecTotalCount2(userID, order);
 		}
 
 
