@@ -501,9 +501,57 @@
     		 
     		    // 모달창 안에서 프로필 정보 변경 클릭시 
     		    $("#profil-img-change2").on("click", function() {
-    		        console.log("프로필 정보 변경 버튼 클릭됨");
+    		        
+    		     // 이름 필드 검사
+    		        var name = $("#name-2").val().trim();
+    		        if (name === "") {
+    		            alert("이름 칸이 비어있습니다.");
+    		            return;
+    		        }
 
-    		     	// 폼 데이터 가져오기
+    		        // 닉네임 필드 검사
+    		        var nickname = $("#nickname-2").val().trim();
+    		        if (nickname === "") {
+    		            alert("닉네임 칸이 비어있습니다.");
+    		            return;
+    		        }
+
+    		        // 연락처 필드 검사
+    		        var tel = $("#tel-2").val().trim();
+    		        if (tel === "") {
+    		            alert("연락처 칸이 비어있습니다.");
+    		            return;
+    		        }
+
+    		       // 이메일 필드 검사
+    		       var email1 = $("#Email1-2").val().trim();
+    		       var email2 = $("#Email2-2").val().trim();
+    		       if (email1 === "" || email2 === "") {
+    		           alert("이메일 칸이 비어있습니다.");
+    		           return;
+    		       }
+
+    		       // 주소 필드 검사
+    		       var postcode = $("#sample4_postcode").val().trim();
+    		       var roadAddress = $("#sample4_roadAddress").val().trim();
+    		      // var jibunAddress = $("#sample4_jibunAddress").val().trim();  //지번은 가끔 빈칸인 지번주소도 있으므로 제외 시킴
+    		       
+    		       if (postcode === "" || roadAddress === "") {
+    		           alert("주소 칸이 비어있습니다.");
+    		           return;
+    		       }
+    		      	
+	    		    // 세부주소 필드 검사
+	   		        var DetailAddress = $("#DetailAddress_xxx").val().trim();
+	   		        if (DetailAddress === "") {
+	   		            alert("상세주소 칸이 비어있습니다.");
+	   		            return;
+	   		        }
+    		      
+	   		  		//반려견 이름,품종은 안함 
+	   		        
+    		        
+    		        // 폼 데이터 가져오기
     		        var formData = $("#profil-text-form").serialize();
     		        
     		        $.ajax({
@@ -535,20 +583,20 @@
 <jsp:include page = "../common/side.jsp" flush="true"/><br>
 <% 
     UsersDTO dto = (UsersDTO) session.getAttribute("User"); 	
-	
-	String DetailAddress = dto.getDetailAddress();
-	int Post = dto.getPost();
-    String UserName = dto.getUserName();
-    String UserAlias = dto.getUserAlias();
-    String PhoneNumber = dto.getPhoneNumber();
-    String Email1 = dto.getEmail1();
-    String Email2 = dto.getEmail2();
-    String Password = dto.getPassword();
-    String RodeAddress = dto.getRodeAddress();
-    String HouseAddress = dto.getHouseAddress();
-    String DogName = dto.getDogName();
-    String DogType = dto.getDogType();
-    String UserType = dto.getUserType();
+	// 삼항연산자를 사용해서 db값이 null 인경우  화면에 빈칸으로 표시되도록 null이 아니면 그 값이 표시되도록  
+	String DetailAddress = dto.getDetailAddress() != null ? dto.getDetailAddress() : "";
+	int Post 			 = dto.getPost();
+	String UserName      = dto.getUserName() != null ? dto.getUserName() : "";
+	String UserAlias 	 = dto.getUserAlias() != null ? dto.getUserAlias() : "";
+	String PhoneNumber   = dto.getPhoneNumber() != null ? dto.getPhoneNumber() : "";
+	String Email1        = dto.getEmail1() != null ? dto.getEmail1() : "";
+	String Email2        = dto.getEmail2()!= null ? dto.getEmail2(): "";
+	String Password      = dto.getPassword()!=null?dto.getPassword(): "";	
+	String RodeAddress   = dto.getRodeAddress()!=null?dto.getRodeAddress(): "";	
+	String HouseAddress  = dto.getHouseAddress()!=null?dto.getHouseAddress(): "";	
+	String DogName       = dto. getDogName()!=null?dto. getDogName(): "";	
+	String DogType       = dto. getDogType()!=null?dto. getDogType(): "";	
+	String UserType      = dto.getUserType()!=null?dto.getUserType(): "";	
 
     byte[] userImgBytes = dto.getUSERIMG();  // 바이트 배열 형태의 이미지 데이터
     String imageSrc = null;
@@ -618,11 +666,11 @@
 							 			<div id="desc">
 							 				<p class="user">회원정보</p>
 							 				<div id="aa">
-								 				<p class="user">이름: <input type="text" id="name" name="UserName" value="<%=UserName%>"></p>
-								 				<p class="user">닉네임:<input type="text" id="nickname" name="UserAlias" value="<%=UserAlias%>"></p>
-								 				<p class="user">연락처:<input type="text" id="tel" name="PhoneNumber" value="<%=PhoneNumber%>" placeholder="'-'을 포함하여 입력하세요."></p>
-								 				<p class="user">이메일:<input type="text" id="Email1" name="Email1" value="<%=Email1%>" placeholder="직접 입력해주세요.">@
-										        <input type="text" name="Email2" id="Email2" name="Email2" value="<%=Email2%>"> 
+								 				<p class="user">이름: <input type="text" id="name-2" name="UserName" value="<%=UserName%>"></p>
+								 				<p class="user">닉네임:<input type="text" id="nickname-2" name="UserAlias" value="<%=UserAlias%>"></p>
+								 				<p class="user">연락처:<input type="text" id="tel-2" name="PhoneNumber" value="<%=PhoneNumber%>" placeholder="'-'을 포함하여 입력하세요."></p>
+								 				<p class="user">이메일:<input type="text" id="Email1-2" name="Email1" value="<%=Email1%>" placeholder="직접 입력해주세요.">@
+										        <input type="text"  id="Email2-2" name="Email2" value="<%=Email2%>"> 
 										        <select name="select_email" id= "select_email" onchange="input_email();">
 										            <option value="daum.net">daum.net</option>
 										            <option value="naver.com">naver.com</option>
