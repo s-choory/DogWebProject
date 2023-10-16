@@ -820,19 +820,61 @@
 		<div id="rightbox3" class="rightbox">
 		 <!-- 주문list 시작 -->
 			<span id="rightbox_title">주문List</span>
-			 <div id="orderlist" >	
-				<% 
-					int a2 = 10; // 대충 10개까지 임의 지정
-					//data-xxx= Num 
-					for(int i = 1; i <= a2; i++) { 
-				%>
-				<div id="orderlist2" >
-						<img src="resources/storeimages/간식11.jpg" border="0"  width="200px" height="200px;" style="float: left;" id="image<%=i%>"/>
-				
-				
-				
-				</div>
-				<% } %>
+			<div id="orderlist">	
+		    <% 
+		    List<CartDTO> orderlist_after = (List<CartDTO>) request.getAttribute("list");
+		    for (int i = 0; i < list.size(); i++) {
+		        CartDTO cart = list.get(i);
+		        if ("after".equals(cart.getOrderState())) { // OrderState가 "after"인 경우에만 실행
+		            int num = cart.getCartNum();
+		            String UserID = cart.getUserID();
+		            int ProductID = cart.getProductID();
+		            String ProductName = cart.getProductName();
+		            int Price = cart.getPrice();
+		            String Psize = cart.getPsize();
+		            String Color = cart.getColor();
+		            int Amount = cart.getAmount();
+		            String Image = cart.getImage();
+		            
+		    %>
+			    <div id="orderlist2">
+			        <img src="resources/storeimages/<%=Image%>.jpg" border="0" width="200px" height="200px;" style="float: left;" id="image<%=i%>" />
+			    </div>
+			    <div class="shoppingbasket_info">
+						<table>
+				<colgroup>
+					<col style="width: 35%">
+					<col style="width: 65%">
+				</colgroup>
+				<tbody>
+					<tr>
+						<th>이름</th>
+						<td><%= ProductName %></td>
+					</tr>
+					<tr>
+						<th>사이즈</th>  
+						<td><%= Psize %></td>
+					</tr>
+					<tr>
+						<th>색상</th>  
+						<td><%= Color %></td>
+					</tr>
+					<tr>
+						<th>수량</th>  
+						<td><%= Amount %></td>
+					</tr>
+					<tr>
+						<th>가격</th>
+						<td><%= Price %></td>
+					</tr>
+				</tbody>
+			</table>
+					</div>	
+		    <% 
+		        }
+		    } 
+		    %>
+		    
 			</div>
 	     <!-- 주문list 끝 -->	
 		</div>
