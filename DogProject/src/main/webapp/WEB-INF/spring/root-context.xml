@@ -34,6 +34,7 @@
 				<value>classpath:com/config/ReviewsMapper.xml</value>
 				<value>classpath:com/config/OrdersMapper.xml</value>
 				<value>classpath:com/config/PostsMapper.xml</value>
+				<value>classpath:com/config/CalendarMapper.xml</value>
 			</list>
 		</property>
 		<property name="typeAliases">
@@ -46,7 +47,8 @@
 				<value>com.dto.ReviewsDTO</value>
 				<value>com.dto.OrdersDTO</value>
 				<value>com.dto.PostsDTO</value>
-				<value>com.dto.PageDTO</value> 
+				<value>com.dto.PageDTO</value>
+				<value>com.dto.CalendarDTO</value> 
 			</list>
 		</property>
 	</bean>
