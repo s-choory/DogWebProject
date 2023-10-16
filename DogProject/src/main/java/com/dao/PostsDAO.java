@@ -24,5 +24,14 @@ public class PostsDAO {
 	public List<PostsDTO> selectgetList(String userID) {
 		return session.selectList("PostsMapper.selectgetList", userID);
 	}
-
+	
+	public List<PostsDTO> popular() {
+		// TODO Auto-generated method stub
+		return session.selectList("PostsMapper.popular");
+	}
+	
+	public void addPost(PostsDTO post) {
+		// TODO Auto-generated method stub
+		session.insert("PostsMapper.addPost",post);
+	}
 }
