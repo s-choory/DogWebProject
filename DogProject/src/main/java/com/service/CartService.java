@@ -55,5 +55,4 @@ public class CartService {
 		return dao.dupleUpdate(map);
 	}
 
-
 }

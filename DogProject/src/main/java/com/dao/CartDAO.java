@@ -55,5 +55,4 @@ public class CartDAO {
 		return session.update("CartMapper.dupleUpdate",map);
 	}
 
-
 }
