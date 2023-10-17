@@ -168,7 +168,7 @@
     });
     </script>
 </head>
-<body>
+<body style="font-family: 'Exo', sans-serif;">
 <jsp:include page = "common/top.jsp" flush="true"/><br>
 <jsp:include page = "common/side.jsp" flush="true"/><br>
 <div class="searchList_container">
@@ -220,7 +220,7 @@
     	int likes = dto.getLikes();
    		String category= dto.getCategory();
    		String postimage=dto.getImage();
-   		String defaultimage="resources/default.jpg";
+   		String defaultimage="resources/default.png";
    	/* 	LocalDateTime creationtime = dto.getCreationtime();
    		Duration durationtime = Duration.between(creationtime,sysdate);
    		long differenceInHours=durationtime.toHours(); */
