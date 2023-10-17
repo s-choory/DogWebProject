@@ -8,6 +8,40 @@ button {
 	padding: 15px;
 }
 
+/* #open{
+	list-style: none;
+    margin: 0;
+    background: 0 0;
+    appearance: none;
+    outline: 0;
+    text-decoration: none;
+    -webkit-text-size-adjust: none;
+    cursor: pointer;
+    display: inline-block;
+    min-width: 44px;
+    padding: 2px 9px 3px;
+    border-radius: 4px;
+    border: solid 1px rgba(212,216,229,.5);
+    background-color: rgba(212,216,229,.25);
+    box-sizing: border-box;
+    text-align: center;
+    font-family: -apple-system,BlinkMacSystemFont,helvetica,"Apple SD Gothic Neo",sans-serif;
+    float: right;
+}
+
+#open2{
+	list-style: none;
+    -webkit-text-size-adjust: none;
+    cursor: pointer;
+    text-align: center;
+    font-family: -apple-system,BlinkMacSystemFont,helvetica,"Apple SD Gothic Neo",sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 17px;
+    letter-spacing: -.47px;
+    color: #7b8994;
+} */
+
 #modal-box {
 	position: fixed;
 	top: 0;

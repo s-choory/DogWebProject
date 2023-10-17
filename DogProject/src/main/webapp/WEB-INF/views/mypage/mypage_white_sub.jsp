@@ -16,27 +16,14 @@
 <style type="text/css">
 
 /* 전체틀 */	
-	#totalfull {
-	
-		/* 전체 비율을 화면 중앙으로 모음 */
-		position: absolute;
-  		left: 50%;
-  		transform: translateX(-50%);
-	
-	}
-
 	#full {
-		width: 1200px;
-		height: 1100px;
+		width: 1000px;
+		height: 1000px;
 		background-color: white;
-		justify-content: center;
 	}
 	
 /* 전체틀 끝 */	
-	#screen_left,
-#screenright {
-  margin: 50px; /* 원하는 간격 설정 */
-}
+	
 	
 /* 왼쪽부분 */	
 	#screen_left {
@@ -44,7 +31,6 @@
 		height: 1000px;
 		background-color: white;
 		float: left;
-		
 	}
 	
 	#screenleft-1 {
@@ -54,17 +40,11 @@
 		position: relative;
 		top: 50px;
 		left: 50px;
-		
-padding-left: 15%;
-padding-right: 15%;
-border: 1px solid #ccc; /* 테두리 추가 */
-border-radius: 5px;
-box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
 	}
 	
 	#userbutton {
 		position: relative;
-		text-align: center;
+		padding-left: 35%;
 	}	
 	
 	.circle {
@@ -99,25 +79,15 @@ box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
 		width: 350px;
 		height: 170px; 
 		border: 1px dashed white; 
-		text-align: left;
+		text-align: center;
 		line-height: 30px;
 		font-size: 1.2em;
-		
-		/* font-family: -apple-system,BlinkMacSystemFont,helvetica,"Apple SD Gothic Neo",sans-serif; */
-		border-top: 1px solid rgba(220,227,233,.8); 
 	}
 	
 	.view_text input {
- 		 width: 110px; /* input 요소의 넓이 조절 */
-		 border: none;
-		 background-color: transparent;
+ 		 width: 100px; /* input 요소의 넓이 조절 */
 	}
 	
-	#address {
-		 width: 250px; /* 주소 입력란 너비 */
-		 border: none;
-		 background-color: transparent;
-	}
 /* 왼쪽부분 끝 */	
 	
 	
@@ -137,25 +107,6 @@ box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
 		position: relative;
 		top: 25px;
 		left: 50px;	
-		
-	}
-	
-	#Calendarxxx {
-	/* 	display: flex;
-    margin-left: 15%;
-    margin-right: 15%;
-    margin-bottom: 10px;
-    border: 1px solid #ccc; 
-    border-radius: 5px;
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); */
-    
-    padding-left: 5%;
-    padding-right: 5%;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    border: 1px solid #ccc; /* 테두리 추가 */
-    border-radius: 5px;
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
 	}
 	
 	#rightbox2 {
@@ -192,14 +143,6 @@ box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
 		height: 250px;
 		white-space: nowrap; /* 세로 스크롤 삭제 */
 		overflow-x:scroll;	 /* 가로 스크롤만 생성 */
-		
-    padding-left: 5%;
-    padding-right: 5%;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    border: 1px solid #ccc; /* 테두리 추가 */
-    border-radius: 5px;
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
 		
 	}
 	
@@ -258,14 +201,6 @@ box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
 		white-space: nowrap; /* 세로 스크롤 삭제 */
 		overflow-x:scroll;	 /* 가로 스크롤만 생성 */
 		
-	padding-left: 5%;
-    padding-right: 5%;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    border: 1px solid #ccc; /* 테두리 추가 */
-    border-radius: 5px;
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-		
 	}
 	
 	#orderlist2 {
@@ -323,10 +258,9 @@ box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
 /* 하단부분 스타일(내가 쓴글,좋아요한글) */
 	#full2 {
 		margin-top:7%;
-		width: 1200px;
+		width: 1000px;
 		height: auto;
 		background-color: white;
-		justify-content: center;
 	}
 	.post {
         display: flex;
@@ -673,7 +607,6 @@ box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
     	 imageSrc = "data:image/jpeg;base64," + base64Image;
     }
 %>
-<div id="totalfull">
 <div id="full">
 <h1>mypage</h1>
 
@@ -691,22 +624,22 @@ box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
 				<div class="view">
 						<div class="view_title">회원정보</div>
 						<div class="view_text">
-							이름&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" id="name" value="<%=UserName%>"disabled><Br>
-							닉네임&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" id="nickname" value="<%=UserAlias%>"disabled><Br>
-							전화번호&nbsp;<input type="text" id="tel" value="<%=PhoneNumber%>"disabled><Br>
-							이메일&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" id="email1" value="<%=Email1%>"disabled>@<input type="text" id="<%=Email2%>" value="naver.com" disabled><Br>
-							주소&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" id="address" value="<%=RodeAddress%>"disabled><Br>
+							이름:<input type="text" id="name" value="<%=UserName%>"disabled><Br>
+							닉네임:<input type="text" id="nickname" value="<%=UserAlias%>"disabled><Br>
+							전화번호:<input type="text" id="tel" value="<%=PhoneNumber%>"disabled><Br>
+							이메일:<input type="text" id="email1" value="<%=Email1%>"disabled>@<input type="text" id="<%=Email2%>" value="naver.com" disabled><Br>
+							주소 :<input type="text" id="address" value="<%=RodeAddress%>"disabled><Br>
 						</div>
 						<div class="view_title">반려견 정보</div>
 						<div class="view_text">
-							이름&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" id="dogname" value="<%=DogName%>"disabled> <Br>
-							품종&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" id="dogbreed" value="<%=DogType%>"disabled> <Br>
+							이름 :<input type="text" id="dogname" value="<%=DogName%>"disabled> <Br>
+							품종 :<input type="text" id="dogbreed" value="<%=DogType%>"disabled> <Br>
 						</div>
 						
  <!-- ======================= 프로필 변경 모달창 ===========================================  -->
 						<div id="userbutton">
 							 <!-- <input type="button" value="수정"> -->
-							 <button class="open" id="open"><span id="open2">프로필 변경</span></button>
+							 <button class="open" id="open">프로필 변경</button>
 							 <div id="modal-box">
 							 	<div id="modal-contents">
 							 		<button id="close" style="color: white-space; background-color: red;" >닫기&times;</button>
@@ -780,9 +713,8 @@ box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
 	<div id="screenright">
 	
 		<div id="rightbox1" class="rightbox">
-			<span id="rightbox_title">달력/산책일지</span>
+			<span id="rightbox_title">달력</span>
 				 <!-- 달력 부분 -->
-				 <div id="Calendarxxx">
 					 <table class="Calendar">
 				        <thead>
 				            <tr>
@@ -807,7 +739,6 @@ box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
 				        <tbody>
 				        </tbody>
 				    </table>
-				  </div>
 	   		    <!-- 달력 끝 -->
 		</div>
 		
@@ -818,6 +749,18 @@ box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
 			 <div id="shoppingbasket" >	
 				<% 
 					//장바구니  정보 가져와야함 
+					/*
+					CartDTO cDTO = (CartDTO)session.getAttribute("cDTO");
+					int CartNum = cDTO.getCartNum();
+					String UserID = cDTO.getUserID();
+					int ProductID = cDTO.getProductID();
+					String ProductName= cDTO.getProductName();
+					int Price = cDTO.getPrice();
+					String Psize = cDTO.getPsize();
+					int Amount = cDTO.getAmount();
+					String Color = cDTO.getColor();
+					String Image = cDTO.getImage();
+					*/
 					
 					List<CartDTO> list = (List<CartDTO>)request.getAttribute("list");
 						for(int i=0; i < list.size(); i++){
@@ -841,7 +784,7 @@ box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
 					<col style="width: 35%">
 					<col style="width: 65%">
 				</colgroup>
-				
+				<tbody>
 					<tr>
 						<th>이름</th>
 						<td><%= ProductName %></td>
@@ -862,7 +805,7 @@ box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
 						<th>가격</th>
 						<td><%= Price %></td>
 					</tr>
-				
+				</tbody>
 			</table>
 					</div>	
 						
@@ -903,7 +846,7 @@ box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
 					<col style="width: 35%">
 					<col style="width: 65%">
 				</colgroup>
-				
+				<tbody>
 					<tr>
 						<th>이름</th>
 						<td><%= ProductName %></td>
@@ -924,7 +867,7 @@ box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
 						<th>가격</th>
 						<td><%= Price %></td>
 					</tr>
-				
+				</tbody>
 			</table>
 					</div>	
 		    <% 
@@ -990,11 +933,9 @@ box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
 <div class="page">
 <jsp:include page = "../common/page.jsp" flush="true"/><br>
 </div>
-</div> <!-- full2 끝 --> 
-<br>
-<br>
+</div> <!-- full2 끝 -->
 <jsp:include page = "../common/footer.jsp" flush="true"/><br>
-</div> <!-- totalfull2 끝 -->
+
 
 
 

@@ -818,6 +818,18 @@ box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
 			 <div id="shoppingbasket" >	
 				<% 
 					//장바구니  정보 가져와야함 
+					/*
+					CartDTO cDTO = (CartDTO)session.getAttribute("cDTO");
+					int CartNum = cDTO.getCartNum();
+					String UserID = cDTO.getUserID();
+					int ProductID = cDTO.getProductID();
+					String ProductName= cDTO.getProductName();
+					int Price = cDTO.getPrice();
+					String Psize = cDTO.getPsize();
+					int Amount = cDTO.getAmount();
+					String Color = cDTO.getColor();
+					String Image = cDTO.getImage();
+					*/
 					
 					List<CartDTO> list = (List<CartDTO>)request.getAttribute("list");
 						for(int i=0; i < list.size(); i++){
