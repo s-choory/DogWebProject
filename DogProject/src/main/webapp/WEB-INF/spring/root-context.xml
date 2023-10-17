@@ -36,6 +36,10 @@
 				<value>classpath:com/config/PostsMapper.xml</value>
 				<value>classpath:com/config/CalendarMapper.xml</value>
 				<value>classpath:com/config/FileMapper.xml</value>
+				<value>classpath:com/config/FAQMapper.xml</value>
+				<value>classpath:com/config/NoticeMapper.xml</value>
+				<value>classpath:com/config/CommentsMapper.xml</value>
+				<value>classpath:com/config/LikeMapper.xml</value>
 			</list>
 		</property>
 		<property name="typeAliases">
@@ -51,6 +55,11 @@
 				<value>com.dto.PageDTO</value>
 				<value>com.dto.CalendarDTO</value> 
 				<value>com.dto.FileDTO</value>
+				<value>com.dto.FAQDTO</value>
+				<value>com.dto.NoticeDTO</value>
+				<value>com.dto.PageNoticeDTO</value>
+				<value>com.dto.CommentsDTO</value> 
+				<value>com.dto.LikeDTO</value> 
 			</list>
 		</property>
 	</bean>

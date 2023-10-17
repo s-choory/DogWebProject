@@ -223,17 +223,17 @@ public class HomeController {
 	}
 	
 	
-	/* customer_center*/
-	//고객센터QnA
-	@RequestMapping(value = "/ContactCenter_FAQ", method = RequestMethod.GET)
-	public String ContactCenter_FAQ(Locale locale, Model model) {
-		return "customer_center/ContactCenter_FAQ";
-	}
-	//고객센터글목록(페이징)
-	@RequestMapping(value = "/ContactCenter_Notice", method = RequestMethod.GET)
-	public String ContactCenter_Notice(Locale locale, Model model) {
-		return "customer_center/ContactCenter_Notice";
-	}
+//	/* customer_center*/
+//	//고객센터QnA
+//	@RequestMapping(value = "/ContactCenter_FAQ", method = RequestMethod.GET)
+//	public String ContactCenter_FAQ(Locale locale, Model model) {
+//		return "customer_center/ContactCenter_FAQ";
+//	}
+//	//고객센터글목록(페이징)
+//	@RequestMapping(value = "/ContactCenter_Notice", method = RequestMethod.GET)
+//	public String ContactCenter_Notice(Locale locale, Model model) {
+//		return "customer_center/ContactCenter_Notice";
+//	}
 	
 	
 	//인덱스페이지
