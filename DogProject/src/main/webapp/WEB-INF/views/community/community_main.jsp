@@ -1,9 +1,12 @@
- <%@page import="java.sql.Date"%>
+<%@page import="java.sql.Date"%>
 <%@page import="com.dto.PostsDTO"%>
 <%@page import="com.dto.PageDTO"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 
 <html>
@@ -64,6 +67,11 @@
 	    color: #666;
 	}
 	.post-time {
+		margin-right: 20px;
+	    font-size: 14px;
+	    color: #666;
+	}
+	.Hit {
 	    font-size: 14px;
 	    color: #666;
 	}
@@ -119,8 +127,10 @@
 <jsp:include page = "../common/side.jsp" flush="true"/><br>
 
 <!-- 검색기능 dto꺼내오기-->
-<%	PageDTO pDTO= (PageDTO)request.getAttribute("pDTO");
-	String order= (String)request.getAttribute("order"); // 정렬에 필요한 변수	%>
+<%
+	PageDTO pDTO= (PageDTO)request.getAttribute("pDTO");
+	String order= (String)request.getAttribute("order"); // 정렬에 필요한 변수
+%>
 
 
 <div class="fixed-sidebar" style="top:450px;">
@@ -156,24 +166,33 @@
 
 
 <!-- 게시물 jsp로 반복문 돌리기 -->
- <% 
-	List<PostsDTO> list = pDTO.getList();
+ <%
+ 	List<PostsDTO> list = pDTO.getList();
 
- 	for(int i = 0; i<list.size(); i++){
- 		
-	PostsDTO dto= list.get(i);
-	String Title= dto.getTitle();
-	String Content= dto.getContent();
-	String Category= dto.getCategory();
-	int Likes= dto.getLikes();
-	Date CreationTime= dto.getCreationTime();
-	%> 
+    	for(int i = 0; i<list.size(); i++){
+    		
+   	PostsDTO dto= list.get(i);
+   	int PostID= dto.getPostID();
+   	String Title= dto.getTitle();
+   	String Content= dto.getContent();
+   	String Category= dto.getCategory();
+   	int Likes= dto.getLikes();
+   	String CreationTime= dto.getCreationTime();
+   	String PostType = dto.getPostType();
+   	int Hit = dto.getHit();
+ %> 
+    <%if (PostType.equals("undeleted")) {%>  <!-- 컬럼명이 'undeleted'인 경우 출력 -->
     <div class="container" style="margin-left: 5%; margin-right: 5%;">
         <section class="posts">
             <div class="post">
-                <img src="resources/a.jpg" id="게시물 1">
+                <img src="resources/a.jpg" id="게시물 <%= PostID %>">
                 <div class="post-content">
-                    <h3><%=Title %></h3><!-- 타이틀 -->
+          		<%if (PostType.equals("deleted")) {%>
+				<h3><a href="post?PostID=<%= PostID %>&curPage=${pDTO.curPage}">삭제된 게시물입니다.</a></h3>
+				<!-- 타이틀 -->
+				 <%} else if (PostType.equals("undeleted")){%>
+				<h3><a href="post?PostID=<%= PostID %>&curPage=${pDTO.curPage}"><%= PostID %>번!!!<%= Title %></a></h3><!-- 타이틀 -->
+				<% } %>		
                     <p><%=Content %></p><!-- 내용 -->
                     <div class="post-info">
                         <div class="post-meta">
@@ -181,11 +200,13 @@
                             <span class="comment">댓글<span id="Comment"></span></span>
                         </div>
                         <span class="post-time"><%=CreationTime %></span> <!-- 시간 표시 태그 -->
+                        <span class="Hit">조회수<%=Hit %></span> <!-- 조회수 태그 -->
                     </div>
                 </div>
             </div>
         </section>
     </div>
+    <%} %>
 <%} %>
     <br>
 
