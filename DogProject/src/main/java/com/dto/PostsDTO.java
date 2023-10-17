@@ -1,6 +1,7 @@
 package com.dto;
 
 import java.sql.Date;
+import java.time.LocalDateTime;
 
 import org.apache.ibatis.type.Alias;
 
@@ -14,6 +15,8 @@ public class PostsDTO {
 	private String Content; // 내용
 	private Date CreationTime; // 작성일
 	private Date UpdateTime; // 수정날짜
+	//private LocalDateTime creationtime;
+	//private LocalDateTime updatetime;
 	private int Likes; // 좋아요
 	private String Category; // 카테고리
 	private String Image; // 이미지

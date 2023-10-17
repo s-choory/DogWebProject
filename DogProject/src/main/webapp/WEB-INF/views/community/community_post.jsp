@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -71,6 +73,7 @@
         border-radius: 5px;
         cursor: pointer;
     }
+   
 	
 </style>
 </head>
@@ -86,10 +89,11 @@
 </nav>
 	<hr align="center" style="border: ridge 3px orange; width: 85%;">
 <div class = "postContent" style="margin-left: 10%;">
-	<img src="resources/a.jpg" id="로고" width=500 height=300>
 	<br>
-	<span>게시글 어저구 저쩌구...</span><br>
-	file Link:
+	<span>게시글</span><br>
+	file Link: <a href="${upload.downloadurl}" target="_blank">${upload.filename}</a>
+
+
 </div>
 
 <span style="text-align: center; display: block; font-size: 40px">❤️</span>
