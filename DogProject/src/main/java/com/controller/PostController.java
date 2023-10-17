@@ -153,8 +153,6 @@ public class PostController {
 //	}
 	
 		
-		
-		
 		//좋아요 클릭 시 db에 저장,삭제
 		@RequestMapping(value = "/like", method = RequestMethod.POST)
 		@ResponseBody

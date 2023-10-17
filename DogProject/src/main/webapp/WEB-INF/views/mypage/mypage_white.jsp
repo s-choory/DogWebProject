@@ -713,7 +713,7 @@
 	String Content= pdto.getContent();
 	String Category= pdto.getCategory();
 	int Likes= pdto.getLikes();
-	Date CreationTime= pdto.getCreationTime();
+	String CreationTime= pdto.getCreationTime();
 	%> 
     <div class="container" style="margin-left: 5%; margin-right: 5%;">
         <section class="posts">
