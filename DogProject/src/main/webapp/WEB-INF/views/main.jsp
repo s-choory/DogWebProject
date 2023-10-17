@@ -165,28 +165,18 @@
           window.location.href = '/test/main_searchList?search='+ encodeURIComponent(searchValue);
         }
       });
+      
     });
+    function prod(){
+    	console.log(1);
+    	$("#prod").submit();
+    }
     </script>
 </head>
 <body style="font-family: 'Exo', sans-serif;">
 <jsp:include page = "common/top.jsp" flush="true"/><br>
 <jsp:include page = "common/side.jsp" flush="true"/><br>
 <div class="searchList_container">
-<a href="main"><img width="64" height="64" src="https://img.icons8.com/cotton/64/dog--v5.png" alt="dog--v5"/></a>
-<a href="main"><img width="64" height="64" src="https://img.icons8.com/cotton/64/dog--v6.png" alt="dog--v6"/></a>
-<a href="main"><img width="64" height="64" src="https://img.icons8.com/external-smashingstocks-circular-smashing-stocks/65/external-dog-national-dog-day-smashingstocks-circular-smashing-stocks-15.png" alt="external-dog-national-dog-day-smashingstocks-circular-smashing-stocks-15"/></a>
-<a href="main"><img width="64" height="64" src="https://img.icons8.com/cotton/64/dog-sit--v2.png" alt="dog-sit--v2"/></a>
-<a href="main"><img width="64" height="64" src="https://img.icons8.com/cotton/64/dog-heart--v3.png" alt="dog-heart--v3"/></a>
-<a href="main"><img width="64" height="64" src="https://img.icons8.com/cotton/64/dog-heart--v1.png" alt="dog-heart--v1"/></a>
-<a href="main"><img width="64" height="64" src="https://img.icons8.com/external-justicon-flat-justicon/64/external-dog-dog-and-cat-justicon-flat-justicon-1.png" alt="external-dog-dog-and-cat-justicon-flat-justicon-1"/></a>
-<a href="main"><img width="64" height="64" src="https://img.icons8.com/external-smashingstocks-circular-smashing-stocks/65/external-dog-national-dog-day-smashingstocks-circular-smashing-stocks.png" alt="external-dog-national-dog-day-smashingstocks-circular-smashing-stocks"/></a>
-<a href="main"><img width="64" height="64" src="https://img.icons8.com/avantgarde/100/jake.png" alt="jake"/></a>
-<a href="main"><img width="64" height="64" src="https://img.icons8.com/cotton/64/footprint-scanning--v1.png" alt="footprint-scanning--v1"/></a>
-<a href="main"><img width="64" height="64" src="https://img.icons8.com/color/96/dog-house.png" alt="dog-house"/></a>
-<a href="main"><img width="64" height="64" src="https://img.icons8.com/3d-fluency/94/dog-house.png" alt="dog-house"/></a>
-<a href="main"><img width="64" height="64" src="https://img.icons8.com/external-photo3ideastudio-gradient-photo3ideastudio/64/external-pawprint-pet-shop-photo3ideastudio-gradient-photo3ideastudio.png" alt="external-pawprint-pet-shop-photo3ideastudio-gradient-photo3ideastudio"/></a>
-<a href="main"><img width="64" height="64" src="https://img.icons8.com/external-creatype-glyph-colourcreatype/64/external-animal-pet-shop-creatype-glyph-colourcreatype.png" alt="external-animal-pet-shop-creatype-glyph-colourcreatype"/></a>
-
 <input type="text" id="search" placeholder="검색어를 입력하세요" value="" />
 </div>
 <br>
@@ -194,7 +184,7 @@
 <!-- 종분류 --><a href="/test"><img width="85" height="85" src="https://img.icons8.com/color/96/puppy.png" alt="puppy"/></a>&nbsp;&nbsp;&nbsp;
 <!-- 커뮤니티 --><a href="/test"><img width="85" height="85" src="https://img.icons8.com/color/96/chat--v1.png" alt="chat--v1"/></a>&nbsp;&nbsp;&nbsp;
 <!-- 스토어 --><a href="/test/dogshop_main"><img width="85" height="85" src="https://img.icons8.com/color/96/shopping-bag--v1.png" alt="shopping-bag--v1"/></a>&nbsp;&nbsp;&nbsp;
-<!-- 모임찾기 --><a href="/test/MoIm"><img width="85" height="85" src="https://img.icons8.com/color/96/group-task.png" alt="group-task"/></a>&nbsp;&nbsp;&nbsp;
+<!-- 모임찾기 --><a href="/test/MoIm"><img width="85" height="85" src="${pageContext.request.contextPath}/resources/반려모임아이콘.png" alt="group-task"/></a>&nbsp;&nbsp;&nbsp;
 <!-- 맵 --><a href="/test/map"><img width="85" height="85" src="https://img.icons8.com/color/96/where.png" alt="where"/></a>&nbsp;&nbsp;&nbsp;
 <!-- 공지문의 --><a href="/test/ContactCenter_FAQ"><img width="85" height="85" src="https://img.icons8.com/color/96/help--v1.png" alt="help--v1"/></a>
 </div>
@@ -232,7 +222,7 @@
    		if (postimage==null) postimage=defaultimage;
  %>
             <div class="post">
-            <a href="post?postid=<%=postid%>">
+            <a href="post?PostID=<%=postid%>">
    
        <img src="<%=postimage%>" alt="">
     
@@ -277,13 +267,16 @@
     	int stockquantity = dto.getSTOCKQUANTITY();
  %>
         <div class="product">
-        <a href="goodsRetrieve?productid=<%=productid%>">
-            <img src="resources/storeimages/<%=image %>.jpg" alt="상품 이미지">
-            </a>
+
+	        <form id="prod" action="goodsRetrieve" method="post">
+	 			<input type="hidden" name="gProductID" value="<%=productid%>">
+	 			 <a href="#" onclick="prod()"><img src="resources/storeimages/<%=image %>.jpg" alt="상품 이미지" ></a>
+	 		</form>
             <div class="product-content">
                 <h3><%=productname %></h3>
                 <p><%=price*0.8%>원/ 20% 할인</p>
             </div>
+
         </div>
     <%} }%>
     </section>

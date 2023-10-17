@@ -210,7 +210,11 @@ public class PostController {
 		
 	//등록화면
 	@RequestMapping(value = "/addPost", method = RequestMethod.GET)
-	public String addPost(Locale locale, Model model) {
+	public String addPost(Locale locale, Model model, HttpSession session) {
+	    UsersDTO udto = (UsersDTO) session.getAttribute("User");
+	    if(udto == null) {
+	    	return "redirect:/login";
+	    }
 		return "community/community_addPost";
 	}
 	
@@ -218,6 +222,9 @@ public class PostController {
 	@RequestMapping(value = "/addPost", method = RequestMethod.POST)
 	public String addPost(HttpSession session, PostsDTO post, @RequestParam("files") MultipartFile[] files, Model model) {
 	    UsersDTO udto = (UsersDTO) session.getAttribute("User");
+	    if(udto == null) {
+	    	return "redirect:/login";
+	    }
 	    post.setAuthorID(udto.getUserID());
 	    
 	    /////////  ckeditor 관련 실제로 업로드 된 파일들을 임시폴더 -> 정식 업로드 폴더로 옮기고 임시폴더의 파일들은 삭제함
