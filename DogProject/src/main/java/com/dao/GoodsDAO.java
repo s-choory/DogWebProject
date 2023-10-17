@@ -7,6 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.dto.CartDTO;
 import com.dto.GoodsDTO;
 import com.dto.OrdersDTO;
 import com.dto.ReviewsDTO;
@@ -53,10 +54,6 @@ public class GoodsDAO {
 		return session.insert("ReviewsMapper.addReview", rDTO);
 	}
 
-	public void orderFlagUpdate(int OrderID) {
-		session.update("OrdersMapper.orderFlagUpdate", OrderID);
-	}
-
 	public List<ReviewsDTO> selectReview(String ProductID) {
 		return session.selectList("ReviewsMapper.selectReview", ProductID);
 	}
@@ -72,5 +69,14 @@ public class GoodsDAO {
 	public List<GoodsDTO> searchList(String SearchName) {
 		return session.selectList("GoodsMapper.searchList", SearchName);
 	}
+
+	public List<CartDTO> findCartOrder(HashMap<String, Object> map) {
+		return session.selectList("CartMapper.findCartOrder", map);
+	}
+
+	public void ReviewFlagUpdate(int cartNum) {
+		session.update("CartMapper.ReviewFlagUpdate", cartNum);
+	}
+
 
 }
