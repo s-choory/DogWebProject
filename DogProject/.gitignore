@@ -118,12 +118,10 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
-<<<<<<< HEAD
-
-=======
->>>>>>> refs/heads/login-Security
 # Ignore pom.properties
 pom.properties
+# Exclude the resources folder
+!/src/main/webapp/resources/
 
 # End of https://www.toptal.com/developers/gitignore/api/windows,java,eclipse
 /target/

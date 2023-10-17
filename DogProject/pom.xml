@@ -118,6 +118,19 @@
 			<scope>test</scope>
 		</dependency>  
 
+<!-- 경영님꺼 디펜던시 추가 -->
+<dependency>
+	<groupId>commons-io</groupId>
+	<artifactId>commons-io</artifactId>
+	<version>2.4</version>
+</dependency>
+<dependency>
+	<groupId>org.apache.commons</groupId>
+	<artifactId>commons-lang3</artifactId>
+	<version>3.4</version>
+</dependency>
+<!-- 여기까지 -->
+
 <dependency>
     <groupId>org.springframework</groupId>
     <artifactId>spring-jdbc</artifactId>
@@ -216,6 +229,7 @@
         <version>19.8.0.0</version>
     </dependency>
 	<!-- Calendar ajax json 관련 디펜더시  -->
+	
 	<!-- json simple  -->
       <dependency>
         <groupId>com.googlecode.json-simple</groupId>

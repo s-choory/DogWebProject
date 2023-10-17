@@ -84,6 +84,30 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </where>
 </select>
 
- 
+<select id="popular" resultType="Posts">
+ <![CDATA[
+SELECT *
+FROM (
+  SELECT *
+  FROM posts
+  WHERE CREATIONTIME >= SYSDATE - INTERVAL '1' DAY 
+    AND CREATIONTIME < SYSDATE
+    ORDER BY NVL(likes, 0) DESC
+)
+WHERE ROWNUM <= 5
+
+    ]]>
+</select>
+
+<insert id="addPost" parameterType="Posts">
+  <selectKey keyProperty="PostID" resultType="int" order="AFTER">
+    SELECT Posts_PostID_SEQ.currval FROM DUAL 
+  </selectKey>
+  
+INSERT INTO posts(postid, authorid, title, tag, content,
+                  creationtime, updatetime, posttype)
+VALUES (Posts_PostID_SEQ.nextval, #{AuthorID}, #{Title}, #{Tag},
+        #{Content}, sysdate, sysdate,'undeleted')
+</insert>
  
 </mapper>
