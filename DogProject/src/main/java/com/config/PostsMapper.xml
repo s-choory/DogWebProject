@@ -156,7 +156,7 @@ FROM (
     AND CREATIONTIME < SYSDATE
     ORDER BY NVL(likes, 0) DESC
 )
-WHERE ROWNUM <= 5
+WHERE ROWNUM <= 5 AND POSTTYPE = 'undeleted'
 
     ]]>
 </select>
