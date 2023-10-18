@@ -335,7 +335,6 @@
 <!-- 게시물 jsp로 반복문 돌리기 -->
  <% 
 	List<PostsDTO> list = pDTO.getList();
- 	/* if(list == null){ */
  	if(list.isEmpty()){
  	%>
  	<div class="no-data">
@@ -391,7 +390,7 @@
             </div>
         </section>
     </div>
-  <!-- 추가 -->  </div>
+ </div>
 <%
 	
  	} %>
