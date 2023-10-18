@@ -4,7 +4,7 @@
 /* 고정 사이드바 */
 	.fixed-sidebar {
 	    position: fixed;
-	    top: 350px;
+	    top: 90%;
 	    transform: translateY(-50%);
 	    right: 20px;
 	    display: flex;
@@ -15,29 +15,43 @@
 
 	/* 스크롤 버튼 스타일 */
 	.scroll-button {
-	    background-color: #f8bd24;
+		background: linear-gradient(135deg, #7AFF7A, #429F6B); /* 그라데이션 색상 지정 */
 	    border: none;
 	    border-radius: 40px;
 	    color: white;
 	    font-size: 15px;
 	    padding: 10px;
-	    margin: 5px 0;
+	    margin-bottom: 3px;
 	    cursor: pointer;
-	    transition: background-color 0.3s, transform 0.2s;
+	    transition: color 0.3s, background-color 0.3s, transform 0.3s;
+	    box-shadow: 2px 2px 2px 2px gray;
 	}
 	
 	.scroll-button:hover {
-	    background-color: #e4a708;
-	    transform: translateY(-2px);
+	    transform: translateY(-5px);
+	    color: black;
+	    font-weight: bolder;
 	}
+	
+	
+	#mypageImg{
+		transition: transform 0.3s;
+		margin-bottom: 20px;
+	}
+	
+	#mypageImg:hover {
+	    transform: translateY(-5px);
+	}
+	
 	
 	/* 스크롤 버튼 위치 조정 */
 	#scroll-up-button {
-	    margin-bottom: 20px;
+	    margin-bottom: 10px;
 	}
 	
 	#scroll-down-button {
-	    margin-top: 20px;
+	    margin-top: 10px;
+	    margin-bottom: 15px;
 	}
 </style>
     
@@ -48,29 +62,29 @@
     <button class="scroll-button" id="scroll-down-button">
         <span>&#9660;</span>
     </button>
-    <br>
 </div>
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.js"></script>
 <script type="text/javascript">
 	
-	//화살표 버튼으로 스크롤링 처리하는 JavaScript
-$(document).ready(function () {
-    const scrollStep = 10000; // 스크롤 간격 (픽셀 단위)
-
-    const scrollUpButton = $("#scroll-up-button");
-    scrollUpButton.click(function () {
-        $("html, body").animate({
-            scrollTop: $(window).scrollTop() - scrollStep
-        }, 500); // 스크롤 animation 시간
-    });
-
-    const scrollDownButton = $("#scroll-down-button");
-    scrollDownButton.click(function () {
-        $("html, body").animate({
-            scrollTop: $(window).scrollTop() + scrollStep
-        }, 500); // 스크롤 animation 시간
-    });
-});
+	document.addEventListener("DOMContentLoaded", function() {
+	    const scrollStep = 10000; // 스크롤 간격 (픽셀 단위)
+	
+	    const scrollUpButton = document.getElementById("scroll-up-button");
+	    scrollUpButton.addEventListener("click", function() {
+	        window.scrollBy({
+	            top: -scrollStep,
+	            behavior: "smooth"
+	        });
+	    });
+	
+	    const scrollDownButton = document.getElementById("scroll-down-button");
+	    scrollDownButton.addEventListener("click", function() {
+	        window.scrollBy({
+	            top: scrollStep,
+	            behavior: "smooth"
+	        });
+	    });
+	});
 </script>
 
