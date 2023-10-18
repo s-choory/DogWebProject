@@ -16,6 +16,8 @@ public class CartDTO {
 	private String Image;
 	private int OrderNumber;
 	private String OrderState;
+	private String ReviewFlag;
+	
 	public CartDTO() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -36,27 +38,6 @@ public class CartDTO {
 		return OrderState;
 	}
 	public void setOrderState(String orderState) {
-		OrderState = orderState;
-	}
-	@Override
-	public String toString() {
-		return "CartDTO [CartNum=" + CartNum + ", UserID=" + UserID + ", ProductID=" + ProductID + ", ProductName="
-				+ ProductName + ", Price=" + Price + ", Psize=" + Psize + ", Amount=" + Amount + ", Color=" + Color
-				+ ", Image=" + Image + ", OrderNumber=" + OrderNumber + ", OrderState=" + OrderState + "]";
-	}
-	public CartDTO(int cartNum, String userID, int productID, String productName, int price, String psize, int amount,
-			String color, String image, int orderNumber, String orderState) {
-		super();
-		CartNum = cartNum;
-		UserID = userID;
-		ProductID = productID;
-		ProductName = productName;
-		Price = price;
-		Psize = psize;
-		Amount = amount;
-		Color = color;
-		Image = image;
-		OrderNumber = orderNumber;
 		OrderState = orderState;
 	}
 	public String getProductName() {
@@ -106,6 +87,35 @@ public class CartDTO {
 	}
 	public void setImage(String image) {
 		Image = image;
+	}
+	public CartDTO(int cartNum, String userID, int productID, String productName, int price, String psize, int amount,
+			String color, String image, int orderNumber, String orderState, String reviewFlag) {
+		super();
+		CartNum = cartNum;
+		UserID = userID;
+		ProductID = productID;
+		ProductName = productName;
+		Price = price;
+		Psize = psize;
+		Amount = amount;
+		Color = color;
+		Image = image;
+		OrderNumber = orderNumber;
+		OrderState = orderState;
+		ReviewFlag = reviewFlag;
+	}
+	@Override
+	public String toString() {
+		return "CartDTO [CartNum=" + CartNum + ", UserID=" + UserID + ", ProductID=" + ProductID + ", ProductName="
+				+ ProductName + ", Price=" + Price + ", Psize=" + Psize + ", Amount=" + Amount + ", Color=" + Color
+				+ ", Image=" + Image + ", OrderNumber=" + OrderNumber + ", OrderState=" + OrderState + ", ReviewFlag="
+				+ ReviewFlag + "]";
+	}
+	public String getReviewFlag() {
+		return ReviewFlag;
+	}
+	public void setReviewFlag(String reviewFlag) {
+		ReviewFlag = reviewFlag;
 	}
 	
 	

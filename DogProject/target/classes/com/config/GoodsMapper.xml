@@ -8,6 +8,10 @@
 	select * from PRODUCTS
 </select> 
 
+<select id="random" resultType="goods">
+   select * from products sample(35)
+</select>
+	
 <select id="selectOne" parameterType="String" resultType="com.dto.GoodsDTO">
 	select * from PRODUCTS where PRODUCTID = #{PRODUCTID} 
 
@@ -34,7 +38,9 @@
 		ORDER BY Count DESC
 </select>
 
-
+<select id="searchList" resultType="com.dto.GoodsDTO" parameterType="String">
+	SELECT * FROM products WHERE PRODUCTNAME LIKE '%'||#{SearchName}||'%' OR category LIKE '%'||#{SearchName}||'%'
+</select>
 
 <!-- 
 

@@ -5,7 +5,7 @@
 <mapper namespace="UsersMapper">	<!-- Mapper 생성 후 Configuration 수정 -->
 
 <select id="loginChk" parameterType="Users" resultType="Users">
-	SELECT * FROM Users where UserID = #{UserID} and Password = #{Password}
+	SELECT * FROM Users where UserID = #{UserID} 
 </select>
 
 <select id="idChk" parameterType="String" resultType="int">
@@ -13,8 +13,9 @@
 </select>
 
 <insert id="memberAdd" parameterType="Users">
-	INSERT INTO Users (UserID, UserName, UserAlias, Password, Post, Email1, Email2, RodeAddress, HouseAddress, DetailAddress, UserImg, PhoneNumber, DogName, DogType, UserType) 
-	values (#{UserID}, #{UserName}, #{UserAlias}, #{Password}, #{Post},#{Email1}, #{Email2}, #{RodeAddress}, #{HouseAddress}, #{DetailAddress}, null, #{PhoneNumber}, #{DogName}, #{DogType}, 'user')
+	INSERT INTO Users (UserID, UserName, UserAlias, Password, Email1, Email2, RodeAddress, HouseAddress, PhoneNumber, DogName, DogType, UserType ) 
+	values (#{UserID}, #{UserName}, #{UserAlias}, #{Password}, #{Email1}, #{Email2}, #{RodeAddress}, #{HouseAddress}, #{PhoneNumber}, #{DogName}, #{DogType},
+	'user')
 </insert>
 
 <select id="aliasChk" parameterType="String" resultType="int">
@@ -32,4 +33,38 @@
 <update id="updatePW" parameterType="Users">
 	UPDATE Users SET Password = #{Password} where UserID = #{UserID}
 </update>
+
+<!-- 마이페이지 프로필 부분 -->
+<update id="profilChange" parameterType="Users">
+    UPDATE users
+    SET USERIMG = #{USERIMG, jdbcType=BLOB}
+    WHERE userID = #{userID}
+</update>
+
+<!-- 삭제가 아닌 userimg 값만 null로 바꾸고 나머지 정보는 그대로 냅둠 -->
+<update id="profilDelete" parameterType="String">   
+    UPDATE users SET userimg = NULL WHERE userID = #{userID}
+</update>
+
+<update id="profilUpdate" parameterType="Users">
+	 	UPDATE users
+    	SET UserName = #{UserName},
+        UserAlias = #{UserAlias},
+        Email1 = #{Email1},
+        Email2= #{Email2},
+        RodeAddress= #{RodeAddress},
+        HouseAddress= #{HouseAddress},
+        PhoneNumber= #{PhoneNumber},
+        DogName= #{DogName}, 
+        DogType= #{DogType},
+        Post = #{Post},
+        DetailAddress = #{DetailAddress}
+   		WHERE userID=#{userID}
+</update>
+
+<select id="userinfo" parameterType="String" resultType="Users">
+	select * FROM Users where UserID = #{UserID}
+</select>
+
+
 </mapper>

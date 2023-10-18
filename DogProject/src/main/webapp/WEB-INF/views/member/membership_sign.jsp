@@ -163,6 +163,8 @@
         var name = document.getElementById("UserName"); 
         var UserAlias = document.getElementById("UserAlias");
         var PhoneNumber = document.getElementById("PhoneNumber");
+        var PostNumber = document.getElementById("sample4_postcode");
+        
         var flag = true;
    /*id 유효성 검사  */
         
@@ -237,7 +239,17 @@
             alert("휴대번호를 올바르게 입력하세요. (예: 010-1234-5678)");
             return false;
         }
-    
+        
+        if(!PostNumber.value){
+            $("#Password").parent().attr("style","");
+            $("#passwd2").parent().attr("style","");
+            $("#UserName").parent().attr("style","");
+            $("#UserAlias").parent().attr("style","");
+            $("#sample4_postcode").parent().parent().attr("style","color:red");
+            alert("우편번호를 입력하세요");
+            return false;
+        }
+    	
         if(true){
         	alert("회원가입 성공");
         	return true;
@@ -288,19 +300,19 @@
 		
 			<div class="form-item">
 			    <div class="zipcode-container">
-			        <input type="text" name="Post" id="sample4_postcode" placeholder="우편번호">
+			        <input type="text" name="Post" id="sample4_postcode" placeholder="우편번호" readonly>
 			        <input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기" id="zipcode-button">
 			    </div>
 			</div>
 			<div class="form-item">
-			    <input type="text" name="RodeAddress" id="sample4_roadAddress" placeholder="도로명주소">
+			    <input type="text" name="RodeAddress" id="sample4_roadAddress" placeholder="도로명주소" readonly>
 			</div>
 		    <div class="form-item">				
-			    <input type="text" name="HouseAddress" id="sample4_jibunAddress" placeholder="지번주소">
+			    <input type="text" name="HouseAddress" id="sample4_jibunAddress" placeholder="지번주소" readonly>
 			    <span id="guide" style="color:#999"></span>
 			</div>
 		    <div class="form-item">				
-			    <input type="text" name="DetailAddress" id="sample4_jibunAddress" placeholder="상세주소">
+			    <input type="text" name="DetailAddress" id="" placeholder="상세주소">
 			    <span id="guide" style="color:#999"></span>
 			</div>
 		
@@ -371,19 +383,19 @@
                 document.getElementById('sample4_roadAddress').value = fullRoadAddr;
                 document.getElementById('sample4_jibunAddress').value = data.jibunAddress;
 
-                // 사용자가 '선택 안함'을 클릭한 경우, 예상 주소라는 표시를 해준다.
-                if(data.autoRoadAddress) {
-                    //예상되는 도로명 주소에 조합형 주소를 추가한다.
-                    var expRoadAddr = data.autoRoadAddress + extraRoadAddr;
-                    document.getElementById('guide').innerHTML = '(예상 도로명 주소 : ' + expRoadAddr + ')';
+//                 // 사용자가 '선택 안함'을 클릭한 경우, 예상 주소라는 표시를 해준다.
+//                 if(data.autoRoadAddress) {
+//                     //예상되는 도로명 주소에 조합형 주소를 추가한다.
+//                     var expRoadAddr = data.autoRoadAddress + extraRoadAddr;
+//                     document.getElementById('guide').innerHTML = '(예상 도로명 주소 : ' + expRoadAddr + ')';
 
-                } else if(data.autoJibunAddress) {
-                    var expJibunAddr = data.autoJibunAddress;
-                    document.getElementById('guide').innerHTML = '(예상 지번 주소 : ' + expJibunAddr + ')';
+//                 } else if(data.autoJibunAddress) {
+//                     var expJibunAddr = data.autoJibunAddress;
+//                     document.getElementById('guide').innerHTML = '(예상 지번 주소 : ' + expJibunAddr + ')';
 
-                } else {
-                    document.getElementById('guide').innerHTML = '';
-                }
+//                 } else {
+//                     document.getElementById('guide').innerHTML = '';
+//                 }
             }
         }).open();
     }

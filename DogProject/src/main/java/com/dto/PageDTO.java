@@ -5,13 +5,16 @@ import java.util.List;
 import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.type.Alias;
 
+import com.dao.PageDAO;
+import com.dao.PostsDAO;
+
 @Alias("Page")
 public class PageDTO {
 
 	private List<PostsDTO> list;
 	
 	private int curPage=1;	// 현재 페이지
-	private int perPage=10; //페이지당 10개씩
+	private int perPage=5; //페이지당 10개씩
 	private int totalCount; // 총 레코드 개수
 	
 	private int perBlock=5; // 블럭당 보여줄 페이지 개수
@@ -66,6 +69,15 @@ public class PageDTO {
 	public String toString() {
 		return "PageDTO [list=" + list + ", curPage=" + curPage + ", perPage=" + perPage + ", totalCount=" + totalCount
 				+ ", perBlock=" + perBlock + ", row=" + row + "]";
+	}
+	
+	public int getTotalCount(String userID) {
+		PageDAO dao = new PageDAO();
+		return totalCount = dao.selecTotalCount2(userID);
+	}
+	public List<PostsDTO> getList(String userID) {
+		PostsDAO dao = new PostsDAO();
+		return list = dao.selectgetList(userID);
 	}
 	
 }// end DTO
