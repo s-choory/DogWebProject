@@ -4,6 +4,9 @@
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 
 <html>
@@ -87,6 +90,11 @@
 	    color: #666;
 	}
 	.post-time {
+		margin-right: 20px;
+	    font-size: 14px;
+	    color: #666;
+	}
+	.Hit {
 	    font-size: 14px;
 	    color: #666;
 	}
@@ -276,8 +284,10 @@
 <jsp:include page = "../common/side.jsp" flush="true"/><br>
 
 <!-- 검색기능 dto꺼내오기-->
-<%	PageDTO pDTO= (PageDTO)request.getAttribute("pDTO");
-	String order= (String)request.getAttribute("order"); // 정렬에 필요한 변수	%>
+<%
+	PageDTO pDTO= (PageDTO)request.getAttribute("pDTO");
+	String order= (String)request.getAttribute("order"); // 정렬에 필요한 변수
+%>
 
 <div class="Logo"><img src="resources/img/dog/Logo_Sample.png"></div>
 
@@ -366,7 +376,6 @@
             </div>
         </section>
     </div>
-	</div>
 <%
 	
  	} %>

@@ -152,7 +152,7 @@
 	String Title= dto.getTitle();
 	String Content= dto.getContent();
 	int Likes= dto.getLikes();
-	Date CreationTime= dto.getCreationTime();
+	//Date CreationTime= dto.getCreationTime();
 	%>
     <div class="container" style="margin-left: 5%; margin-right: 5%;">
         <section class="posts">
@@ -166,7 +166,7 @@
                             <span class="like">좋아요❤️<%=Likes %><span id="Like"></span></span>
                             <span class="comment">댓글<span id="Comment"></span></span>
                         </div>
-                        <span class="post-time"><%=CreationTime %></span> <!-- 시간 표시 태그 -->
+                        <%-- <span class="post-time"><%=CreationTime %></span> <!-- 시간 표시 태그 --> --%>
                     </div>
                 </div>
             </div>

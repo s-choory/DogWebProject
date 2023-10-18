@@ -29,21 +29,25 @@ public class CkeditorFileUploadController {
 	@ResponseBody
 	public String fileUpload(HttpServletRequest request, HttpServletResponse response,
 			MultipartHttpServletRequest multiFile) throws IOException {
-	
-
+		
 		JsonObject json = new JsonObject();
 		// Json 객체를 출력하기 위해 PrintWriter 생성
 		PrintWriter printWriter = null;
 		OutputStream out = null;
 		//파일을 가져오기 위해 MultipartHttpServletRequest 의 getFile 메서드 사용
-		MultipartFile file = multiFile.getFile("qupload");
+		MultipartFile file = multiFile.getFile("upload");
 	
+		System.out.println("123");
+		System.out.println("file:"+file);
 		if (file != null) {
+			System.out.println("345");
 			if (file.getSize() > 0 && StringUtils.isNotBlank(file.getName())) {
+				System.out.println("678");
 				if (file.getContentType().toLowerCase().startsWith("image/")) {
+					System.out.println("09-");
 
 					try {
-						
+						System.out.println("234234");
 						String fileName = file.getOriginalFilename();
 			            String fileExtension = fileName.substring(fileName.lastIndexOf("."));
 			            String fileId = UUID.randomUUID().toString() + fileExtension;
