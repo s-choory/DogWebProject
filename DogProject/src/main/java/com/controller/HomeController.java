@@ -243,6 +243,7 @@ public class HomeController {
 		List<PostsDTO> popular=Postsservice.popular();
 		model.addAttribute("random", random);
 		model.addAttribute("popular",popular);
+		System.out.println("이것이 popular:"+popular);
 		return "main";
 	}
 	//검색
