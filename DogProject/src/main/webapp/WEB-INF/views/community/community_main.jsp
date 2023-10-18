@@ -351,7 +351,7 @@
 	String Content= dto.getContent();
 	String Category= dto.getCategory();
 	int Likes= dto.getLikes();
-	Date CreationTime= dto.getCreationTime();
+	String CreationTime= dto.getCreationTime();
 	%> 
 	<div class="t-container">
     <div class="container" style="margin-left: 5%; margin-right: 5%;">
