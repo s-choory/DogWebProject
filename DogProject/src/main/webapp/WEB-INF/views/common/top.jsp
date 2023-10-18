@@ -1,9 +1,12 @@
 <%@page import="com.dto.UsersDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<!-- 폰트 -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Exo:wght@300&family=Gamja+Flower&family=Gowun+Dodum&family=Hi+Melody&display=swap" rel="stylesheet">
+
+
 <style type="text/css">
 
 	.column{
@@ -13,8 +16,9 @@
     .header-container{
     	height:350px;
     	background-image: url("resources/헤더배경2.jpg");
-	   	background-size: 100% auto; /* 이미지 크기 조정 */
+    	background-size: 100% auto; /* 이미지 크기 조정 */
 	    background-attachment: fixed; /* 배경 이미지 고정 */
+	    background-repeat: no-repeat;
     }
     
 	header {
@@ -36,7 +40,7 @@
 	}
 
 	.header-icorn{
-		margin-right: 50%;
+		margin-right: 30%;
 	}
 	
     .header-link {
@@ -79,11 +83,12 @@
      	margin-right: 5%;
     }
 </style>
+
 <div class='header-container column'>
     <header>
 		<nav class="header-nav">
-			<a href="/test/main" class="header-icorn"><img src="${pageContext.request.contextPath}/resources/메인아이콘테스트1.png" id="로고" width=170 height=170></a>
-<!-- 			<div class="header-top"> -->
+			<a href="/test/main" class="header-icorn"><img src="${pageContext.request.contextPath}/resources/메인아이콘.png" id="로고" width=330 height=150></a>
+<!-- 			<div class="header-top">  이거 태그로 묶으면 :hover 이벤트가 안됨. 이유는 모름-->
 				<a href="/test" class="header-link">Community</a>
 				<a href="/test/dogshop_main" class="header-link">Store</a>
 				<a href="/test/MoIm" class="header-link">Group</a>

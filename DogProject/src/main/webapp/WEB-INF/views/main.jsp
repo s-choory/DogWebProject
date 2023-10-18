@@ -13,7 +13,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>커뮤니티-메인화면</title>
+<title>DoggyDoggy</title>
+<link rel="icon" type="image/png" sizes="16x16" href="resources/favicon-16x16.png">
 <style type="text/css">
 	body {
 	    margin: 0;
