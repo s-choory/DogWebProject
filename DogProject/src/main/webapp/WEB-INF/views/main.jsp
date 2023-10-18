@@ -14,7 +14,7 @@
 <head>
 <meta charset="UTF-8">
 <title>DoggyDoggy</title>
-<link rel="icon" type="image/png" sizes="16x16" href="resources/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="16x16" href="resources/로고아이콘.png">
 <style type="text/css">
 	body {
 	    margin: 0;
@@ -225,7 +225,7 @@
             <div class="post">
             <a href="post?PostID=<%=postid%>">
    
-       <img src="resources/PostImg/<%=postimage%>" alt="">
+       <img src="<%=postimage%>" alt="">
     
                 </a>
                 <div class="post-content">

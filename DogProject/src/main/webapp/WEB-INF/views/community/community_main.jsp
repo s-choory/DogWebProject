@@ -1,6 +1,8 @@
 <%@page import="java.sql.Date"%>
 <%@page import="com.dto.PostsDTO"%>
 <%@page import="com.dto.PageDTO"%>
+<%@page import="java.util.regex.Matcher"%>
+<%@page import="java.util.regex.Pattern"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -348,22 +350,35 @@
 	PostsDTO dto= list.get(i);
 	String Image= dto.getImage();
 	String Title= dto.getTitle();
-	String Content= dto.getContent();
+	String post_content=dto.getContent();
+	String textOnly =  post_content.replaceAll("<[^>]+>", "");
+	String previewText = textOnly.substring(0, Math.min(textOnly.length(), 50)) + (textOnly.length() > 50 ? "..." : "");
+	int likes = dto.getLikes();
+	String category= dto.getCategory();
+	String postimage=dto.getImage();
+	String defaultimage="resources/default.png";
+	Pattern pattern = Pattern.compile("<img[^>]+src\\s*=\\s*['\"]([^'\"]+)['\"][^>]*>");
+    Matcher matcher = pattern.matcher(post_content);
+    if (matcher.find()) {
+        postimage = matcher.group(1);
+ 	}
+		if (postimage==null) postimage=defaultimage;
 	String Category= dto.getCategory();
 	int Likes= dto.getLikes();
 	String CreationTime= dto.getCreationTime();
+	
 	%> 
 	<div class="t-container">
     <div class="container" style="margin-left: 5%; margin-right: 5%;">
         <section class="posts">
             <div class="post">
-                <img src="resources/PostImg/<%=Image %>" id="게시물 1">
+                <img src="<%=postimage%>" id="게시물 1">
                 <div class="post-content">
                 		<div class="post_title">
                     		<%=Title %><!-- 타이틀 -->
                 		</div>
                 		<div class="post_content">
-                    		<p><%=Content %></p><!-- 내용 -->
+                    		<p><%=previewText %></p><!-- 내용 -->
                 		</div>
                     <div class="post-info">
                         <div class="post-meta">
@@ -376,6 +391,7 @@
             </div>
         </section>
     </div>
+  <!-- 추가 -->  </div>
 <%
 	
  	} %>
