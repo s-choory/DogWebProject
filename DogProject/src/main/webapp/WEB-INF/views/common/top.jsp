@@ -86,6 +86,7 @@
 
 <div class='header-container column'>
     <header>
+
 		<nav class="header-nav">
 			<a href="/test/main" class="header-icorn"><img src="${pageContext.request.contextPath}/resources/메인아이콘.png" id="로고" width=330 height=150></a>
 <!-- 			<div class="header-top">  이거 태그로 묶으면 :hover 이벤트가 안됨. 이유는 모름-->
@@ -114,5 +115,3 @@
 			</div>
 	</header>
 </div>
-
-

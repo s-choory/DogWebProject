@@ -225,7 +225,7 @@
             <div class="post">
             <a href="post?PostID=<%=postid%>">
    
-       <img src="<%=postimage%>" alt="">
+       <img src="resources/PostImg/<%=postimage%>" alt="">
     
                 </a>
                 <div class="post-content">
