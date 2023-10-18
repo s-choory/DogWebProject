@@ -92,7 +92,7 @@
 <!-- 			<div class="header-top">  이거 태그로 묶으면 :hover 이벤트가 안됨. 이유는 모름-->
 				<a href="/test" class="header-link">Community</a>
 				<a href="/test/dogshop_main" class="header-link">Store</a>
-				<a href="/test/MoIm" class="header-link">Group</a>
+				<a href="/test/roomList" class="header-link">Group</a>
 				<a href="/test/map" class="header-link">Map</a>
 <!-- 			</div> -->
 
