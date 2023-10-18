@@ -167,9 +167,9 @@
       });
       
     });
-    function prod(){
+    function prod(n){
     	console.log(1);
-    	$("#prod").submit();
+    	$("#prod"+n).submit();
     }
     </script>
 </head>
@@ -268,9 +268,9 @@
  %>
         <div class="product">
 
-	        <form id="prod" action="goodsRetrieve" method="post">
+	        <form id="prod<%= i %>" action="goodsRetrieve" method="post">
 	 			<input type="hidden" name="gProductID" value="<%=productid%>">
-	 			 <a href="#" onclick="prod()"><img src="resources/storeimages/<%=image %>.jpg" alt="상품 이미지" ></a>
+	 			 <a href="#" onclick="prod(<%=i%>)"><img src="resources/storeimages/<%=image %>.jpg" alt="상품 이미지" ></a>
 	 		</form>
             <div class="product-content">
                 <h3><%=productname %></h3>
