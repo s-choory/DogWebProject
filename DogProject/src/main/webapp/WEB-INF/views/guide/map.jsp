@@ -10,6 +10,10 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Gamja+Flower&family=Hi+Melody&display=swap" rel="stylesheet">
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+
 <style type="text/css">
 
 	body {
@@ -225,6 +229,7 @@
 <body>
 <jsp:include page = "../common/top.jsp" flush="true"/><br>
 <jsp:include page = "../common/side.jsp" flush="true"/><br>
+<jsp:include page = "../common/map_ad.jsp" flush="true"/><br><hr>
 <div class = "container">
 	<a id="categoryFilter">
 		<img class = "categoryimg" src="${pageContext.request.contextPath}/resources/mapimg/전체아이콘.png" width=40 id="all">
@@ -280,10 +285,7 @@
 	</div>
 </div>
 <br>
-<div class="link-container">
-	<a href="<%=request.getContextPath()%>/savedogdiv" class="link-AccomPlace">동반업소</a>
-	<a href="<%=request.getContextPath()%>/gmap" class="link-hospital">병원찾기</a>
-</div>
+
 </div>
 <input type="hidden" id="category-param" name="category-param" data-xxx="<%= request.getParameter("Category2")%>">
 <input type="hidden" id="address-param" name="address-param" data-xxx="<%= request.getParameter("RodeAddress")%>">
@@ -636,9 +638,10 @@
 			data.target.style="";
 		});
 		
-	})
+	});
 </script>
 <br>
+<jsp:include page = "../common/map_ad2.jsp" flush="true"/><br>
 <jsp:include page = "../common/footer.jsp" flush="true"/><br>
 </body>
 </html>

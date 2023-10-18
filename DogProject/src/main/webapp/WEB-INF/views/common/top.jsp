@@ -57,7 +57,8 @@
 </style>
     <header>
       <nav class="header-nav">
-    	<img src="${pageContext.request.contextPath}/resources/a.jpg" id="로고" width=60 height="60">
+    	<%-- <img src="${pageContext.request.contextPath}/resources/a.jpg" id="로고" width=60 height="60"> --%>
+    	<a href="main"><img width="64" height="64" src="https://img.icons8.com/cotton/64/dog-sit--v2.png" alt="dog-sit--v2"/></a>
         <a href="/test" class="header-link">커뮤니티</a>
         <a href="/test/dogshop_main" class="header-link">스토어</a>
         <a href="/test/MoIm" class="header-link">모임찾기</a>
@@ -80,4 +81,4 @@
     <a href="/test/cartList" class="login-link">장바구니</a>
     <%} %>
 </div>
-<hr style="border: solid 1px #F9D182; ">
+<!-- <hr style="border: solid 1px #F9D182; "> -->
