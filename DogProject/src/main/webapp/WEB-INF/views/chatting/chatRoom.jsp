@@ -15,7 +15,7 @@
 	
 	//웹소켓 연결
 	function connect() {
-	    var socket = new SockJS('http://localhost:8082/test/stomp');
+	    var socket = new SockJS('http://localhost:8096/test/stomp');
 	    stompClient = Stomp.over(socket);
 	    stompClient.connect({}, function (frame) {
 	        stompClient.subscribe('/room/'+roomId, function (chatMessage) {
@@ -115,6 +115,7 @@ $(function() {
 <title>Title</title>
 </head>
 <body>
+<jsp:include page = "../common/top.jsp" flush="true"/><br>
 <div class="container">
 	<div class="container" id="dialogContainer">
 		<!-- chat-header -->

@@ -139,6 +139,7 @@ html, body {
 <title>Title</title>
 </head>
 <body>
+<jsp:include page = "../common/top.jsp" flush="true"/><br>
 <div class="container">
 	<div class="row mt-5 mb-2 p-1">
 		<div class="col">

@@ -15,7 +15,7 @@
 	
     .header-container{
     	height:350px;
-    	background-image: url("resources/헤더배경2.jpg");
+    	background-image: url("${pageContext.request.contextPath}/resources/헤더배경2.jpg");
     	background-size: 100% auto; /* 이미지 크기 조정 */
 	    background-attachment: fixed; /* 배경 이미지 고정 */
 	    background-repeat: no-repeat;
@@ -27,27 +27,24 @@
  	  	width: 100%; 
  	  	-webkit-transform:scale(1.0);  /*  크롬 */
  	  	font-family: 'Exo', sans-serif;
- 	  	text-shadow: 0px 0 #000, 0 0.2px #F0FFF0, 0 0.2px #000, 0 -0px #000;"
+ 	  	text-shadow: 0px 0 green, 0 0.2px #F0FFF0, 0 0.2px #000, 0 -0px #000;"
 /* font-family: 'Gamja Flower', sans-serif; */
 /* font-family: 'Gowun Dodum', sans-serif; */
 /* font-family: 'Hi Melody', sans-serif; */
 	}
 	.header-nav {
 	    display: flex;
-	    justify-content: center;
+	    justify-content: flex-end;
 	    align-items: center;
 	    margin-top: 20px; /* 상단 여백 조정 */
+	    margin-right : 5%;
 	}
 
-	.header-icorn{
-		margin-right: 30%;
-	}
-	
     .header-link {
         margin: 0 15px;
         padding: 10px 15px;
         background-color: transparent; /* 배경 없음 */
-        color: #97C19C; /* 글씨 색상 */
+        color: black; /* 글씨 색상 */
         border-radius: 5px;
         text-transform: uppercase;	/*대문자 변환*/
         font-weight: bold;
@@ -88,13 +85,11 @@
     <header>
 
 		<nav class="header-nav">
-			<a href="/test/main" class="header-icorn"><img src="${pageContext.request.contextPath}/resources/메인아이콘.png" id="로고" width=330 height=150></a>
-<!-- 			<div class="header-top">  이거 태그로 묶으면 :hover 이벤트가 안됨. 이유는 모름-->
-				<a href="/test" class="header-link">Community</a>
+			<a href="/test/main" class="header-icorn"><img src="${pageContext.request.contextPath}/resources/메인아이콘.png" id="로고" width=360 height=180></a>
+				<a href="/test" class="header-link" style="margin-left:35%">Community</a>
 				<a href="/test/dogshop_main" class="header-link">Store</a>
 				<a href="/test/roomList" class="header-link">Group</a>
 				<a href="/test/map" class="header-link">Map</a>
-<!-- 			</div> -->
 
 		</nav>
 	    	<div class="header-bottom">
