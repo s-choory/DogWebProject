@@ -55,7 +55,7 @@
 /* 	마우스 커서 올리면 이벤트 */
     .header-link:hover {
         color: #F49551; /* 호버 시 글씨 색상 변경 */
-        transform: translateY(2px);
+        transform: translateY(-10px);
     }
 	
     .login-link {
@@ -70,9 +70,7 @@
     .login-link:hover {
     	color: #F49551; /* 호버 시 글씨 색상 변경 */
         text-decoration: underline; /* 밑줄 설정 */
-		transform: translateY(2px);
-    }
-    .header-top{
+		transform: translateY(10px);
     }
     .header-bottom {
         display: flex;
@@ -85,12 +83,12 @@
     <header>
 		<nav class="header-nav">
 			<a href="/test/main" class="header-icorn"><img src="${pageContext.request.contextPath}/resources/메인아이콘테스트1.png" id="로고" width=170 height=170></a>
-			<div class="header-top">
+<!-- 			<div class="header-top"> -->
 				<a href="/test" class="header-link">Community</a>
 				<a href="/test/dogshop_main" class="header-link">Store</a>
 				<a href="/test/MoIm" class="header-link">Group</a>
 				<a href="/test/map" class="header-link">Map</a>
-			</div>
+<!-- 			</div> -->
 
 		</nav>
 	    	<div class="header-bottom">
