@@ -201,6 +201,7 @@
     List<PostsDTO> post = (List<PostsDTO>)request.getAttribute("popular");
     if (post != null && !post.isEmpty()) {
     for(int i=1;i<=post.size();i++){ 
+    	/* 만약 메인에서 포스트가 안불러와진다면 PostMapper.popular에서 INTERVAL 옵션이 있는데, 몇일 전 올린 게시물만 띄울 지 조정가능*/
     	PostsDTO dto = post.get(i-1);
     	int postid=dto.getPostID();
     	String authorid=dto.getAuthorID();
@@ -287,6 +288,6 @@
 
 
 <br>
-<jsp:include page = "common/footer.jsp" flush="true"/><br>
+<jsp:include page = "common/footer.jsp" flush="true"/>
 </body>
 </html>

@@ -40,6 +40,7 @@
 				<value>classpath:com/config/NoticeMapper.xml</value>
 				<value>classpath:com/config/CommentsMapper.xml</value>
 				<value>classpath:com/config/LikeMapper.xml</value>
+				<value>classpath:com/config/ChatMapper.xml</value>
 			</list>
 		</property>
 		<property name="typeAliases">
