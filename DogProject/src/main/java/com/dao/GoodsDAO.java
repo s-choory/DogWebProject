@@ -68,5 +68,9 @@ public class GoodsDAO {
 	public List<GoodsDTO> searchList(String SearchName) {
 		return session.selectList("GoodsMapper.searchList", SearchName);
 	}
+	
+	public int CartCount(String userID) {
+		return session.selectOne("GoodsMapper.CartCount", userID);
+	}
 
 }

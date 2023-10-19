@@ -80,6 +80,8 @@ public class GoodsService {
 		return dao.searchList(SearchName);
 	}
 	
-
+	public int CartCount(String userID) {
+		return dao.CartCount(userID);
+	}
 	
 }

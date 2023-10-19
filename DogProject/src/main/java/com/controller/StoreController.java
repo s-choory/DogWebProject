@@ -14,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.config.XSSFilter;
@@ -22,6 +23,8 @@ import com.dto.GoodsDTO;
 import com.dto.OrdersDTO;
 import com.dto.ReviewsDTO;
 import com.dto.UsersDTO;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.service.GoodsService;
 import com.utils.UploadFileUtils;
 
@@ -38,21 +41,31 @@ public class StoreController {
 	/* store */
 	//스토어메인
 	@RequestMapping(value = "/dogshop_main", method = RequestMethod.GET)
-	public String dogshop_main(@RequestParam( required = false, value = "gCategory" ) String gCategory,Model m) {
+	public String dogshop_main(@RequestParam( required = false, value = "gCategory" ) String gCategory,Model m, HttpSession session) {
 		
 		String Category=gCategory;
-		String gCategory1="장난감";
+		String gCategory1="사료";
 		if (Category != null) {
 			gCategory1 = Category;
 		}
 		List<GoodsDTO>list = service.goodList(gCategory1);
-		
-		//여기서 메인 응답이 찍히면 list를 가져와서 goodsretrieve에 보내줘야함
-		//전체 list
-			//System.out.println("list 받아오기");
-			//List<GoodsDTO> list = service.select();
-			//System.out.println(list);
 			m.addAttribute("list", list);
+			
+		//장바구니 몇개 있는지 count 구하기
+		UsersDTO uDTO = (UsersDTO)session.getAttribute("User");
+		int n = 0;
+		if(uDTO != null) {
+			String UserID = uDTO.getUserID();
+			 n = service.CartCount(UserID);
+		}
+			m.addAttribute("CartCount", n);
+		
+		//String UserID = uDTO.getUserID();
+		//int n = service.CartCount(UserID);
+		//System.out.println(n);
+			
+			
+			
 		return "store/dogshop_main";
 	}
 	
@@ -102,8 +115,9 @@ public class StoreController {
 		//url에 담아온 num파싱해서 그 num에 맞는  dto 모든 정보들을 goodsRetrieve로 넘겨줘야함	
 		//특정 list
 		GoodsDTO list = service.selectone(gProductID);
+		System.out.println("스토어컨트롤러부분 넘어오는 품번>>  "+gProductID);
 		m.addAttribute("list", list);
-		
+		System.out.println("스토어컨트롤러부분 넘겨주는 품번 정보>>  "+list);
 	    List<ReviewsDTO> rList = service.selectReview(gProductID);
 	    //필터처리
 	    for (ReviewsDTO rDTO : rList) {
@@ -117,27 +131,48 @@ public class StoreController {
 	
 	//스토어 메인에서  인기순 가격높은순 가격낮은순 클릭시 
 	@RequestMapping(value = "/dogshop_ASCPriceList", method = RequestMethod.GET)
-	public String dogshop_main2(@RequestParam( value = "gCategory" ) String gCategory,Model m) {
+	public String dogshop_main2(@RequestParam( value = "gCategory" ) String gCategory,Model m, HttpSession session) {
 		
 		// 가격  오름차순 
 		List<GoodsDTO>list = service.ASCPriceList(gCategory);
 		
 		m.addAttribute("list", list);
+		
+		//장바구니 몇개 있는지 count 구하기
+		UsersDTO uDTO = (UsersDTO)session.getAttribute("User");
+		int n = 0;
+		if(uDTO != null) {
+		String UserID = uDTO.getUserID();
+		n = service.CartCount(UserID);
+		}
+		m.addAttribute("CartCount", n);
+		
+		
 		return "store/dogshop_main";
 	}
 	//dogshop_DESCPriceList
 	@RequestMapping(value = "/dogshop_DESCPriceList", method = RequestMethod.GET)
-	public String dogshop_main3(@RequestParam( value = "gCategory" ) String gCategory,Model m) {
+	public String dogshop_main3(@RequestParam( value = "gCategory" ) String gCategory,Model m, HttpSession session) {
 		
 		// 가격  내림차순 
 		List<GoodsDTO>list = service.DESCPriceList(gCategory);
 		
 		m.addAttribute("list", list);
+		
+				//장바구니 몇개 있는지 count 구하기
+				UsersDTO uDTO = (UsersDTO)session.getAttribute("User");
+				int n = 0;
+				if(uDTO != null) {
+				String UserID = uDTO.getUserID();
+				n = service.CartCount(UserID);
+				}
+				m.addAttribute("CartCount", n);
+				
 		return "store/dogshop_main";
 	}
 	//dogshop_MostPopular 인기순 클릭시 
 	@RequestMapping(value = "/dogshop_MostPopular", method = RequestMethod.GET)
-	public String dogshop_main4(@RequestParam( value = "gCategory" ) String gCategory,Model m) {
+	public String dogshop_main4(@RequestParam( value = "gCategory" ) String gCategory,Model m, HttpSession session) {
 		
 		// 가격  내림차순 
 		List<GoodsDTO>list = service.MostPopular(gCategory);
@@ -146,6 +181,15 @@ public class StoreController {
 		System.out.println("=====MostPopular========>>>>>>"+list.size());
 		
 		m.addAttribute("list", list);
+		//장바구니 몇개 있는지 count 구하기
+		UsersDTO uDTO = (UsersDTO)session.getAttribute("User");
+		int n = 0;
+		if(uDTO != null) {
+		String UserID = uDTO.getUserID();
+		n = service.CartCount(UserID);
+		}
+		m.addAttribute("CartCount", n);
+		
 		return "store/dogshop_main";
 	}
 	
@@ -248,12 +292,22 @@ public class StoreController {
 	}
 	
 	// 검색기능  
-			@RequestMapping(value = "/search", method = RequestMethod.GET)
-			public String storeSearch(@RequestParam("SearchName") String SearchName,Model model) {
-				List<GoodsDTO>list  = service.searchList(SearchName);
-				model.addAttribute("list",list);
+	@RequestMapping(value = "/search", method = RequestMethod.GET)
+	public String storeSearch(@RequestParam("SearchName") String SearchName,Model model, HttpSession session) {
+		
+		List<GoodsDTO>list  = service.searchList(SearchName);
+		model.addAttribute("list",list);
+		
+				//장바구니 몇개 있는지 count 구하기
+				UsersDTO uDTO = (UsersDTO)session.getAttribute("User");
+				int n = 0;
+				if(uDTO != null) {
+				String UserID = uDTO.getUserID();
+				n = service.CartCount(UserID);
+				}
+				model.addAttribute("CartCount", n);
 				
-				return "store/dogshop_main";
-			}
+		return "store/dogshop_main";
+	}
 	
 }
