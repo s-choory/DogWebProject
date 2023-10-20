@@ -8,7 +8,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     SELECT * FROM COMMENTS WHERE  PostID = #{PostID}
     </select>  -->
     
-    <select id="replylist" parameterType="Comments" resultType="Comments">
+    <select id="replylist" parameterType="hashmap" resultType="Comments">
 			select level, COMMENTS.* 
 			from COMMENTS
 		    where PostID = #{PostID}

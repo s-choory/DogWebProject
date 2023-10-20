@@ -103,10 +103,13 @@
 			    <%
 			   }else{
 			    %>
-			    <a href="/test/logout" class="login-link" style="color:red"><img src="${pageContext.request.contextPath}/resources/강아지로그아웃아이콘.png" width=60 height=60><br>Logout</a>
 			    <a href="/test/mypage" class="login-link"><img src="${pageContext.request.contextPath}/resources/마이페이지아이콘.png" width=60 height=60><br>MyPage</a>
 			    <a href="/test/cartList" class="login-link"><img src="${pageContext.request.contextPath}/resources/장바구니아이콘.png" width=60 height=60><br>Cart</a>
+			    <a href="/test/logout" class="login-link" style="color:red"><img src="${pageContext.request.contextPath}/resources/강아지로그아웃아이콘.png" width=60 height=60><br>Logout</a>
 			    <%} %>
 			</div>
 	</header>
 </div>
+
+<!-- 이쁜 경고창  -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>

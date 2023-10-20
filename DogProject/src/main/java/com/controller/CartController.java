@@ -59,12 +59,8 @@ public class CartController {
 		}else {
 			n = service.addCartList(cDTO);
 		}
-		if(n == 1) {
-			model.addAttribute("msg", "장바구니에 넣었습니다.");
-		}else {
-			model.addAttribute("msg", "장바구니에 넣을 수 없습니다.");
-		}
-		return "forward:/goodsRetrieve?gProductID="+cDTO.getProductID();
+//		return "forward:/goodsRetrieve?gProductID="+cDTO.getProductID();
+		return "redirect:/cartList";
 	}
 	
 	//장바구니 항목 삭제
