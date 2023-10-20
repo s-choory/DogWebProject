@@ -12,7 +12,10 @@
 <script type="text/javascript">
 
 $(function () {
-	
+	<% String msg = (String)request.getAttribute("msg");
+		if(msg != null){%>
+		alert('<%=msg%>');
+	<% } %>
     // 클릭 이벤트 핸들러 등록
     $(document).on('click', '.shop_list', function () {
         var num = $(this).attr("data-xxx");
@@ -293,6 +296,7 @@ $(function () {
 
 </head>
 <body>
+
 <jsp:include page = "../common/top.jsp" flush="true"/><br>
 <jsp:include page = "../common/side.jsp" flush="true"/><br>
 <!--  검색      -->

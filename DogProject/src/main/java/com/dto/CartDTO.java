@@ -118,5 +118,4 @@ public class CartDTO {
 		ReviewFlag = reviewFlag;
 	}
 	
-	
 }

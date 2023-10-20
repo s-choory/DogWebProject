@@ -171,7 +171,6 @@ public class StoreController {
 	@RequestMapping(value = "/reviewAdd", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
 	public String reviewAdd(MultipartFile[] files,HttpSession session, ReviewsDTO rDTO, Model model) throws Exception{
 		int ProductID = rDTO.getProductID();
-		
 		UsersDTO uDTO = (UsersDTO)session.getAttribute("User");
 		//로그인 체크
 		if(uDTO == null) {

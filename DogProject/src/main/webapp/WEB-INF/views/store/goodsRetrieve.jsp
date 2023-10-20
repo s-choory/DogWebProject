@@ -10,47 +10,12 @@
 .container {
 	margin-left: 10%;
 	margin-right: 10%;
-}
-
-.product-info {
-	display: block;
-	font-size: 0;
-	margin: 0 -5px;
-}
-
-.product-options {
-	display: inline-block;
-	width: 32%;
-	padding: 0 5px; /* 간격을 위해 각 너비에 준 패딩 5px을 줌 */
-	vertical-align: middle; /* 나란히 배치하는 와중에 수직정렬도 가운데로 하려고 준 속성 */
-	text-align: center; /* 영역 안 태그들의 텍스트가 center로 오도록 준 속성 */
-}
-
-.product-options2 {
-	display: inline-block;
-	width: 1%;
-	vertical-align: middle; /* 나란히 배치하는 와중에 수직정렬도 가운데로 하려고 준 속성 */
-}
-
-/* 옵션과 수량 버튼 스타일 조정 */
-.product-options select, .product-options button {
-	width: auto; /* 기본 너비 유지 */
-	margin-right: 10px; /* 버튼 간격 조절 */
-}
-
-/* 추가적인 스타일링을 위한 CSS를 여기에 추가할 수 있습니다. */
-
-/* 세로선 스타일 */
-.vertical-line {
-	border-left: 1px dotted; /* 세로선 스타일 */
-	height: 100%; /* 부모 컨테이너 높이와 동일하게 설정 */
-	/* 	    margin-left: 20px; /* 세로선과 상세 정보 간격 조절 */
-	*/
+	font-family: 'Arial', sans-serif;
 }
 
 .detail {
-	margin-left: 10%;
-	margin-right: 10%;
+	padding-left: 10%;
+	padding-right: 10%;
 }
 
 .detail img {
@@ -59,74 +24,6 @@
 	margin-bottom: 5px;
 	margin: auto;
 	display: block;
-}
-
-.updown {
-	border: 1px solid black;
-	width: 0.1px;
-	height: 300px;
-}
-
-.catecontainer {
-	margin-left: 20%;
-	margin-right: 20%;
-	display: flex; /* 가로로 배치 */
-	justify-content: space-between; /* 각 요소 사이의 간격을 최대로 설정 */
-	position: sticky; /* 스크롤시 화면 상단에 고정 */
-	top: 0; /* 상단에 고정시킵니다. */
-	z-index: 1000; /* 다른 요소 위에 놓이도록 설정 */
-	text-align: center; /* 텍스트 가운데 정렬 */
-}
-
-.catecontainer a {
-	text-decoration: none;
-	color: #333;
-	margin-left: 30px;
-	margin-right: 30px;
-	padding: 10 30px; /* 각 링크의 여백 설정 */
-	transition: background-color 0.3s; /* 배경색 변화 애니메이션 */
-	font-size: 20px;
-	border: 1px solid;
-}
-
-.catecontainer a:hover {
-	background-color: #000; /* 호버 시 배경색 변경 */
-	color: white;
-	font-weight: bold;
-}
-/* 스크롤 고정 입력창 스타일 */
-/*    .fixed-input {
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        background-color: white;
-        padding: 10px;
-        display: flex;
-        align-items: center;
-    }
-    .input-review {
-        flex-grow: 1;
-        margin-right: 10px;
-        padding: 5px;
-        border: 1px solid #ccc;
-    }*/
-.attach-button {
-	padding: 5px 10px;
-	background-color: #f8bd24;
-	color: white;
-	border: none;
-	border-radius: 5px;
-	cursor: pointer;
-}
-
-.submit-button {
-	padding: 5px 10px;
-	background-color: #35424a;
-	color: white;
-	border: none;
-	border-radius: 5px;
-	cursor: pointer;
 }
 
 #Rating fieldset {
@@ -162,7 +59,8 @@
 }
 
 .img{
-    width: auto;
+    width: 300px;
+    height: 200px;
     border-radius: 10px;
     cursor: pointer;
     transition: 0.3s;
@@ -211,7 +109,244 @@
     text-decoration: none;
     cursor: pointer;
   }
+  
+  .goodsRetrieve-container{
+  	border: 1px solid #ededed;
+  	height:900px;
+  	display: flex;
+/*   	justify-content: */
+  }
+  
+  .goodsRetrieve-subcontainer1{
+  	width:50%;
+  	border-right: 1px solid #ededed;
+    
+  }
+  
+  .goodsRetrieve-subcontainer2{
+  	width:50%;
+  	padding: 30px;
+  }
+  
+  .goodsRetrieve-name{
+  	font-size: 25px;
+  	font-weight: 550;
+  	margin-bottom: 15px;
+  	color: hsl(0, 0%, 20%);
+  }
+    
+  .goodsRetrieve-price{
+ 	 display: flex; 
+ 	 justify-content: space-between;
+ 	 margin-bottom: 15px;
+  }
+  
+  .goodsRetrieve-price2-1{
+  	justify-content: flex-start;
+  	font-size: 28px;
+  	font-weight: 700;
+  	font-style: oblique;
+  	color: red;
+  }
+  
+  .goodsRetrieve-price2-2{
+  	font-size: 28px;
+  	display: inline-block;	/* 우측정렬 하기 전 display 타입 바꾸기*/
+  	float: right;	/* 우측정렬 */
+  	font-weight: 700;
+  	color: hsl(0, 0%, 13%);
+  }
 
+  
+  .goodsRetrieve-memberpoint-container{
+ 	border: 0.2px solid #a0a0a0	;
+  	height: 300px;
+  }
+  
+  .goodsRetrieve-memberpoint1{
+  	font-size: 18px;
+  	font-weight: bolder;
+  	color: hsl(0, 0%, 10%);
+  	padding: 20px;
+  	border-bottom: 0.1px solid #d2d2d2;
+  }
+  
+   .goodsRetrieve-memberpoint2{
+    padding: 20px 20px 5px 20px;
+    font-weight: bolder;
+   }
+   
+   .goodsRetrieve-memberpoint3{
+    padding: 0 20px 0 20px;
+    font-size: 14px;
+    color: hsl(0, 0%, 23%);
+   }
+   
+   .goodsRetrieve-memberpoint-subcontainer{
+    margin: 10px 20px 0 20px;
+    padding: 20px;
+    background-color: #f7f8fa;
+    border: 0.2px solid #bebebe;
+    }
+   
+   .goodsRetrieve-memberpoint4{
+   	font-weight: bolder;
+   }
+   .tip-text{
+   	color:red;
+   	font-size: 17px;
+   	font-style: oblique;
+   }
+   
+   .goodsRetrieve-subcontainer3{
+   	margin: 10px 0 10px 0;
+   	padding: 10px 0 10px 0;
+   	border-bottom: 0.1px solid #d2d2d2;
+   }
+   
+   .goodsRetrieve-cardtext{
+   	margin-bottom: 4px;
+   }
+   
+   .goodsRetrieve-subcontainer4{
+   	border-bottom: 0.1px solid #d2d2d2;
+   	padding-bottom: 10px;
+   }
+   
+   .goodsRetrieve-delivery{
+   	color: hsl(0, 0%, 50%);
+   }
+   
+   .goodsRetrieve-selectoption-container{
+   	margin-bottom: 20px;
+   }
+   
+   .goodsRetrieve-selectoption{
+   	margin: 10px 0 10px 0;
+   	padding: 5px 10px 5px 10px;
+   	width: 100%;
+   	height: 50px;
+   }
+   
+   .goodsRetrieve-quantity-container{
+   	margin-bottom: 15px;
+   	padding-bottom: 15px;
+   	border-bottom: 0.1px solid #d2d2d2;
+   }
+   
+   .goodsRetrieve-quantity{
+   	border: 0;
+   	width: 30px;
+   	text-align: center;
+   	font-weight: bolder;
+   }
+   
+   .goodsRetrieve-order{
+   	align-content: center;
+   }
+   
+   .catecontainer{
+    height:60;
+   	padding: 15px 0 15px 0;
+    position: sticky;
+    top: 0;
+    background-color: #ffffff; /* 고정할 위치에서의 배경 색상 */
+    z-index: 100; /* 다른 요소 위에 보이도록 함 */
+   }
+   
+   .cate-move{
+    margin: 13%;
+    text-decoration: none;
+    color: #000000;
+    font-size: 18px;
+    font-weight: bolder;
+   }
+  
+  	.goodsRetrieve-table{
+  		width: 85%;
+  		margin-left:auto; 
+    	margin-right:auto;
+	    border-collapse : collapse;
+		border : 1px solid #ededed;
+		color: #6E6E6E;
+		margin-bottom: 50px;
+		margin-top: 50px;
+  	}
+  	.goodsRetrieve-table-title{
+  		background-color: #fafafa;
+  		padding: 10px 15px;
+  		border: solid 1px #ededed;
+  		text-align: left;
+  	}
+  	.goodsRetrieve-table-contents{
+  		padding: 10px 20px;
+  		border: solid 1px #ededed;
+  		text-align: left;
+  	}
+  	  	
+  	.goodsRetrieve-detail-title{
+  		font-size: 18px;
+  		padding:10px;
+  	}
+  	
+  	.review-text1{
+	    overflow: hidden;
+	    margin-bottom: 15px;
+	    line-height: 20px;
+	    color: #888;
+	    display: table;
+  	}
+    .attach-button {
+        padding: 5px 10px;
+        background-color: #f8bd24;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    .submit-button {
+        padding: 5px 10px;
+        background-color: #35424a;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    
+    .review-title {
+    	font-size: 23px;
+    	font-weight: bolder;
+    }
+    .rating-image-container{
+    	margin-left: 20px;
+    }
+    .review-subcontainer2{
+    	width: 100%;
+    	display: flex;
+    	
+    }
+    
+    #review-content{
+      width: 100%; 
+      height: 80px; 
+      resize: none;
+      border-radius: 10px;
+      padding: 10 15px;
+    }
+    
+    .review-subcontainer3{
+    	width: 80%;
+    	margin-left: 20px;
+    }
+    .review-subcontainer4{
+    	width: 20%;
+    	margin-left: 30px;
+    }
+    .review-subcontainer5{
+    	margin-bottom: 10px;
+    }
+    
+  	
 </style>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 </head>
@@ -244,26 +379,73 @@
 	
 	function reqCheck(str){
 		if(str == 'order'){
-			if(confirm("해당 상품을 바로 구매하시겠습니까?"))
-				if($("#pSize").val() == '사이즈선택' || $("#Color").val() == '옵션선택'){
-					event.preventDefault();
-					alert("상품 옵션을 선택하세요");
-				}else{
-					$("#myForm").attr("action","orderConfirm");
-					$("#myForm").submit();
-				}
-			else{
-				event.preventDefault();
-			}
+			Swal.fire({
+				   title: '정말 구매 하시겠습니까?',
+				   text: '구매 페이지로 이동합니다.',
+				   icon: 'question',
+				   
+				   showCancelButton: true, // cancel버튼 보이기. 기본은 원래 없음
+				   confirmButtonColor: '#3085d6', // confrim 버튼 색깔 지정
+				   cancelButtonColor: '#d33', // cancel 버튼 색깔 지정
+				   cancelButtonText: '아니오', // cancel 버튼 텍스트 지정
+				   confirmButtonText: '예', // confirm 버튼 텍스트 지정
+				   
+				   reverseButtons: true, // 버튼 순서 거꾸로
+				   
+				}).then(function (result) {
+				   if (result.isConfirmed) { // 만약 모달창에서 confirm 버튼을 눌렀다면
+					  if($("#pSize").val() == '사이즈' || $("#Color").val() == '색상'){
+						  event.preventDefault();
+					      Swal.fire('경고', '상품 옵션을 선택하세요', 'warning');
+					  }else{
+							$("#myForm").attr("action","orderConfirm");
+							$("#myForm").submit();
+						}
+					}
+				});
 		}		
 		if(str == 'cart'){
-			if($("#pSize").val() == '사이즈선택' || $("#Color").val() == '옵션선택'){
-				event.preventDefault();
-				alert("상품 옵션을 선택하세요");
-			}else{
-				$("#myForm").attr("action","addCartList");
-				$("#myForm").submit();	
-			}
+			Swal.fire({
+				   title: '장바구니에 넣으시겠습니까?',
+				   text: '',
+				   icon: 'question',
+				   
+				   showCancelButton: true, // cancel버튼 보이기. 기본은 원래 없음
+				   confirmButtonColor: '#3085d6', // confrim 버튼 색깔 지정
+				   cancelButtonColor: '#d33', // cancel 버튼 색깔 지정
+				   cancelButtonText: '아니오', // cancel 버튼 텍스트 지정
+				   confirmButtonText: '예', // confirm 버튼 텍스트 지정
+				   
+				   reverseButtons: true, // 버튼 순서 거꾸로
+				   
+				}).then(function (result) {
+				   if (result.isConfirmed) { // 만약 모달창에서 confirm 버튼을 눌렀다면
+					  if($("#pSize").val() == '사이즈' || $("#Color").val() == '색상'){
+						  event.preventDefault();
+					      Swal.fire('경고', '상품 옵션을 선택하세요', 'warning');
+					  }else{
+						  Swal.fire({
+							   title: '장바구니에 담겼습니다',
+							   text: '',
+							   icon: 'success',
+							   
+							   showCancelButton: true, // cancel버튼 보이기. 기본은 원래 없음
+							   confirmButtonColor: '#3085d6', // confrim 버튼 색깔 지정
+							   cancelButtonColor: '#d33', // cancel 버튼 색깔 지정
+							   cancelButtonText: '쇼핑 계속하기', // cancel 버튼 텍스트 지정
+							   confirmButtonText: '장바구니 이동', // confirm 버튼 텍스트 지정
+							   
+							   reverseButtons: true, // 버튼 순서 거꾸로
+							   
+							}).then(function (result) {
+							   if (result.isConfirmed) { // 만약 모달창에서 confirm 버튼을 눌렀다면
+		 							$("#myForm").attr("action","addCartList");
+		 							$("#myForm").submit();
+								}
+							});
+						}
+					}
+				});
 		}		
 	}
 	
@@ -285,15 +467,17 @@
 			}
 		}		
 	}
+	
+	
 
-<% 
-	String msg = (String)request.getAttribute("msg");
-	if(msg != null){%>
-		alert("<%=msg%>");
-<%	
-	}
-	request.removeAttribute("msg");
-%>
+<%-- <%  --%>
+// 	String msg = (String)request.getAttribute("msg");
+<%-- 	if(msg != null){%> --%>
+<%-- 		alert("<%=msg%>"); --%>
+<%-- <%	 --%>
+// 	}
+// 	request.removeAttribute("msg");
+<%-- %> --%>
 </script>
 <body>
 	<%
@@ -312,95 +496,126 @@
 		<!-- 상품 정보 컨테이너 -->
 		<div class="product-info">
 			<!-- 상품 이미지 -->
-			<form id="myForm" method="post">
-				<input type="hidden" name="ProductID" value="<%=gProductID%>">
-				<input type="hidden" name="Image" value="<%=gImage%>"> <input
-					type="hidden" name="ProductName" value="<%=gName%>"> <input
-					type="hidden" name="Price" value="<%=gPrice%>">
-
-				<div class="product-options">
-					<img src="resources/storeimages/<%=gImage%>.jpg" align="left"
-						style="width: 90%; height: 300px;">
-				</div>
-				<!-- 상품 제목과 상세 정보 -->
-				<div class="product-options" style="margin-right: 30px;">
-					<span style="font-size: 30px;"><%=gName%></span><br>
-					<br>
-					<hr>
-					<br>
-					<div style="font-size: 15px;">
-						가격:
-						<%=gPrice%></div>
-					<br>
-					<div style="font-size: 15px;">배송 방법: 택배</div>
-					<br>
-					<div style="font-size: 15px;">배송비: 3500원 (도서 산간지역 별도 배송비 추가)</div>
-					<br>
-					<div style="font-size: 15px;">
-						특징:
-						<%=gContent%></div>
-				</div>
-				<!-- 상품 옵션과 주문 수량 -->
-				<div class="product-options2" style="margin-right: 0px;">
-					<div class="updown"></div>
-				</div>
-				<div class="product-options" style="width: 17%">
-					<div style="font-size: 16px;">
-
-						사이즈: <select class="select_change" size="1" name="Psize"
-							id="pSize">
-							<option selected value="옵션선택">사이즈선택</option>
-							<option value="S">S</option>
-							<option value="M">M</option>
-							<option value="L">L</option>
-							<option value="XL">XL</option>
-						</select><br> 색상: <select class="select_change" size="1" name="Color"
-							id="Color">
-							<option selected value="옵션선택">옵션선택</option>
-							<option value="navy">navy</option>
-							<option value="black">black</option>
-							<option value="ivory">ivory</option>
-							<option value="white">white</option>
-							<option value="gray">gray</option>
-						</select>
-					</div>
-					<div class="options-and-quantity">
-						<div class="td_title">주문수량</div>
-						<div style="padding-left: 10px">
-							<!-- 패딩 조절 -->
-							<input type="text" class="form-control" name="Amount" value="1" id="gAmount" aria-describedby="basic-addon1" style="text-align: right; height: 18px; width: 40px;">
-							<img src="resources/up.PNG" id="up">+ 
-							<img src="resources/down.png" id="down">-
-						</div>
-						<button type="button" class="btn btn-primary " onclick="reqCheck('order')">구매</button>
-						<button type="button" class="btn btn-primary" onclick="reqCheck('cart')">장바구니</button>
-					</div>
-				</div>
-			</form>
 		</div>
 		<br>
 		<br>
 		<hr>
+		
+	<form id="myForm" method="post">
+
+			<input type="hidden" name="ProductID" value="<%=gProductID%>">
+			<input type="hidden" name="Image" value="<%=gImage%>"> <input
+			type="hidden" name="ProductName" value="<%=gName%>"> <input
+			type="hidden" name="Price" value="<%=gPrice%>">
+		<div class="goodsRetrieve-container">
+			<div class="goodsRetrieve-subcontainer1">
+			<img src="resources/storeimages/<%=gImage%>.jpg" width=100% height=440px>
+			</div>
+			<div class="goodsRetrieve-subcontainer2">
+				<div class="goodsRetrieve-name"><%=gName%></div>
+				<div class="goodsRetrieve-price" >
+					<div class="goodsRetrieve-price2-1">HOT</div>
+					<div class="goodsRetrieve-price2-2"><%=gPrice%><span style="font-size: 22px;">원</span></div>
+				</div>
+			<div class="goodsRetrieve-memberpoint-container">
+				<div class="goodsRetrieve-memberpoint1">도기도기 고객을 위한 혜택</div>
+				<div class="goodsRetrieve-memberpoint2">최대 적립 포인트<span style="display: inline-block; float:right;"><%= Math.round(gPrice * 0.01)+1500 %>원</span> </div>
+				<div class="goodsRetrieve-memberpoint3">└ 기본 적립 <span style="display: inline-block; float:right;"><%= Math.round(gPrice * 0.01) %>원</span></div>
+				<div class="goodsRetrieve-memberpoint-subcontainer">
+					<div class="goodsRetrieve-memberpoint4"><span class="tip-text">TIP.</span> 포인트 더 받는 방법  <span style="display: inline-block; float:right;">+ 최대 <%= Math.round(gPrice * 0.01)+1500 %>원</span></div>
+					<div class="goodsRetrieve-memberpoint5"><img src="${pageContext.request.contextPath}/resources/로고아이콘.png" width=20 height=15>구매 후 해당 상품의 게시물 작성 >  <span style="display: inline-block; float:right;">1000원</span></div>
+					<div class="goodsRetrieve-memberpoint6"><img src="${pageContext.request.contextPath}/resources/로고아이콘.png" width=20 height=15>구매 후 해당 상품의 리뷰 작성 >  <span style="display: inline-block; float:right;">500원</span></div>
+				</div>
+			</div>
+				<div class="goodsRetrieve-subcontainer3">
+					<div class="goodsRetrieve-cardtext"> 무이자 할부 | 카드 자세히 보기 </div>
+					<div class="goodsRetrieve-cardtext"> 이벤트 | 소식알림 1,000원 쿠폰</div>
+				</div>
+				<div  class="goodsRetrieve-subcontainer4">
+					<div>택배 배송 | 3500원 • CJ대한통운 </div>
+					<div class="goodsRetrieve-delivery ">제주 추가 3000원, 제주 외 도서지역 추가 5000원</div>
+				</div>
+				<div class="goodsRetrieve-selectoption-container">
+					<select class="goodsRetrieve-selectoption form-select" name="Psize" id="pSize">
+								<option selected value="사이즈">사이즈</option>
+								<option value="S">S</option>
+								<option value="M">M</option>
+								<option value="L">L</option>
+								<option value="XL">XL</option>
+					</select>
+					<select class="goodsRetrieve-selectoption form-select" name="Color" id="Color">
+								<option selected value="색상">색상</option>
+								<option value="navy">navy</option>
+								<option value="black">black</option>
+								<option value="ivory">ivory</option>
+								<option value="white">white</option>
+								<option value="gray">gray</option>
+					</select>
+				</div>
+					<div class="goodsRetrieve-quantity-container">
+						<div class="btn-group" role="group" aria-label="Basic example">
+						  <button type="button" class="btn btn-secondary" id="down">-</button>
+						  <input type="text" class="goodsRetrieve-quantity" name="Amount" value="1" id="gAmount" readonly="readonly">
+						  <button type="button" class="btn btn-secondary" id="up">+</button>
+						</div>
+					</div>
+					<div class="goodsRetrieve-order">
+						<button type="button" class="btn btn-success" onclick="reqCheck('order')">구매하기</button>&nbsp;&nbsp;&nbsp;&nbsp;
+						<button type="button" class="btn btn-success" onclick="reqCheck('cart')">장바구니</button>
+					</div>
+					</div>
+				</div>
+		</form>
+		
+		
+		
+		<hr>
+		
 		<div class="catecontainer">
-			<a href="#product-info">상품정보</a> <a href="#detail-info">상세안내</a> <a
-				href="#product-review">상품리뷰</a>
+			<a class="cate-move" href="#product-info">상품정보</a> 
+			<a class="cate-move" href="#detail-info">상세안내</a>
+			<a class="cate-move" href="#product-review">상품리뷰</a>
 		</div>
 
-		<!-- </form> -->
-		<nav>
-			<h2 id="product-info">상품 정보</h2>
-		</nav>
 		<!-- 상품상세 정보 -->
+		
+		
+		<table class="goodsRetrieve-table">
+			<tr>
+				<th scope="row" class="goodsRetrieve-table-title">상품번호</th>
+				<td colspan="1" class="goodsRetrieve-table-contents"><b><%= gProductID %></b></td>
+				<th scope="row" class="goodsRetrieve-table-title">상품상태</th>
+				<td colspan="1" class="goodsRetrieve-table-contents">신상품</td>
+			</tr>
+			<tr>
+				<th scope="row" class="goodsRetrieve-table-title">제조사</th>
+				<td colspan="1" class="goodsRetrieve-table-contents">도기도기</td>
+				<th scope="row" class="goodsRetrieve-table-title">브랜드</th>
+				<td colspan="1" class="goodsRetrieve-table-contents">도기도기</td>
+			</tr>
+			<tr>
+				<th scope="row" class="goodsRetrieve-table-title">모델명</th>
+				<td colspan="1" class="goodsRetrieve-table-contents"><%= gName %></td>
+				<th scope="row" class="goodsRetrieve-table-title">이벤트</th>
+				<td colspan="1" class="goodsRetrieve-table-contents">소식알림 1,000원 쿠폰</td>
+			</tr>
+		<tr>
+			<th scope="row" class="goodsRetrieve-table-title">상품설명</th>
+			<td colspan="3" class="goodsRetrieve-table-contents"><%= gContent %></td>
+		</tr>
+		</table>
+		
+		
 		<div class="detail">
 			<img src="resources/storeimages/<%=gImage%>.jpg" alt="상세페이지1">
+			<br>
 			<img src="resources/storeimages/<%=gImage%>.jpg" alt="상세페이지2">
+			<br>
 			<img src="resources/storeimages/<%=gImage%>.jpg" alt="상세페이지3">
 		</div>
-		<div class="detail" id="detail-info">
-			<nav>
-				<h2>상세 안내</h2>
-			</nav>
 			<hr>
+			<div class="goodsRetrieve-detail-title"><b>거래조건에 관한 정보</b></div>
+		<div class="detail" id="detail-info">
 			<!-- <script type="text/javascript"> -->
 			<p>배송 기간 안내</p>
 			<p>- 평균배송기간 : 결제완료 후 3일 이내 발송, 발송 후 3일이내 수령(영업일 기준)</p>
@@ -519,36 +734,69 @@
 			전상법 시행령으로 정하는 이율을 곱하여 산정한 지연이자(“지연배상금”)를 신청할 수 있습니다. 아울러, 교환∙반품∙보증 및
 			결제대금의 환급신청은 [마이페이지]에서 하실 수 있으며, 자세한 문의는 고객센터로 연락하여 주시기 바랍니다.</p>
 		<!-- 구매평 -->
-
+			<hr>
+			
 		<div class="review" id="product-review">
-			<nav>
-				<h3>리뷰작성</h3>
-			</nav>
-		
+			<div class="review-title">상품리뷰</div>
+			상품을 구매하신 분들이 작성하신 리뷰입니다.리뷰 작성시 아래 금액만큼 포인트가 적립됩니다.
+			<div class="review-text1">
+				텍스트 리뷰:<b>300원</b> &nbsp;
+				포토/동영상 리뷰:<b>1,000원</b> &nbsp;
+				한달사용 텍스트 리뷰:<b>100원</b> &nbsp;
+				한달사용 포토/동영상 리뷰 :<b>100원</b>&nbsp;
+			</div>
+			<% 	 List<ReviewsDTO> rList = (List<ReviewsDTO>)request.getAttribute("ReviewList"); 
+			for(int j=0; j<rList.size(); j++){
+				 String rImg2 = rList.get(j).getrImg();
+				 String rThumbImg2 = rList.get(j).getrThumbImg();
+				 String [] rImgList2 = null;
+				 String [] rThumbImgList2 = null;
+
+				 if(rImg2 != null && rThumbImg2 != null){
+					 rImgList2 = rImg2.split("@");
+					 rThumbImgList2 = rThumbImg2.split("@");
+				 }
+				 if(rThumbImgList2 != null){ for ( int n = 1; n < rThumbImgList2.length; n++) {%> 
+					<img src="<%= rThumbImgList2[0]+rThumbImgList2[n] %>" class="img" data-xxx="<%=rImgList2[0]+rImgList2[n]%>">
+					<div class="modal" id="<%=rImgList2[0]+rImgList2[n] %>">
+						<span class="close">&times;</span> <img class="modal_content"
+							id="img01">
+					</div> <% }}} %> 
 			<hr>
 			<form id="reviewForm" action="reviewAdd" method="post" enctype="multipart/form-data">
+			<div class="rating-image-container">
 			<input type="hidden" name="ProductID" value="<%=gProductID%>">
 				<div class="mb-3" id="Rating">
-				<fieldset name="Rating">
-					<input type="radio" name="Rating" value="5" id="rate1">
-						<label for="rate1">⭐</label> 
-					<input type="radio" name="Rating" value="4" id="rate2">
-						<label for="rate2">⭐</label> 
-					<input type="radio" name="Rating" value="3" id="rate3">
-						<label for="rate3">⭐</label> 
-					<input type="radio" name="Rating" value="2" id="rate4">
-						<label for="rate4">⭐</label> 
-					<input type="radio" name="Rating" value="1" id="rate5">
-						<label for="rate5">⭐</label>
-				</fieldset>
+					<fieldset name="Rating">
+						<input type="radio" name="Rating" value="5" id="rate1">
+							<label for="rate1">⭐</label> 
+						<input type="radio" name="Rating" value="4" id="rate2">
+							<label for="rate2">⭐</label> 
+						<input type="radio" name="Rating" value="3" id="rate3">
+							<label for="rate3">⭐</label> 
+						<input type="radio" name="Rating" value="2" id="rate4">
+							<label for="rate4">⭐</label> 
+						<input type="radio" name="Rating" value="1" id="rate5">
+							<label for="rate5">⭐</label>
+					</fieldset>
+				</div>
+				<div class="select_img" contenteditable="true"><img src="" /></div><br>
+				<input type="file" id="rImg" name="files" multiple style="display: none;"/>
 			</div>
-			<div class="select_img" contenteditable="true"><img src="" /></div><br>
-			<label for="rImg" class="attach-button">사진 첨부</label>
-			<input type="file" id="rImg" name="files" multiple style="display: none;"/>
-			<textarea id="review-content" name="ReviewContent"
-				style="width: 80%; height: 60px; resize: none;"
-				placeholder="리뷰를 입력하세요.&#10;해당 상품의 구입내역을 가진 회원만 리뷰 작성 가능합니다."></textarea>
-				<button id="review-button" class="submit-button">등록</button>
+			<div class="review-subcontainer2">
+				<div class="review-subcontainer3">
+					<textarea id="review-content" name="ReviewContent"
+						placeholder="리뷰를 입력하세요.&#10;해당 상품의 구입내역을 가진 회원만 리뷰 작성 가능합니다."></textarea>
+				</div>
+				<div class="review-subcontainer4">
+					<div class="review-subcontainer5">
+						<label for="rImg" class="attach-button">사진첨부</label>
+					</div>
+					<div>
+						<button onclick="submit" id="review-button" class="submit-button">리뷰등록</button>
+					</div>
+				</div>
+			</div>
 			</form>
 <%-- 			<%= request.getRealPath("/") %> --%>
 			<hr>
@@ -556,7 +804,6 @@
 				<h3>상품리뷰</h3>
 			</nav>
 <% 
-			 List<ReviewsDTO> rList = (List<ReviewsDTO>)request.getAttribute("ReviewList"); 
 			 for(int i=0; i<rList.size(); i++){
 				 int ReviewID = rList.get(i).getReviewID();
 				 String UserAlias = rList.get(i).getUserAlias();
@@ -682,7 +929,7 @@
 		        for (var i = 0; i < this.files.length; i++) {
 		            var reader = new FileReader();
 		            reader.onload = function(data) {
-		                var imgElement = $('<img>').attr('src', data.target.result).width(500);
+		                var imgElement = $('<img>').attr('src', data.target.result).width(100);
 		                var divElement = $('<div>').addClass('preview-image').append(imgElement);
 		                $(".select_img").append(divElement);
 		            }
@@ -714,4 +961,3 @@
 	<jsp:include page="../common/footer.jsp" flush="true" /><br>
 </body>
 </html>
-
