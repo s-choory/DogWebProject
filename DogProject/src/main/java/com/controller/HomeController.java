@@ -22,11 +22,13 @@ import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
 import com.dao.PageDAO;
 import com.dto.CartDTO;
+import com.dto.GoodsDTO;
 import com.dto.PageDTO;
 import com.dto.PostsDTO;
 import com.dto.UsersDTO;
 import com.service.AccompanyingFacilitiesService;
 import com.service.CartService;
+import com.service.GoodsService;
 import com.service.PageService;
 import com.service.PostsService;
 import com.service.UsersService;
@@ -44,24 +46,8 @@ public class HomeController {
 	PostsService Postsservice;	
 	@Autowired 
 	PageService Pageservice;
-	
-//	/* community */
-//	//커뮤니티메인화면
-//	@RequestMapping(value = "/", method = RequestMethod.GET)
-//	public String community(Locale locale, Model model) {
-//		return "community/community_main";
-//	}
-//	//상세보기
-//	@RequestMapping(value = "/post", method = RequestMethod.GET)
-//	public String post(Locale locale, Model model) {
-//		return "community/community_post";
-//	}
-//	//등록화면
-//	@RequestMapping(value = "/addPost", method = RequestMethod.GET)
-//	public String addPost(Locale locale, Model model) {
-//		return "community/community_addPost";
-//	}
-	
+	@Autowired
+	GoodsService gservice;
 	
 	/* mypage */
 	//마이페이지
@@ -237,22 +223,27 @@ public class HomeController {
 	}
 	
 	
-	/* customer_center*/
-	//고객센터QnA
-	@RequestMapping(value = "/ContactCenter_FAQ", method = RequestMethod.GET)
-	public String ContactCenter_FAQ(Locale locale, Model model) {
-		return "customer_center/ContactCenter_FAQ";
-	}
-	//고객센터글목록(페이징)
-	@RequestMapping(value = "/ContactCenter_Notice", method = RequestMethod.GET)
-	public String ContactCenter_Notice(Locale locale, Model model) {
-		return "customer_center/ContactCenter_Notice";
-	}
+//	/* customer_center*/
+//	//고객센터QnA
+//	@RequestMapping(value = "/ContactCenter_FAQ", method = RequestMethod.GET)
+//	public String ContactCenter_FAQ(Locale locale, Model model) {
+//		return "customer_center/ContactCenter_FAQ";
+//	}
+//	//고객센터글목록(페이징)
+//	@RequestMapping(value = "/ContactCenter_Notice", method = RequestMethod.GET)
+//	public String ContactCenter_Notice(Locale locale, Model model) {
+//		return "customer_center/ContactCenter_Notice";
+//	}
 	
 	
 	//인덱스페이지
 	@RequestMapping(value = "/main", method = RequestMethod.GET)
 	public String main(Locale locale, Model model) {
+		List<GoodsDTO> random=gservice.random();
+		List<PostsDTO> popular=Postsservice.popular();
+		model.addAttribute("random", random);
+		model.addAttribute("popular",popular);
+		System.out.println("이것이 popular:"+popular);
 		return "main";
 	}
 	//검색

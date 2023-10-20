@@ -22,6 +22,7 @@ import com.dto.GoodsDTO;
 import com.dto.OrdersDTO;
 import com.dto.ReviewsDTO;
 import com.dto.UsersDTO;
+import com.service.CartService;
 import com.service.GoodsService;
 import com.utils.UploadFileUtils;
 
@@ -30,6 +31,9 @@ public class StoreController {
 
 	@Autowired
 	GoodsService service;
+	@Autowired
+	CartService cService;
+	
 	@Resource(name="uploadPath")
 	private String uploadPath;
 	
@@ -166,16 +170,6 @@ public class StoreController {
 	//리뷰등록
 	@RequestMapping(value = "/reviewAdd", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
 	public String reviewAdd(MultipartFile[] files,HttpSession session, ReviewsDTO rDTO, Model model) throws Exception{
-		//이미지 처리, 매개변수 MultipartFile도 추가했다.
-		System.out.println(files);
-		String ymdPath = null;
-		String fileName = "";
-		String imgUploadPath = File.separator + "imgUpload";
-		ymdPath = UploadFileUtils.calcPath(imgUploadPath);
-		// 여러개의 이미지 이름 사이사이에 기호 '@'를 넣어 저장. split으로 파일을 분리하기위함
-		for(int i=0; i<files.length; i++) {
-			fileName +=  "@"+UploadFileUtils.fileUpload(imgUploadPath, files[i].getOriginalFilename(), files[i].getBytes(), ymdPath);
-		}
 		int ProductID = rDTO.getProductID();
 		
 		UsersDTO uDTO = (UsersDTO)session.getAttribute("User");
@@ -188,23 +182,31 @@ public class StoreController {
 		map.put("UserID",uDTO.getUserID());
 		map.put("ProductID",ProductID);
 		
-		OrdersDTO oDTO = service.OrderSelect(map);
-		//해당 상품이 주문정보가 있는지 체크
-		if(oDTO == null) {
-			model.addAttribute("msg", "상품 구매 후 리뷰 등록이 가능합니다.");
+		List<CartDTO> cDTO = service.findCartOrder(map);
+		if(cDTO.size() == 0) {
+			model.addAttribute("msg", "이미 리뷰를 등록했거나, 상품 구매 후 리뷰 등록이 가능합니다.");
 			return "forward:/goodsRetrieve?gProductID="+ProductID;
 		}
-		//orderFlag가 true라면 리뷰등록 안함. false라면 이미 리뷰등록함.
-		if(oDTO.getReviewFlag().equals("false")) {
-			model.addAttribute("msg", "이미 리뷰를 등록한 상품입니다.");
-			return "forward:/goodsRetrieve?gProductID="+ProductID;
+		
+		//이미지 처리, 매개변수 MultipartFile도 추가했다.
+		String ymdPath = null;
+		String fileName = "";
+		String imgUploadPath = File.separator + "imgUpload";
+		ymdPath = UploadFileUtils.calcPath(imgUploadPath);
+		// 여러개의 이미지 이름 사이사이에 기호 '@'를 넣어 저장. split으로 파일을 분리하기위함
+		for(int i=0; i<files.length; i++) {
+			fileName +=  "@"+UploadFileUtils.fileUpload(imgUploadPath, files[i].getOriginalFilename(), files[i].getBytes(), ymdPath);
 		}
-		rDTO.setOrderID(oDTO.getOrderID());
+		
+		rDTO.setOrderID(cDTO.get(0).getOrderNumber());
 		rDTO.setUserAlias(uDTO.getUserAlias());
 		
 		//리뷰 저장할 때, 텍스트 '&lt, &gt'를 DB에는 '<, >' 형태로 저장하기. 상품 상세페이지에서 리뷰 뿌릴때는 필터처리하여 '&lt, &gt' 로 변환.
 		rDTO.setReviewContent(xss.xssDecoding(rDTO.getReviewContent()));
 		//파일이 없을 때 fileName이 null이기 때문에 조건문추가
+		if(fileName.equals("@null")) {
+			fileName = null;
+		}
 		if(fileName != null) {
 			rDTO.setrImg(ymdPath + File.separator + fileName);
 			String [] fName = fileName.split("@");
@@ -216,9 +218,12 @@ public class StoreController {
 			rDTO.setrThumbImg(fString);
 		}
 		int n = service.addReview(rDTO);
-		//리뷰등록에 성공했다면 orderFlag를 true로 바꿔주고 등록 성공 메시지.
+		//리뷰등록에 성공했다면 ReviewFlag를 false로 바꿔주고 등록 성공 메시지.
 		if(n == 1) {
-			service.orderFlagUpdate(oDTO.getOrderID());
+			for (CartDTO cartDTO : cDTO) {	
+				service.ReviewFlagUpdate(cartDTO.getCartNum());
+			}
+			
 			model.addAttribute("msg", "리뷰를 등록했습니다");
 		}
 		return "forward:/goodsRetrieve?gProductID="+ProductID;
