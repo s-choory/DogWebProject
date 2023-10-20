@@ -30,8 +30,10 @@ public class CommentsController {
 		@PostMapping("/replyui/{PostID}")
 		@ResponseBody
 		public List<CommentsDTO> replylist(@PathVariable int PostID) {
-
+			
 			List<CommentsDTO> replylist = service.replylist(PostID);
+			
+			
 			System.out.println("replylist========"+replylist);
 			return replylist;
 		}
