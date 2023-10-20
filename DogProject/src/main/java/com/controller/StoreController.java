@@ -114,6 +114,8 @@ public class StoreController {
 	    	if(rDTO.getReviewContent() != null) {
 	    		rDTO.setReviewContent(xss.xssFilter(rDTO.getReviewContent()));
 	    	}
+	    	List<UsersDTO> uDTO = service.reviewUserImg(rDTO.getUserAlias());
+	    	rDTO.setUSERIMG(uDTO.get(0).getUSERIMG());
 		}
 	    m.addAttribute("ReviewList", rList);
 	    return "store/goodsRetrieve"; 
@@ -233,7 +235,7 @@ public class StoreController {
 	public String reviewDelete(int ReviewID, int ProductID, Model model) {
 		int n = service.delReview(ReviewID);
 		if(n == 1) {
-			model.addAttribute("msg", "리뷰가 삭제되었습니다.");
+			model.addAttribute("msg", "리뷰가 삭제되었습니다");
 		}
 		return "forward:/goodsRetrieve?gProductID="+ProductID;
 	}
@@ -244,7 +246,7 @@ public class StoreController {
 		rDTO.setReviewContent(xss.xssDecoding(rDTO.getReviewContent()));
 		int n = service.reviewUpdate(rDTO);
 		if(n == 1) {
-			model.addAttribute("msg", "리뷰가 수정되었습니다.");
+			model.addAttribute("msg", "리뷰가 수정되었습니다");
 		}
 		int ProductID = rDTO.getProductID();
 		
