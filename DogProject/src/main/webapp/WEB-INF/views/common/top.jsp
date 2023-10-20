@@ -110,3 +110,6 @@
 			</div>
 	</header>
 </div>
+
+<!-- 이쁜 경고창  -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
