@@ -61,7 +61,7 @@
 	.post-content p {
     font-size: 20px;
     color: #666;
-    padding-left:15px;
+    padding-left:2px;
     margin-top: 10px; 
     height: 100px;
     max-width: 1100px;
@@ -331,11 +331,12 @@
 	</form>
 <!-- <hr align="center" style="border: outset 5px orange; width: 90%;"> -->
 
-
+<!-- list !=null &&!list.isEmpty() -->
+<!-- if(list.isEmpty()){ -->
 <!-- 게시물 jsp로 반복문 돌리기 -->
  <% 
 	List<PostsDTO> list = pDTO.getList();
- 	if(list.isEmpty()){
+ 	if(list ==null && list.isEmpty()){
  	%>
  	<div class="no-data">
     	<div><img src="resources/img/dog/nodata.png" alt="No Results Found"></div><br>
@@ -347,6 +348,7 @@
  	for(int i = 0; i<list.size(); i++){
  		
 	PostsDTO dto= list.get(i);
+	int postid=dto.getPostID();
 	String Image= dto.getImage();
 	String Title= dto.getTitle();
 	String post_content=dto.getContent();
@@ -371,13 +373,19 @@
     <div class="container" style="margin-left: 5%; margin-right: 5%;">
         <section class="posts">
             <div class="post">
+            	<a href="post?PostID=<%=postid%>">
                 <img src="<%=postimage%>" id="게시물 1">
+                </a>
                 <div class="post-content">
                 		<div class="post_title">
+                		<a href="post?PostID=<%=postid%>">
                     		<%=Title %><!-- 타이틀 -->
+                    	</a>	
                 		</div>
                 		<div class="post_content">
+                		<a href="post?PostID=<%=postid%>">
                     		<p><%=previewText %></p><!-- 내용 -->
+                    	</a>	
                 		</div>
                     <div class="post-info">
                         <div class="post-meta">
