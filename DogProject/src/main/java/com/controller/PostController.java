@@ -97,12 +97,6 @@ public class PostController {
 			@RequestParam("PostID") int PostID, LikeDTO ldto, HttpServletResponse response, HttpServletRequest request,
 			HttpSession session, PageDTO ppDTO, CommentsDTO cdto) {
 			
-			UsersDTO uDTO = (UsersDTO)session.getAttribute("User");
-			if(uDTO == null) {
-				return "redirect:/login";
-			}
-			ldto.setUserID(uDTO.getUserID());
-			System.out.println("Posts read===");
 			PostsDTO pdto = Postsservice.read(PostID);//게시글 상세보기
 		
 			

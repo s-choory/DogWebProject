@@ -276,6 +276,10 @@
     	
     }
     
+    .addpost-button{
+    	color: white;
+    	font-weight: bold;
+    }
     
     
 </style>
@@ -294,7 +298,7 @@
 <div class="Logo"><img src="resources/img/dog/Logo_Sample.png"></div>
 
 <div class="fixed-sidebar" style="top:450px;">
-   <button class="scroll-button" onclick="location.href='addPost'" style="writing-mode:vertical-lr; color: black; font-weight: bold">글쓰기+</button>
+   <button id="addpost-button" class="scroll-button" onclick="location.href='addPost'">글쓰기+</button>
 </div>
 
 <span class="addObject">
