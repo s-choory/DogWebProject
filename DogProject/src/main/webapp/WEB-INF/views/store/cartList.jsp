@@ -183,6 +183,12 @@
 	}
 	.priceimg {
 	size: 30px;
+	padding-top: 15px;
+	padding-left: 20px;
+	padding-right: 20px;
+	}
+	.priceimg2 {
+	size: 30px;
 	padding-top: 5px;
 	padding-left: 20px;
 	padding-right: 20px;
@@ -436,7 +442,7 @@ int deliveryCharge= 0;
 			<span id="deliveryCharge"><%= deliveryCharge%>원</span>
 		</dd>
 	</dl>
-	<span class="priceimg"><img src="resources/img/icon/equal.png"></span>
+	<span class="priceimg2"><img src="resources/img/icon/equal.png"></span>
 	<dl>	
 		<dt>
 			총 결제예정금액
