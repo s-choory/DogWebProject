@@ -450,7 +450,6 @@ int deliveryCharge= 0;
 		<dd>
 			<span id="totalOrderPrice" style="font-weight:600;">
 			<%= totalPrice+deliveryCharge %>원
-<% } %>
 			</span>
 		</dd>
 	</dl>
@@ -488,5 +487,6 @@ int deliveryCharge= 0;
 	</tr>
 </table>
 </div>
+<% } %>
 <jsp:include page = "../common/footer.jsp" flush="true"/>
     
