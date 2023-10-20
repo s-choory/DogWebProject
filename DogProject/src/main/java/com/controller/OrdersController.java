@@ -112,6 +112,7 @@ public class OrdersController {
 				}
 				rdto.setUserid(userid);
 				rdto.setRequestid(requestid);
+				System.out.println("rdto!!이다~"+rdto);
 				List<RequestDTO> rlist = rService.UserOrderSelectList(rdto);
 				System.out.println(rlist.size());
 				session.setAttribute("request_userid", userid);
@@ -130,6 +131,7 @@ public class OrdersController {
 				RequestDTO rdto = new RequestDTO();
 				rdto.setUserid(dto.getUserid());
 				rdto.setRequestid(dto.getRequestid());
+				System.out.println("rdto이다~"+rdto);
 				List<RequestDTO> rlist = rService.UserOrderSelectList(rdto);
 				session.setAttribute("request_UserOrderSelectList", rlist);
 				return "request/requestList";

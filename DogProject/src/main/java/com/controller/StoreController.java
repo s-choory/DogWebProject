@@ -123,6 +123,8 @@ public class StoreController {
 	    	if(rDTO.getReviewContent() != null) {
 	    		rDTO.setReviewContent(xss.xssFilter(rDTO.getReviewContent()));
 	    	}
+	    	List<UsersDTO> uDTO = service.reviewUserImg(rDTO.getUserAlias());
+	    	rDTO.setUSERIMG(uDTO.get(0).getUSERIMG());
 		}
 	    m.addAttribute("ReviewList", rList);
 	    return "store/goodsRetrieve"; 
