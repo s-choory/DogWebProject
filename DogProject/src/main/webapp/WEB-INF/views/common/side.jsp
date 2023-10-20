@@ -24,7 +24,7 @@
 	    margin-bottom: 3px;
 	    cursor: pointer;
 	    transition: color 0.3s, background-color 0.3s, transform 0.3s;
-	    box-shadow: 2px 2px 2px 2px gray;
+	    box-shadow: 0 3px 5px 0 gray;
 	}
 	
 	.scroll-button:hover {
