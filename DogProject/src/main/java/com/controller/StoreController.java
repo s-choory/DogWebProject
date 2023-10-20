@@ -24,6 +24,7 @@ import com.dto.ReviewsDTO;
 import com.dto.UsersDTO;
 import com.service.CartService;
 import com.service.GoodsService;
+import com.service.OrdersService;
 import com.utils.UploadFileUtils;
 
 @Controller
@@ -31,6 +32,8 @@ public class StoreController {
 
 	@Autowired
 	GoodsService service;
+	@Autowired
+	OrdersService oService;
 	@Autowired
 	CartService cService;
 	
@@ -79,12 +82,18 @@ public class StoreController {
 	
 	
 	//결제확인
-	@RequestMapping(value = "/orderConfirm", method = RequestMethod.GET)
-	public String orderConfirm(Model model,HttpSession session) {
-		System.out.println(session.getAttribute("list"));
-		return "store/orderConfirm";
-	}
-	
+		@RequestMapping(value = "/orderConfirm", method = RequestMethod.GET)
+		public String orderConfirm(Model model,HttpSession session) {
+			List<CartDTO> list = (List<CartDTO>)session.getAttribute("cDTO");
+			System.out.println(list);
+			UsersDTO uDTO = (UsersDTO)session.getAttribute("User");
+			List<OrdersDTO> ordersAllList = oService.ordersAllList(uDTO.getUserID()); //OrderID 추출하기
+			System.out.println("현재 주문번호" + ordersAllList.size());
+	        int OrderID = ordersAllList.size() + 1; //OrderID 추출 후 주문번호 지정
+	        System.out.println("적용될 주문번호" + OrderID);
+	        session.setAttribute("OrderID", OrderID);
+			return "store/orderConfirm";
+		}
 	//카테고리 클릭시 
 	@RequestMapping(value = "/goodslist", method = RequestMethod.GET)
 	public String goodslist(@RequestParam("gCategory") String gCategory, Model m) {
@@ -165,7 +174,7 @@ public class StoreController {
 		cDTO.setUserID(uDTO.getUserID());
 		List<CartDTO> list = new ArrayList<CartDTO>();
 		list.add(cDTO);
-		session.setAttribute("list", list);
+		session.setAttribute("orderList", list);
 		return "redirect:/orderConfirm";
 	}
 	
@@ -235,7 +244,7 @@ public class StoreController {
 	public String reviewDelete(int ReviewID, int ProductID, Model model) {
 		int n = service.delReview(ReviewID);
 		if(n == 1) {
-			model.addAttribute("msg", "리뷰가 삭제되었습니다");
+			model.addAttribute("msg", "리뷰가 삭제되었습니다.");
 		}
 		return "forward:/goodsRetrieve?gProductID="+ProductID;
 	}
@@ -246,7 +255,7 @@ public class StoreController {
 		rDTO.setReviewContent(xss.xssDecoding(rDTO.getReviewContent()));
 		int n = service.reviewUpdate(rDTO);
 		if(n == 1) {
-			model.addAttribute("msg", "리뷰가 수정되었습니다");
+			model.addAttribute("msg", "리뷰가 수정되었습니다.");
 		}
 		int ProductID = rDTO.getProductID();
 		
