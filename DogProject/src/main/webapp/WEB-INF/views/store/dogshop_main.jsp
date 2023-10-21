@@ -94,6 +94,9 @@ $(function () {
 		    height: 390px;
 		    object-fit: cover;
 		  }
+		.navbar-brand{
+			font-weight: bolder;
+		}
 </style>        
         <!-- 모달창 스타일 끝 -->
         
@@ -128,8 +131,8 @@ $(function () {
                 
 				<form id="searchForm" action="/test/search" method="get">
 					<div class="search" id="search">
-						<input type="text" id="searchid" class="searchid" name="SearchName" placeholder="제품을 입력하세요 ex)터그, 식탁 ">
-						<button id="searchbtn">검색</button>
+						<input type="text" id="searchid" class="searchid" name="SearchName" placeholder=" 제품을 입력하세요 ex) 터그  " style="width: 220px; border-radius: 5px; ">
+						<button id="searchbtn" class="btn-sm btn-outline-dark" >검색</button>
 					</div>
 				</form>
 				

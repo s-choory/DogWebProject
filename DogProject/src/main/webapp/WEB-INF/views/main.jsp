@@ -33,6 +33,7 @@
     padding: 3px; /* 내부 여백 설정 */
     display: block; /* 너비를 설정하려면 display를 block으로 변경 */
    	border-radius: 10px;
+   	box-shadow: 0 3px 5px 0 hsla(0, 0%, 0%, 0.2);
     }
     .icon{
     display: flex;
@@ -51,8 +52,6 @@
     }
 	.category {
        font-size: 24px; 
-       margin-top: 20px;
-       padding-left: 395px;
        font-weight: bolder;
     }
     .post_container {
@@ -192,21 +191,26 @@
 	}
  	#postOthers {
  	color: gray;
-    display: flex;
-    padding-right: 395px;
-    flex-direction: row-reverse;
-	}
-	#storeOthers{
-	color: gray;
-	display: flex;
-	padding-right: 395px;
-	flex-direction: row-reverse;
 	}
 	.price-style{
 	color: black;
 	font-weight: bold;
 	}
 	
+	.posttitle2{
+		display: flex;
+		justify-content: center;
+		margin-bottom: 5px;
+	}
+	.posttitle{
+		display: flex;
+	    justify-content: space-between; /* 내부 요소 사이에 공간을 균일하게 배분 */
+	    align-items: center; /* 수직 가운데 정렬 */
+		width: 1125px; /* 원하는 너비로 설정 */
+	}
+	.postOthers{
+		float:right;
+	}
 
 </style>
 
@@ -236,20 +240,22 @@
 </div>
 <br>
 <div class="icon">
-<!-- 종분류 --><a href="/test"><img width="70" height="70" src="${pageContext.request.contextPath}/resources/main-icon/종분류.png" alt="puppy"/><br>반려견 분류</a>&nbsp;&nbsp;&nbsp;
-<!-- 커뮤니티 --><a href="/test"><img width="70" height="70" src="${pageContext.request.contextPath}/resources/main-icon/커뮤니티.png" alt="chat--v1"/><br>커뮤니티</a>&nbsp;&nbsp;&nbsp;
-<!-- 스토어 --><a href="/test/dogshop_main"><img width="70" height="70" src="${pageContext.request.contextPath}/resources/main-icon/스토어.png" alt="shopping-bag--v1"/><br>스토어</a>&nbsp;&nbsp;&nbsp;
-<!-- 모임찾기 --><a href="/test/MoIm"><img width="70" height="70" src="${pageContext.request.contextPath}/resources/main-icon/모임.png" alt="group-task"/><br>모임찾기</a>&nbsp;&nbsp;&nbsp;
-<!-- 맵 --><a href="/test/map"><img width="70" height="70" src="${pageContext.request.contextPath}/resources/main-icon/가이드.png" alt="where"/><br>동반업소 찾기</a>&nbsp;&nbsp;&nbsp;
-<!-- 공지문의 --><a href="/test/ContactCenter_FAQ"><img width="70" height="70" src="${pageContext.request.contextPath}/resources/main-icon/FAQ.png" alt="help--v1"/><br>공지사항</a>
+<!-- 종분류 --><a href="dogsList"><img width="70" height="70" src="${pageContext.request.contextPath}/resources/main-icon/종분류.png" alt="puppy"/><br>반려견 분류</a>&nbsp;&nbsp;&nbsp;
+<!-- 커뮤니티 --><a href=""><img width="70" height="70" src="${pageContext.request.contextPath}/resources/main-icon/커뮤니티.png" alt="chat--v1"/><br>커뮤니티</a>&nbsp;&nbsp;&nbsp;
+<!-- 스토어 --><a href="dogshop_main"><img width="70" height="70" src="${pageContext.request.contextPath}/resources/main-icon/스토어.png" alt="shopping-bag--v1"/><br>스토어</a>&nbsp;&nbsp;&nbsp;
+<!-- 모임찾기 --><a href="roomList"><img width="70" height="70" src="${pageContext.request.contextPath}/resources/main-icon/모임.png" alt="group-task"/><br>모임찾기</a>&nbsp;&nbsp;&nbsp;
+<!-- 맵 --><a href="map"><img width="70" height="70" src="${pageContext.request.contextPath}/resources/main-icon/가이드.png" alt="where"/><br>동반업소 찾기</a>&nbsp;&nbsp;&nbsp;
+<!-- 공지문의 --><a href="ContactCenter_FAQ"><img width="70" height="70" src="${pageContext.request.contextPath}/resources/main-icon/FAQ.png" alt="help--v1"/><br>공지사항</a>
 </div>
 
 <br><br>
 <!-- 게시물 jsp로 반복문 돌리기 -->
-<div>
-<a class="category">인기글</a>
+<div class="posttitle2">
+<div class="posttitle">
+	<div class="category"> 인기글</div>
+	<div class="postOthers"><a id="postOthers" href="../test/">더보기 +</a></div>
 </div>
-<a id="postOthers" href="../test/">더보기 +</a>
+</div>
 <!--  검색어에 대한 게시물 정보유무 if문 처리 -->
     <div class="post_container">
         <section class="posts">
@@ -303,10 +309,12 @@
         </section>
     </div>
 <br>
-<div>
-<a class="category">인기상품</a>
+<div class="posttitle2">
+<div class="posttitle">
+<div class="category">인기상품</div>
+<div><a class="postOthers" href="dogshop_main">더보기 +</a></div>
 </div>
-<a class="productothers" id="storeOthers" href="dogshop_main">더보기 +</a>
+</div>
 
 <div class="pro-big">
 <div class="product_container" style="margin-left: 5%; margin-right: 5%; white-space: nowrap; overflow: auto;  ">
