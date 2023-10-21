@@ -90,6 +90,10 @@ $(function () {
 		     max-width: 1000px !important; /* 원하는 최대 너비로 변경 */ 
 		    max-height: 100px !important;
 		}
+		.carousel-item img {
+		    height: 390px;
+		    object-fit: cover;
+		  }
 </style>        
         <!-- 모달창 스타일 끝 -->
         
@@ -97,17 +101,23 @@ $(function () {
     <body>
 <jsp:include page = "../common/top.jsp" flush="true"/><br>
 <jsp:include page = "../common/side.jsp" flush="true"/><br>     
-
-        <!-- Header-->
+                <!-- Header-->
+<div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel" style="width: auto; " >
+  <div class="carousel-inner">
+    <div class="carousel-item active" data-bs-interval="2000">
+      <img src="https://i.vimeocdn.com/video/1213676488-80c903f09541766f93c85c66079c0690925c675d18ae7c9bc8c56cc3c7de5ae6-d?mw=1700&mh=868" class="d-block w-100" alt="...">
+    </div>
+    <div class="carousel-item" data-bs-interval="2000">
+      <img src="https://i.vimeocdn.com/video/1381913515-4e862a8152ae01adf854fc55217c5e80ac4b12dd4b029f6dd74f806e9b12b233-d?mw=1300&mh=632" class="d-block w-100" alt="...">
+    </div>
+     <div class="carousel-item" data-bs-interval="2000">
+      <img src="https://i.vimeocdn.com/video/1213676084-ce98819432445a15738517cc7e0a0eae04b3baeeb4a0349813fd6b216d305a35-d?mw=1300&mh=664" class="d-block w-100" alt="...">
+    </div>
+  </div>
+</div>
+        <!-- 캐러셀 부분 끝  --> 
         
-        <header class="bg-dark py-5">
-            <div class="container px-4 px-lg-5 my-5">
-                <div class="text-center text-white">
-                    <h1 class="display-4 fw-bolder">AAAAA</h1>
-                    <p class="lead fw-normal text-white-50 mb-0">BBBBBB</p>
-                </div>
-            </div>
-        </header>
+        
         <!-- NAV -->
                 <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container px-4 px-lg-5">
