@@ -20,7 +20,6 @@
 	    margin: 0;
 	    font-family: Arial, sans-serif;
 	}
-	
 	#로고 {
     display: block;
     margin: 0 auto;
@@ -35,69 +34,81 @@
     display: block; /* 너비를 설정하려면 display를 block으로 변경 */
    	border-radius: 10px;
     }
-    
     .icon{
     display: flex;
   	justify-content: center;
  	align-items: center;
     }
+    .icon a{
+    display: grid;
+    padding-right: 13px;
+    padding-left: 13px;
+    justify-items: center;
+    font-weight: bold;
+    }
+    .icon text{
+    justify-content: center;
+    }
 	.category {
-        text-align: left; 
-        font-size: 24px; 
-        margin-top: 20px; 
-        margin-left: 5%;
-        font-size: 25px;
-        font-weight: bolder;
+       font-size: 24px; 
+       margin-top: 20px;
+       padding-left: 395px;
+       font-weight: bolder;
     }
-    .others{
-        float: right;
-        font-size: 24px; 
-        margin-top: 4px; 
-        margin-right: 5%;
-        font-size: 16px;
-        font-weight: bolder;
-        color : gray;
-    }
-    .container {
-        margin-left: 5%;
-        margin-right: 5%;
-        border: 1px solid #ccc; /* 테두리 추가 */
-        border-radius: 5px;
-        padding: 10px; /* 컨테이너 내부에 공간 추가 */
-        box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    .post_container {
+    	display: flex;
+    	justify-content: center;
     }
 
     .post {
-    	
         display: flex;
-        align-items: flex-start;
-        border: 1px solid #ccc;
-        padding: 15px;
-        border-radius: 5px;
-        margin-top: 10px; /* 위쪽 여백을 조절하여 간격 추가 */
-        box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+        align-items: center;
+        justify-content: flex-start;
+       	border: 1px solid #F0FFF0;
+	    padding-left: 15px;
+	    border-radius: 10px;
+	    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+	    width: 1100px;
+	    height: 220px;
+	    margin-bottom: 20px;
     }
     .post img {
-    	height: 150px;
-        width: 150px;
-        margin-right: 20px;
+    	width: 175px;
+        height: 180px;
+	    margin-right: 20px;
+	    margin-top: 15px;
+	    margin-bottom: 10px;
+	    border-radius: 10px
     }
-     .post-content h3 { 
-     font-size: 24px; 
-     color: #35424a; 
-     margin-top: 0px; 
-     margin-bottom: 5px; 
- 	} 
-	
+    .post_title { 
+	    font-weight: bolder;
+	    font-size: 26px;
+	    color: #35424a;
+	    margin-top: 10px;
+	    margin-bottom: 10px;
+	    max-width: 1300px;
+	    overflow: hidden;
+	    text-overflow: ellipsis;
+	    text-wrap: nowrap;
+	}
 	.post-content p {
-    font-size: 16px;
-    color: #666;
+	    font-size: 20px;
+	    color: #666;
+	    padding-left: 2px;
+	    margin-top: 10px;
+	    height: 100px;
+	    max-width: 1100px;
+	    overflow: hidden;
+	    text-overflow: ellipsis;
+	    display: -webkit-box;
+	    -webkit-line-clamp: 3;
+	    -webkit-box-orient: vertical;
 	}
 	.post-info {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 10px;
+	    display: flex;
+	    justify-content: space-between;
+	    align-items: center;
+	    margin-top: 10px;
 	}
 	.post-meta {
 	    display: flex;
@@ -113,10 +124,25 @@
 	    font-size: 14px;
 	    color: #666;
 	}
-	
-	.product {
+	.pro-big{
+		display: flex;
+	    flex-wrap: wrap;
+	    align-content: center;
+	    justify-content: center;
+	    align-items: center;
+	    /* padding-top: 20px; */
+	}
+	.product_container{
+		border: 1px solid #F0FFF0;;
+    	border-radius: 10px;
+    	padding: 10px;
+    	width: 1100px;
+    	box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+	}
+	.productList {
         display: inline-block;	/*한줄로 나열*/
         width: 15%;
+        height:15%;
         margin-left: 0.7%;
         border: 1px solid #ccc;
         border-radius: 5px;
@@ -125,11 +151,12 @@
     }
 
     .product img {
-        max-width: 160px;
-        margin-bottom: 10px;
-        max-height: 120px;
-        display: block; /* 이미지를 블록 요소로 설정하여 가로 중앙 정렬 */
-    	margin: 0 auto; /* 좌우 여백을 auto로 설정하여 가로 중앙 정렬 */
+    	width: 165px;
+        height: 180px;
+	    border: 5px;
+	    border-radius: 10px;
+	    border-color: black;
+	    /* vertical-align: middle; */
     }
 
     .product-content h3 {
@@ -146,13 +173,40 @@
         font-size: 16px;
         color: #666;
     }
-
-    
-    /* 나중에 사이드 마진 조절 */
-    .searchList_container{
-/*     	margin-left:50px; */
-/*     	margin-right:50px; */
+    #search{
+    width: 40%;
+    margin: auto;
+    font-size: 16px;
+    padding: 12px;
+    display: block;
+    border-radius: 24px;
+    border: 2px solid #8a8984; 
     }
+    input::-webkit-input-placeholder{
+	  background-image: url('resources/img/icon/searchicon.png') ;
+	  background-size: contain;
+	  background-position:  1px center;
+	  background-repeat: no-repeat;
+	  text-align: center;
+	  text-indent: 0;
+	}
+ 	#postOthers {
+ 	color: gray;
+    display: flex;
+    padding-right: 395px;
+    flex-direction: row-reverse;
+	}
+	#storeOthers{
+	color: gray;
+	display: flex;
+	padding-right: 395px;
+	flex-direction: row-reverse;
+	}
+	.price-style{
+	color: black;
+	font-weight: bold;
+	}
+	
 
 </style>
 
@@ -182,19 +236,22 @@
 </div>
 <br>
 <div class="icon">
-<!-- 종분류 --><a href="/test"><img width="85" height="85" src="https://img.icons8.com/color/96/puppy.png" alt="puppy"/></a>&nbsp;&nbsp;&nbsp;
-<!-- 커뮤니티 --><a href="/test"><img width="85" height="85" src="https://img.icons8.com/color/96/chat--v1.png" alt="chat--v1"/></a>&nbsp;&nbsp;&nbsp;
-<!-- 스토어 --><a href="/test/dogshop_main"><img width="85" height="85" src="https://img.icons8.com/color/96/shopping-bag--v1.png" alt="shopping-bag--v1"/></a>&nbsp;&nbsp;&nbsp;
-<!-- 모임찾기 --><a href="/test/MoIm"><img width="85" height="85" src="${pageContext.request.contextPath}/resources/반려모임아이콘.png" alt="group-task"/></a>&nbsp;&nbsp;&nbsp;
-<!-- 맵 --><a href="/test/map"><img width="85" height="85" src="https://img.icons8.com/color/96/where.png" alt="where"/></a>&nbsp;&nbsp;&nbsp;
-<!-- 공지문의 --><a href="/test/ContactCenter_FAQ"><img width="85" height="85" src="https://img.icons8.com/color/96/help--v1.png" alt="help--v1"/></a>
+<!-- 종분류 --><a href="/test"><img width="70" height="70" src="${pageContext.request.contextPath}/resources/main-icon/종분류.png" alt="puppy"/><br>반려견 분류</a>&nbsp;&nbsp;&nbsp;
+<!-- 커뮤니티 --><a href="/test"><img width="70" height="70" src="${pageContext.request.contextPath}/resources/main-icon/커뮤니티.png" alt="chat--v1"/><br>커뮤니티</a>&nbsp;&nbsp;&nbsp;
+<!-- 스토어 --><a href="/test/dogshop_main"><img width="70" height="70" src="${pageContext.request.contextPath}/resources/main-icon/스토어.png" alt="shopping-bag--v1"/><br>스토어</a>&nbsp;&nbsp;&nbsp;
+<!-- 모임찾기 --><a href="/test/MoIm"><img width="70" height="70" src="${pageContext.request.contextPath}/resources/main-icon/모임.png" alt="group-task"/><br>모임찾기</a>&nbsp;&nbsp;&nbsp;
+<!-- 맵 --><a href="/test/map"><img width="70" height="70" src="${pageContext.request.contextPath}/resources/main-icon/가이드.png" alt="where"/><br>동반업소 찾기</a>&nbsp;&nbsp;&nbsp;
+<!-- 공지문의 --><a href="/test/ContactCenter_FAQ"><img width="70" height="70" src="${pageContext.request.contextPath}/resources/main-icon/FAQ.png" alt="help--v1"/><br>공지사항</a>
 </div>
+
 <br><br>
 <!-- 게시물 jsp로 반복문 돌리기 -->
+<div>
 <a class="category">인기글</a>
-<a class="others" id="postOthers" href="../test/">더보기 +</a>
+</div>
+<a id="postOthers" href="../test/">더보기 +</a>
 <!--  검색어에 대한 게시물 정보유무 if문 처리 -->
-    <div class="container" style="margin-left: 5%; margin-right: 5%;">
+    <div class="post_container">
         <section class="posts">
         <%
     LocalDateTime sysdate = LocalDateTime.now();
@@ -225,13 +282,11 @@
  %>
             <div class="post">
             <a href="post?PostID=<%=postid%>">
-   
-       <img src="<%=postimage%>" alt="">
-    
-                </a>
+       			<img src="<%=postimage%>" alt="">
+            </a>
                 <div class="post-content">
-                    <h3><%=title %></h3>
-                    <p><%=previewText %></p>
+                    <div class="post_title"><%=title %></div>
+                    <div class="post_content"><p><%=previewText %></p></div>
                     <div class="post-info">
                         <div class="post-meta">
                             <span class="like">좋아요❤️<%=likes%><span id="Like"></span></span>
@@ -247,13 +302,15 @@
     }%>
         </section>
     </div>
-    
 <br>
-<a class="category">스토어-할인</a>
-<a class="others" id="storeOthers" href="dogshop_main">더보기 +</a>
+<div>
+<a class="category">인기상품</a>
+</div>
+<a class="productothers" id="storeOthers" href="dogshop_main">더보기 +</a>
 
-<div class="container" style="margin-left: 5%; margin-right: 5%; white-space: nowrap; overflow: auto;  ">
-    <section class="posts">
+<div class="pro-big">
+<div class="product_container" style="margin-left: 5%; margin-right: 5%; white-space: nowrap; overflow: auto;  ">
+    <section class="product">
     <%
     List<GoodsDTO> list = (List<GoodsDTO>)request.getAttribute("random");
     if(list !=null &&!list.isEmpty()){
@@ -268,20 +325,23 @@
     	String image = dto.getImage();
     	int stockquantity = dto.getSTOCKQUANTITY();
  %>
-        <div class="product">
+        <div class="productList">
 
 	        <form id="prod<%= i %>" action="goodsRetrieve" method="post">
 	 			<input type="hidden" name="gProductID" value="<%=productid%>">
-	 			 <a href="#" onclick="prod(<%=i%>)"><img src="resources/storeimages/<%=image %>.jpg" alt="상품 이미지" ></a>
+	 			 <a class="storeimage" href="#" onclick="prod(<%=i%>)">
+	 			 <img src="resources/storeimages/<%=image %>.jpg" alt="상품 이미지" >
+	 			 </a>
 	 		</form>
             <div class="product-content">
                 <h3><%=productname %></h3>
-                <p><%=price*0.8%>원/ 20% 할인</p>
+                <p><span class="price-style"><%=price%></span>원</p>
             </div>
 
         </div>
     <%} }%>
     </section>
+</div>
 </div>
 <br>
 
