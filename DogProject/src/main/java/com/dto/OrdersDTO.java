@@ -9,7 +9,7 @@ public class OrdersDTO {
 	private String OrderName;
 	private String UserName;
 	private String Email;
-	private String PostNumber;	
+	private int PostNumber;	
 	private String RodeAddress;
 	private String HouseAddress;
 	private String DetailAddress;
@@ -25,7 +25,7 @@ public class OrdersDTO {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public OrdersDTO(int orderID, String userID, String orderName, String userName, String email, String postNumber,
+	public OrdersDTO(int orderID, String userID, String orderName, String userName, String email, int postNumber,
 			String rodeAddress, String houseAddress, String detailAddress, String phoneNumber, String payMethod,
 			String orderTime, int totalPrice, String requested, String orderState, String paymethodcard,
 			String paymethodnumber) {
@@ -47,15 +47,6 @@ public class OrdersDTO {
 		OrderState = orderState;
 		this.paymethodcard = paymethodcard;
 		this.paymethodnumber = paymethodnumber;
-	}
-	@Override
-	public String toString() {
-		return "OrdersDTO [OrderID=" + OrderID + ", UserID=" + UserID + ", OrderName=" + OrderName + ", UserName="
-				+ UserName + ", Email=" + Email + ", PostNumber=" + PostNumber + ", RodeAddress=" + RodeAddress
-				+ ", HouseAddress=" + HouseAddress + ", DetailAddress=" + DetailAddress + ", PhoneNumber=" + PhoneNumber
-				+ ", PayMethod=" + PayMethod + ", OrderTime=" + OrderTime + ", TotalPrice=" + TotalPrice
-				+ ", Requested=" + Requested + ", OrderState=" + OrderState + ", paymethodcard=" + paymethodcard
-				+ ", paymethodnumber=" + paymethodnumber + "]";
 	}
 	public int getOrderID() {
 		return OrderID;
@@ -87,10 +78,10 @@ public class OrdersDTO {
 	public void setEmail(String email) {
 		Email = email;
 	}
-	public String getPostNumber() {
+	public int getPostNumber() {
 		return PostNumber;
 	}
-	public void setPostNumber(String postNumber) {
+	public void setPostNumber(int postNumber) {
 		PostNumber = postNumber;
 	}
 	public String getRodeAddress() {
@@ -159,7 +150,15 @@ public class OrdersDTO {
 	public void setPaymethodnumber(String paymethodnumber) {
 		this.paymethodnumber = paymethodnumber;
 	}
-	
+	@Override
+	public String toString() {
+		return "OrdersDTO [OrderID=" + OrderID + ", UserID=" + UserID + ", OrderName=" + OrderName + ", UserName="
+				+ UserName + ", Email=" + Email + ", PostNumber=" + PostNumber + ", RodeAddress=" + RodeAddress
+				+ ", HouseAddress=" + HouseAddress + ", DetailAddress=" + DetailAddress + ", PhoneNumber=" + PhoneNumber
+				+ ", PayMethod=" + PayMethod + ", OrderTime=" + OrderTime + ", TotalPrice=" + TotalPrice
+				+ ", Requested=" + Requested + ", OrderState=" + OrderState + ", paymethodcard=" + paymethodcard
+				+ ", paymethodnumber=" + paymethodnumber + "]";
+	}
 	
 	
 }

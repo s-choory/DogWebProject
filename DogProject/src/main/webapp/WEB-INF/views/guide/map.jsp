@@ -22,44 +22,79 @@
 	    font-family: Arial, sans-serif;
   	}
 	.container {
-		margin-left: 10%;
+		display: block;
+		justify-content: center;
+		box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1);
+	}
+	.map-search-container{
+		padding: 10px 20px;
+		background: linear-gradient(135deg, #7AFF7A, #429F6B);
+    	height:150px;
+	 	display: flex; /* Flexbox 레이아웃을 사용합니다. */
+		flex-direction: column; /* 요소를 수직으로 나열하도록 설정합니다. */
+	}
+	.map-search-title{
+		font-size: 18px;
+		color: white;
+		margin-bottom: 10px;
 	}
 	.address{
-		margin-left: 50px;
-		border-style:groove;
-		border-radius: 5px;
+		border: 0 none;
+		border-radius: 3px;
 		font-size:16px;
+    	width:350px;
+    	height:45px;
+    	padding: 5px;
+    	margin-bottom: 20px;
 /* 		font-family: 'Gamja Flower', cursive; */
 	}
+	#categoryFilter{
+		padding: 0 40px;
+		display: flex;
+	    justify-content: space-between; /* 이미지 사이의 간격을 동일하게 설정 */
+	}
+	
 	#addressSearch{
-		font-weight: bolder;
-		background : yellow;
 /* 		font-family: 'Hi Melody', cursive; */
 		border-color: white;
 	}
-	
+	input::-webkit-input-placeholder{
+	  background-image: url('resources/img/icon/searchicon.png') ;
+	  background-size: contain;
+	  background-position:  1px center;
+	  background-repeat: no-repeat;
+	  text-align: center;
+	  text-indent: 0;
+	}
 	.place-title{
 /* 		font-family: 'Gamja Flower', cursive; */
 		font-weight: bolder; 
-		color:#FF9B00; 
-		text-decoration:underline; 
-		font-size: 24px;
+		font-size: 18px;
 		margin: 7px 0; /* 상하 간격 설정 */
+		cursor: pointer;
 	}
 	.place-content{
 /* 		font-family: 'Gamja Flower', cursive; */
-	    font-size: 16px; /* 글자 크기 설정 */
+	    font-size: 14px; /* 글자 크기 설정 */
 	    margin: 10px 0; /* 상하 간격 설정 */
+	    color: hsl(0, 0%, 29%);
 	    /* 다른 스타일 속성들도 필요한 대로 추가하세요. */
 	}
+	.place-container{
+		transition: background-color 0.2s ease;
+	}
+	.place-container:hover{
+		background-color: #eff7ff;
+	}
+	
 	.place-colum {
 		font-size:10px;
-		font-family: Arial, sans-serif;
+		font-family: "Exo", sans-serif;
 	    color: #E4E4E4; /* 글자 색상 설정 */
 	    background-color: gray;
 	    margin : 3px;
-	    padding : 3px;
-	    border-radius: 10px;
+	    padding : 2px;
+	    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1);
 	}
 		
     /* 부모 div 스타일링 */
@@ -72,42 +107,35 @@
     .map {
         flex: 1; /* 맵이 부모 div의 남은 영역을 모두 차지하게 함 */
         width: 70%; /* 맵의 크기 설정 */
-        height: 400px;
     }
 
     .map-text {
-        flex: 1; /* 텍스트가 부모 div의 남은 영역을 모두 차지하게 함 */
         width: 30%; /* 텍스트의 크기 설정 */
         box-sizing: border-box; /* padding 포함한 크기 지정 */
     }
-    .address{
-    	width:300px;
-    	height:25px;
-    }
+
 	.text-container {
         flex: 1; /* 텍스트 컨테이너가 부모 div의 남은 영역을 모두 차지하게 함 */
-        width: 500px; /* 텍스트 컨테이너의 크기 설정 */
+        width: 100%; /* 텍스트 컨테이너의 크기 설정 */
         padding: 10px; /* 텍스트 주위에 간격 추가 */
         box-sizing: border-box; /* padding 포함한 크기 지정 */
         background-color: #FFF; /* 배경색 설정 */
         overflow: auto; /* 스크롤 가능하도록 오버플로 속성 설정 */
-        max-height: 463px; /* 텍스트 컨테이너의 최대 높이 설정 */
+        max-height: 750px; /* 텍스트 컨테이너의 최대 높이 설정 */
         border-radius: 10px; /* 스크롤 바의 둥근 모서리 */
-
     }
 	.text-container::-webkit-scrollbar {
-   	 width: 23px; /* 스크롤 바의 너비 */
+   	 width: 18px; /* 스크롤 바의 너비 */
 	}
 	
 	.text-container::-webkit-scrollbar-thumb {
-		
-		background: linear-gradient( to top, #FFC846, #FFB432, #FF9614, #FF8200);
-	    border-radius: 6px; /* 스크롤 바의 둥근 모서리 */
+		background: linear-gradient(135deg, #7AFF7A, #429F6B);
+	    border-radius: 5px; /* 스크롤 바의 둥근 모서리 */
 	}
 
 	.text-container::-webkit-scrollbar-track {
-   	 	border-radius: 10px;
-	    background: linear-gradient( to bottom, #FFEB46, #FFDC37, #FFC31E, #FFB914);
+   	 	border-radius: 5px;
+		background-color: #f7f8fa
 	}   
  
 	.link-container {
@@ -147,18 +175,8 @@
         
     }
     .categoryimg{
-    	background-color: #F9D182;
-    	border-radius: 10px;
-    	padding : 5px;
+    	cursor: pointer;
     }
-    #categoryFilter{
-    	border: 1px solid #F9D182;
-    	border-radius: 10px;
-    	padding-top : 42px;
-    	padding-right: 5px;
-    	padding-left: 5px;
-    }
-
 </style>
 <style>
 	/* 인포윈도우 스타일 */
@@ -176,7 +194,7 @@
 	    font-size: 20px;
 	    font-weight: bold;
 	    margin-bottom: 8px;
-	    color: #FF9B00; /* 주요 제목 색상 */
+	    color: green; /* 주요 제목 색상 */
 	    text-decoration: underline;
 	}
 	
@@ -215,12 +233,13 @@
  		padding:10px 15px; 
  		font-size:14px; 
  		font-weight:bold; 
- 		color:#FF9B00; 
- 		border: 1px solid #FF9B00; /* 테두리 추가 */ 
+ 		color:green; 
+ 		border: 1px solid green; /* 테두리 추가 */ 
  	    border-radius: 5px; /* 둥근 모서리 */ 
  	    margin: 10px 0; /* 위 아래 여백 추가 */ 
  	    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 그림자 효과 추가 */ 
 	} 
+
 }
 
 </style>
@@ -229,22 +248,24 @@
 <body>
 <jsp:include page = "../common/top.jsp" flush="true"/><br>
 <jsp:include page = "../common/side.jsp" flush="true"/><br>
-<jsp:include page = "../common/map_ad.jsp" flush="true"/><br><hr>
+<jsp:include page = "../common/map_ad.jsp" flush="true"/><br>
 <div class = "container">
-	<a id="categoryFilter">
-		<img class = "categoryimg" src="${pageContext.request.contextPath}/resources/mapimg/전체아이콘.png" width=40 id="all">
-		<img class = "categoryimg" src="${pageContext.request.contextPath}/resources/mapimg/의료아이콘.png" width=40 id="의료">
-		<img class = "categoryimg" src="${pageContext.request.contextPath}/resources/mapimg/식당아이콘.png" width=40 id="식당">
-		<img class = "categoryimg" src="${pageContext.request.contextPath}/resources/mapimg/여행지아이콘.png" width=40 id="여행">
-		<img class = "categoryimg" src="${pageContext.request.contextPath}/resources/mapimg/펫용품아이콘.png" width=40 id="서비스">
-	</a>
-	<br>
+	<span style="color: hsl(0, 0%, 45%); font-size: 13px;">※ 지도에 나오는 장소들은 모두 반려견과 동반 출입이 가능합니다.<span style="font-size: 11px;">(업소별 특정 견종 동반 출입 제한)</span></span>
 <div class = "map-container">
-	<div class="map" id="map" style="width:500px;height:500px;"></div>
+	<div class="map" id="map" style="width:900px;height:900px;"></div>
 	<div class="map-text">
-		<input id = "address" class="address" type="text" placeholder="주소 또는 장소를 입력하세요. ex)서울, 멍멍">
-		<button class="btn" id = "addressSearch">검색</button>
-		<br>
+		<div class="map-search-container">
+			<div class="map-search-title">DoggyDoggy <b style="	font-size: 20px;">Map</b></div>
+			<input id = "address" class="address" type="text" placeholder="장소, 주소 검색">
+		<a id="categoryFilter">
+			<img class = "categoryimg" title="전체" src="${pageContext.request.contextPath}/resources/전체아이콘.png" width=40 height=38 id="all">
+			<img class = "categoryimg" title="의료" src="${pageContext.request.contextPath}/resources/반려의료아이콘.png" width=40 height=38 id="의료">
+			<img class = "categoryimg" title="식당" src="${pageContext.request.contextPath}/resources/식당아이콘.png" width=40 height=38 id="식당">
+			<img class = "categoryimg" title="여행지" src="${pageContext.request.contextPath}/resources/여행지아이콘.png" width=40 height=38 id="여행">
+			<img class = "categoryimg"  title="펫용품" src="${pageContext.request.contextPath}/resources/펫용품아이콘.png" width=40 height=38 id="서비스">
+		</a>
+	<br>
+		</div>
 		<div class="text-container" >
 		<%
 			List<AccompanyingFacilitiesDTO> list2 = (List<AccompanyingFacilitiesDTO>)request.getAttribute("list");
@@ -265,12 +286,12 @@
 					String SRestrictions = list2.get(i).getRestrictions();
 					 %>
 			<div class = "text-result">
-						<div class = "palce-container">
-				<div class="place-title" data-xxx=<%= Slatitude %> data-yyy=<%= Slongitude %>><%= Sname %></div>
+						<div class = "place-container">
+				<div class="place-title" title="해당 위치로 이동" data-xxx=<%= Slatitude %> data-yyy=<%= Slongitude %>><%= Sname %></div>
 				<div class = "place-content" >
 					<div><span class="place-colum">카테고리</span><%= Scategory2 %></div>
 					<div><span class="place-colum">주소</span>(<%= SpostNumber %>) <%= SrodeAddress %></div>
-					<div style="font-size: 12px; font-weight: bolder;">&nbsp;&nbsp;&nbsp;[지번] <%= ShouseAddress %></div>
+					<div style="font-size: 12px; color:hsl(0, 0%, 45%);">&nbsp;&nbsp;&nbsp;[지번] <%= ShouseAddress %></div>
 					<div><span class="place-colum">전화번호</span><%= SphoneNumber %> </div>
 					<div><span class="place-colum">영업시간</span><%= SoperationHours %> &nbsp; <span class="place-colum">휴일 </span><%= DayOff %></div>
 					<div><span class="place-colum">주차가능여부</span><%= Sparking %> &nbsp; <span class="place-colum">제한사항</span><%= SRestrictions %></div>
@@ -321,13 +342,13 @@
   		%> 
 		{
 			content:'<div class="overlaybox">' +
-		    '    <div class="boxtitle"><a href="https://map.kakao.com/link/map/<%=name%>,<%=latitude%>,<%=longitude%>" target="_blank" style="color: #FF9B00;"><%=name%></a></div>' +
+		    '    <div class="boxtitle"><a href="https://map.kakao.com/link/map/<%=name%>,<%=latitude%>,<%=longitude%>" title="상세보기" target="_blank" style="color: green;"><%=name%> <img src="${pageContext.request.contextPath}/resources/오른쪽화살표.png" width=17 height=18></a></div>' +
 		    '    <div class="first">' +
 		    '        <div class="categorytext">카테고리:<%=category2%></div>' +
 		    '    </div>' +
 		    '    <ul>' +
 		    '        <li>' +
-		    '            <span class="title"><a style="color:#FF8200;">(<%=postNumber%>)</a><%=rodeAddress%></span>' +
+		    '            <span class="title"><a style="color:green;">(<%=postNumber%>)</a><%=rodeAddress%></span>' +
 		    '            <span class="arrow up"></span>' +
 		    '        </li>' +
 		    '        <li class="up">' +
@@ -343,7 +364,6 @@
 		    '            <span class="arrow down"></span>' +
 		    '        </li>' +
 		    '    </ul>' +
-		    '<a href="https://map.kakao.com/link/map/<%=name%>,<%=latitude%>,<%=longitude%>" target="_blank">큰지도보기</a>' +
 		    '</div>',
 		    content2:'<div class="content2box"><%=name%></div>',
 			latlng: new kakao.maps.LatLng(<%=latitude%>, <%=longitude%>),
@@ -454,13 +474,13 @@
 					
 					var positions = {
 							content:'<div class="overlaybox">' +
-						    '    <div class="boxtitle"><a href="https://map.kakao.com/link/map/'+name+','+ latitude +','+ longitude +'" target="_blank" style="color: #FF9B00;">'+ name + '</a></div>' +
+						    '    <div class="boxtitle"><a href="https://map.kakao.com/link/map/'+name+','+ latitude +','+ longitude +'" title="상세보기" target="_blank" style="color: green;">'+ name + ' <img src="${pageContext.request.contextPath}/resources/오른쪽화살표.png" width=17 height=18>' + '</a></div>' +
 						    '    <div class="first">' +
 						    '        <div class="categorytext">카테고리:'+ category2 + '</div>' +
 						    '    </div>' +
 						    '    <ul>' +
 						    '        <li>' +
-						    '            <span class="title"><a style="color:#FF8200;">('+ postNumber +')</a>'+ rodeAddress +'</span>' +
+						    '            <span class="title"><a style="color:green;">('+ postNumber +')</a>'+ rodeAddress +'</span>' +
 						    '            <span class="arrow up"></span>' +
 						    '        </li>' +
 						    '        <li class="up">' +
@@ -476,17 +496,16 @@
 						    '            <span class="arrow down"></span>' +
 						    '        </li>' +
 						    '    </ul>' +
-						    '<a href="https://map.kakao.com/link/map/' + name + ',' + latitude + ',' + longitude + '" target="_blank">큰지도보기</a>' +
 						    '</div>',
 						    content2:'<div class="content2box">'+ name + '</div>',
 							latlng: new kakao.maps.LatLng(latitude, longitude),
 							img: category2,
-							text : '<div class="palce-container">' +
+							text : '<div class="place-container">' +
 						    '    <div class="place-title" data-xxx="' + latitude + '" data-yyy="' + longitude + '">' + name + '</div>' +
 						    '    <div class="place-content">' +
 						    '        <div><span class="place-colum">카테고리</span>' + category2 + '</div>' +
 						    '        <div><span class="place-colum">주소</span>(' + postNumber + ') ' + rodeAddress + '</div>' +
-						    '        <div style="font-size: 12px; font-weight: bolder;">&nbsp;&nbsp;&nbsp;[지번] ' + houseAddress + '</div>' +
+						    '        <div style="font-size: 12px; color:hsl(0, 0%, 45%);">&nbsp;&nbsp;&nbsp;[지번] ' + houseAddress + '</div>' +
 						    '        <div><span class="place-colum">전화번호</span>' + phoneNumber + '</div>' +
 						    '        <div><span class="place-colum">영업시간</span>' + operationHours + '&nbsp; <span class="place-colum">휴일 </span>' + dayOff + '</div>' +
 						    '        <div><span class="place-colum">주차가능여부</span>' + parking + '&nbsp; <span class="place-colum">제한사항</span>' + restrictions + '</div>' +
@@ -618,17 +637,10 @@
 		});
 		
 		$(document).on("mouseover", ".place-title", function(data){
-			data.target.style="color:#3232FF;";
+			data.target.style="color:green;";
 		});
 		$(document).on("mouseout", ".place-title", function(data){
-			data.target.style="color:#FF9B00;";
-		});
-		
-		$(".categoryimg").mouseover(function(data){
-			data.target.style="background-color:#5050FF";
-		});
-		$(".categoryimg").mouseout(function(data){
-			data.target.style="";
+			data.target.style="color:black;";
 		});
 		
 		$(".place-title").mouseover(function(data){

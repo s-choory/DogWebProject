@@ -42,18 +42,8 @@
 	SELECT * FROM products WHERE PRODUCTNAME LIKE '%'||#{SearchName}||'%' OR category LIKE '%'||#{SearchName}||'%'
 </select>
 
-<!-- 
+<select id="CartCount" resultType="int" parameterType="String">
+	SELECT COUNT(*) FROM Cart WHERE UserID = #{userID}
+</select>
 
-<insert id="insert" parameterType="dept">
-	insert into dept (deptno, dname, loc)
-	values (#{deptno}, #{dname}, #{loc})
-
-</insert>
-
-<delete id="delete" parameterType="int">
- delete from dept where deptno in #{deptno} 
-
-</delete>
-
- -->
 </mapper>                                              

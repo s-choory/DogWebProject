@@ -135,6 +135,10 @@ html, body {
     }
 }
 
+.container{
+	margin-bottom: 30px;
+}
+
 </style>
 <title>Title</title>
 </head>
@@ -282,6 +286,7 @@ html, body {
         </div>
     </div>
 	<!-- modal end -->
+<jsp:include page = "../common/footer.jsp" flush="true"/><br>
 	
 </body>
 </html>

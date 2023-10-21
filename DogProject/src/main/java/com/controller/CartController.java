@@ -85,7 +85,7 @@ public class CartController {
 		map.put("UserID", userid);
 		map.put("CartNum", num);
 		List<CartDTO> list = service.cartOneList(map);
-		session.setAttribute("list", list);
+		session.setAttribute("orderList", list);
 		return "redirect:/orderConfirm";
 	}
 	
@@ -108,7 +108,7 @@ public class CartController {
 			checklist.add(i);
 		}
 		List<CartDTO> list = service.cartNumList(checklist);
-		session.setAttribute("list", list);
+		session.setAttribute("orderList", list);
 		return "redirect:/orderConfirm";
 	}
 	

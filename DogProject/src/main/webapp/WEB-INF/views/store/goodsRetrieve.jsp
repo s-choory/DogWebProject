@@ -7,64 +7,79 @@
 <html>
 <head>
 <style type="text/css">
-.container {
-	margin-left: 10%;
-	margin-right: 10%;
-	font-family: 'Arial', sans-serif;
-}
 
-.detail {
-	padding-left: 10%;
-	padding-right: 10%;
-}
 
-.detail img {
-	width: 900px;
-	height: 500px;
-	margin-bottom: 5px;
-	margin: auto;
-	display: block;
-}
+	.goodsicon{
+		display: flex;
+		justify-content: flex-end;
+	}
+	.fixed-sidebar-goods {
+	    position: fixed;
+	    top: 40%;
+	    right: 20px;
+	    display: flex;
+	    flex-direction: column;
+	    align-items: center;
+	    z-index: 1000;
+	}
+	.container {
+		margin-left: 10%;
+		margin-right: 10%;
+		font-family: 'Arial', sans-serif;
+	}
+	
+	.detail {
+		padding-left: 10%;
+		padding-right: 10%;
+	}
+	
+	.detail img {
+		width: 900px;
+		height: 500px;
+		margin-bottom: 5px;
+		margin: auto;
+		display: block;
+	}
+	
+	#Rating fieldset {
+		display: inline-block;
+		direction: rtl;
+		border: 0;
+	}
+	
+	#Rating fieldset legend {
+		text-align: right;
+	}
+	
+	#Rating input[type=radio] {
+		display: none;
+	}
+	
+	#Rating label {
+		font-size: 2em;
+		color: transparent;
+		text-shadow: 0 0 0 #f0f0f0;
+	}
+	
+	#Rating label:hover {
+		text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
+	}
+	
+	#Rating label:hover ~ label {
+		text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
+	}
+	
+	#Rating input[type=radio]:checked ~ label {
+		text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
+	}
 
-#Rating fieldset {
-	display: inline-block;
-	direction: rtl;
-	border: 0;
-}
-
-#Rating fieldset legend {
-	text-align: right;
-}
-
-#Rating input[type=radio] {
-	display: none;
-}
-
-#Rating label {
-	font-size: 2em;
-	color: transparent;
-	text-shadow: 0 0 0 #f0f0f0;
-}
-
-#Rating label:hover {
-	text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
-}
-
-#Rating label:hover ~ label {
-	text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
-}
-
-#Rating input[type=radio]:checked ~ label {
-	text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
-}
-
-.img{
-    width: 300px;
-    height: 200px;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: 0.3s;
-  }
+	.img{
+	    width: 300px;
+	    height: 200px;
+	    border-radius: 10px;
+	    cursor: pointer;
+	    transition: 0.3s;
+	  }
   /* 이미지 클릭 시, 밝기 조절 */
   .img:hover {opacity: 0.8;}
 
@@ -325,13 +340,13 @@
     	display: flex;
     	
     }
-    
     #review-content{
       width: 100%; 
       height: 80px; 
       resize: none;
       border-radius: 10px;
       padding: 10 15px;
+      margin-right: 10px;
     }
     
     .review-subcontainer3{
@@ -345,33 +360,88 @@
     .review-subcontainer5{
     	margin-bottom: 10px;
     }
+    .reviewcarousel{
+    	margin: 30px 25%;
+    	
+    }
+    .review-button{
+    	display: flex;
+    	margin-top: 10px;
+    	margin-bottom: 5px;
+    }
+    .review-update-container{
+    	display: flex;
+    	margin-top: 10px;
+    }
+    .review-useralias{
+    	font-weight: bolder;
+    }
+    .goodsretrieve-review-content{
+    	display: flex;
+    	margin-bottom: 10px;
+    }
+    .goodsretrieve-review-content2{
+    	margin-right: 10px;
+    }
     
   	
 </style>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
 </head>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
 <script type="text/javascript" src="https://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript">
 	
-	$(function(){
-		$("#up").click(function(){
-			$("#gAmount").attr("value",parseInt($("#gAmount").attr("value"))+1);
-		});
-		$("#down").click(function(){
-			if(parseInt($("#gAmount").attr("value")) > 1)
-			$("#gAmount").attr("value",parseInt($("#gAmount").attr("value"))-1);
-		});
+	document.addEventListener('DOMContentLoaded', function () {
 		
-        $(".catecontainer a").click(function (event) {
-            event.preventDefault();
-            var targetSection = $(this).attr("href"); // 클릭한 링크의 href 값 가져오기
-            $("html, body").animate({
-				scrollTop: $(targetSection).offset().top,},
-                1000 // 스크롤 animation 시간
-            );
-        });
+		<% 
+		String msg = (String)request.getAttribute("msg");
+	 	if(msg != null){
+	 		if(msg.equals("리뷰를 등록했습니다")){ %> 
+	 			Swal.fire('성공', '<%=msg%>', 'success');
+	 	<%  }else if(msg.equals("리뷰가 수정되었습니다")){ %> 
+	 			Swal.fire('성공', '<%=msg%>', 'success');
+	 	<%  }else if(msg.equals("리뷰가 삭제되었습니다")){ %>
+	 			Swal.fire('성공', '<%=msg%>', 'success');
+		<%	}else{ %>
+				Swal.fire('경고', '<%=msg%>', 'warning');
+		<%	}
+	 	}
+			request.removeAttribute("msg");
+		%> 
+		
+		 
+	    var carousel = document.getElementById('carouselExampleControls');
+	    var carouselInstance = new bootstrap.Carousel(carousel);
+		
+	    document.getElementById('up').addEventListener('click', function () {
+	        var gAmount = document.getElementById('gAmount');
+	        gAmount.value = parseInt(gAmount.value) + 1;
+	    });
+
+	    document.getElementById('down').addEventListener('click', function () {
+	        var gAmount = document.getElementById('gAmount');
+	        if (parseInt(gAmount.value) > 1) {
+	            gAmount.value = parseInt(gAmount.value) - 1;
+	        }
+	    });
+
+	    var cateLinks = document.querySelectorAll(".catecontainer a");
+	    cateLinks.forEach(function (link) {
+	        link.addEventListener('click', function (event) {
+	            event.preventDefault();
+	            var targetSection = link.getAttribute("href");
+	            var targetElement = document.querySelector(targetSection);
+	            if (targetElement) {
+	                var targetOffset = targetElement.offsetTop;
+	                window.scrollTo({
+	                    top: targetOffset,
+	                    behavior: "smooth"
+	                });
+	            }
+	        });
+	    });
 // 		$("#review-button").click(function(){
 // 			console.log($("#review-content").val());
 // 		});
@@ -430,8 +500,8 @@
 							   icon: 'success',
 							   
 							   showCancelButton: true, // cancel버튼 보이기. 기본은 원래 없음
-							   confirmButtonColor: '#3085d6', // confrim 버튼 색깔 지정
-							   cancelButtonColor: '#d33', // cancel 버튼 색깔 지정
+							   confirmButtonColor: '#006400', // confrim 버튼 색깔 지정
+							   cancelButtonColor: '#3085d6', // cancel 버튼 색깔 지정
 							   cancelButtonText: '쇼핑 계속하기', // cancel 버튼 텍스트 지정
 							   confirmButtonText: '장바구니 이동', // confirm 버튼 텍스트 지정
 							   
@@ -470,14 +540,6 @@
 	
 	
 
-<%-- <%  --%>
-// 	String msg = (String)request.getAttribute("msg");
-<%-- 	if(msg != null){%> --%>
-<%-- 		alert("<%=msg%>"); --%>
-<%-- <%	 --%>
-// 	}
-// 	request.removeAttribute("msg");
-<%-- %> --%>
 </script>
 <body>
 	<%
@@ -492,15 +554,12 @@
 %>
 	<jsp:include page="../common/top.jsp" flush="true" /><br>
 	<jsp:include page="../common/side.jsp" flush="true" /><br>
+	<div></div>
 	<div class="container">
-		<!-- 상품 정보 컨테이너 -->
-		<div class="product-info">
-			<!-- 상품 이미지 -->
-		</div>
-		<br>
-		<br>
-		<hr>
-		
+	<div class="fixed-sidebar-goods goodsicon">
+		<a href="dogshop_main"><img src="${pageContext.request.contextPath}/resources/스토어상품아이콘.png" width=200 height=200></a>
+	</div>
+	<hr>
 	<form id="myForm" method="post">
 
 			<input type="hidden" name="ProductID" value="<%=gProductID%>">
@@ -578,7 +637,7 @@
 		</div>
 
 		<!-- 상품상세 정보 -->
-		
+		<div id="product-info"></div>
 		
 		<table class="goodsRetrieve-table">
 			<tr>
@@ -737,7 +796,7 @@
 			<hr>
 			
 		<div class="review" id="product-review">
-			<div class="review-title">상품리뷰</div>
+			<div class="review-title">상품리뷰사진</div>
 			상품을 구매하신 분들이 작성하신 리뷰입니다.리뷰 작성시 아래 금액만큼 포인트가 적립됩니다.
 			<div class="review-text1">
 				텍스트 리뷰:<b>300원</b> &nbsp;
@@ -745,24 +804,42 @@
 				한달사용 텍스트 리뷰:<b>100원</b> &nbsp;
 				한달사용 포토/동영상 리뷰 :<b>100원</b>&nbsp;
 			</div>
+			
+			<div class="reviewcarousel">
+			<div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+	  			<div class="carousel-inner">
 			<% 	 List<ReviewsDTO> rList = (List<ReviewsDTO>)request.getAttribute("ReviewList"); 
 			for(int j=0; j<rList.size(); j++){
 				 String rImg2 = rList.get(j).getrImg();
-				 String rThumbImg2 = rList.get(j).getrThumbImg();
 				 String [] rImgList2 = null;
-				 String [] rThumbImgList2 = null;
 
-				 if(rImg2 != null && rThumbImg2 != null){
+				 if(rImg2 != null){
 					 rImgList2 = rImg2.split("@");
-					 rThumbImgList2 = rThumbImg2.split("@");
 				 }
-				 if(rThumbImgList2 != null){ for ( int n = 1; n < rThumbImgList2.length; n++) {%> 
-					<img src="<%= rThumbImgList2[0]+rThumbImgList2[n] %>" class="img" data-xxx="<%=rImgList2[0]+rImgList2[n]%>">
-					<div class="modal" id="<%=rImgList2[0]+rImgList2[n] %>">
-						<span class="close">&times;</span> <img class="modal_content"
-							id="img01">
-					</div> <% }}} %> 
+				 if(rImgList2 != null){ 
+					 for ( int n = 1; n < rImgList2.length; n++) {%> 
+					 	<%if(n == 1){ %>
+							 <div class="carousel-item active">
+						<%}else{ %>
+							 <div class="carousel-item">
+						<% } %>
+								<img src="<%= rImgList2[0]+rImgList2[n] %>" class="d-block w-100 h-50" data-xxx="<%=rImgList2[0]+rImgList2[n]%>" loading="lazy">
+								
+							 </div>
+						<% }}} %> 
+					  	</div>
+					  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+					    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+					    <span class="visually-hidden">Previous</span>
+					  </button>
+					  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+					    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+					    <span class="visually-hidden">Next</span>
+					  </button>
+					</div>
+				</div>
 			<hr>
+			<div class="review-title">리뷰작성</div>
 			<form id="reviewForm" action="reviewAdd" method="post" enctype="multipart/form-data">
 			<div class="rating-image-container">
 			<input type="hidden" name="ProductID" value="<%=gProductID%>">
@@ -781,7 +858,7 @@
 					</fieldset>
 				</div>
 				<div class="select_img" contenteditable="true"><img src="" /></div><br>
-				<input type="file" id="rImg" name="files" multiple style="display: none;"/>
+				<input type="file" id="rImg" name="files" multiple style="display: none;" readonly="readonly"/>
 			</div>
 			<div class="review-subcontainer2">
 				<div class="review-subcontainer3">
@@ -798,11 +875,8 @@
 				</div>
 			</div>
 			</form>
-<%-- 			<%= request.getRealPath("/") %> --%>
 			<hr>
-			<nav>
-				<h3>상품리뷰</h3>
-			</nav>
+			<div class="review-title">상품리뷰</div>
 <% 
 			 for(int i=0; i<rList.size(); i++){
 				 int ReviewID = rList.get(i).getReviewID();
@@ -818,7 +892,14 @@
 					 rImgList = rImg.split("@");
 					 rThumbImgList = rThumbImg.split("@");
 				 }
-				 
+			    byte[] userImgBytes = rList.get(i).getUSERIMG();  // 바이트 배열 형태의 이미지 데이터
+			    String imageSrc = null;
+			    if(userImgBytes == null){  
+			    	 imageSrc = "강아지기본이미지" ;  //강아지기본이미지.JPG
+			    } else {
+			    	String base64Image = Base64.getEncoder().encodeToString(userImgBytes);
+			    	 imageSrc = "data:image/jpeg;base64," + base64Image;
+			    }
 				 // 평점 합계
 				 double sum = 0;
 				 int n = 0;
@@ -829,18 +910,30 @@
 %>
 			<ul>
 				<li>
-					<div>
-						<span><%= UserAlias %></span> <span
+					<div class="goodsretrieve-review-content">
+						<div class="goodsretrieve-review-content2">
+							<% if(userImgBytes == null ){ %>
+							<img src="resources/<%= imageSrc %>.JPG" height="40" width="40"/>
+							<% } else { %>
+							<img src="<%= imageSrc %>" height="40" width="40"/>
+							<% } %>
+						</div>
+						<div>
+						<span class="review-useralias"><%= UserAlias %></span> <span
 							style="font-size: 11px; color: #FFAF0A;"> <% if(Rating == 5) {%>
 							<span>⭐⭐⭐⭐⭐</span> <% } else if(Rating == 4) {%> <span
 							style="font-size: 11px; color: #FFAF0A;">⭐⭐⭐⭐</span> <% } else if(Rating == 3) {%>
 							<span style="font-size: 11px; color: #FFAF0A;">⭐⭐⭐</span> <% } else if(Rating == 2) {%>
 							<span style="font-size: 11px; color: #FFAF0A;">⭐⭐</span> <% } else if(Rating == 1) {%>
 							<span style="font-size: 11px; color: #FFAF0A;">⭐</span> <% } %>
-
+							<% if(Rating != 0){  %>
+							<span><%= Rating %></span>
+							<% } %>
 						</span> <br> <span
 							style="font-size: 11px; color: gray; font-weight: bolder;"><%= CreationTime %></span>
-					</div> <%if(ReviewContent != null){ %>
+						</div>
+					</div> 
+					<%if(ReviewContent != null){ %>
 					<p><%= ReviewContent %></p> <% } %> <%if(rThumbImgList != null){ for ( int m = 1; m < rThumbImgList.length; m++) {%> 
 					<img src="<%= rThumbImgList[0]+rThumbImgList[m] %>" class="img" data-xxx="<%=rImgList[0]+rImgList[m]%>">
 					<div class="modal" id="<%=rImgList[0]+rImgList[m] %>">
@@ -854,23 +947,27 @@
 							<textarea class="form-control" id="comment-content" rows="3">{{comment}}</textarea>
 							                    
 						</div>
-
 						<button type="button" id="btn-comment-update"
 							class="btn btn-outline-primary bi bi-pencil-square">수정</button>
 					</form>
 <% UsersDTO user = (UsersDTO)session.getAttribute("User");
 	if(user != null){
 			if(user.getUserAlias().equals(UserAlias)) { %> 
-					<form id="reviewForm<%=ReviewID%>" method="post">
-						<input type="hidden" name="ReviewID" value="<%=ReviewID%>">
-						<input type="hidden" name="ProductID" value="<%=gProductID%>">
-						<button class="btn btn-danger btn-sm"
-							onclick="reviewUpdate('del', <%=ReviewID%>)">삭제</button>
-					</form>
+				<div class="review-button">
+					<form style="margin-right: 5px;">
 					<button class="btn btn-primary btn-sm" type="button"
 						data-bs-toggle="collapse"
 						data-bs-target="#collapseExample<%=ReviewID%>"
 						aria-expanded="false" aria-controls="collapseExample">수정</button>
+					</form>
+					<form id="reviewForm<%=ReviewID%>" method="post">
+						<input type="hidden" name="ReviewID" value="<%=ReviewID%>">
+						<input type="hidden" name="ProductID" value="<%=gProductID%>">
+						<button class="btn btn-danger btn-sm delbtn" onclick="reviewUpdate('del', <%=ReviewID%>)">삭제</button>
+					</form>
+					
+				</div>
+				
 <% } }%>
 					<div class="collapse" id="collapseExample<%=ReviewID%>">
 						<div class="card card-body">
@@ -904,10 +1001,12 @@
 										id="img01">
 								</div><% } } %>
 								</div>
-								<textarea id="review-content" name="ReviewContent"
-									style="width: 80%; height: 60px; resize: none;"
-									placeholder="수정할 리뷰를 입력하세요"><% if(ReviewContent != null) { %><%= ReviewContent %><% } %></textarea>
-								<button id="review-button" class="submit-button">수정</button>
+								<div class="review-update-container">
+									<textarea id="review-content" name="ReviewContent"
+										style="width: 80%; height: 60px; resize: none;"
+										placeholder="수정할 리뷰를 입력하세요"><% if(ReviewContent != null) { %><%= ReviewContent %><% } %></textarea>
+									<button id="review-button" class="submit-button">수정</button>
+								</div>
 							</form>
 
 						</div>
@@ -955,9 +1054,9 @@
 			$(".modal").attr("style","display:"+text);
 		}
 	</script>
-
+</div>
 		</div>
 	</div>
-	<jsp:include page="../common/footer.jsp" flush="true" /><br>
+	<jsp:include page="../common/footer.jsp" flush="true" />
 </body>
 </html>

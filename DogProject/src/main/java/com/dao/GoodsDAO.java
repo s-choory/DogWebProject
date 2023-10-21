@@ -11,6 +11,7 @@ import com.dto.CartDTO;
 import com.dto.GoodsDTO;
 import com.dto.OrdersDTO;
 import com.dto.ReviewsDTO;
+import com.dto.UsersDTO;
 @Repository
 public class GoodsDAO {
 
@@ -78,5 +79,12 @@ public class GoodsDAO {
 		session.update("CartMapper.ReviewFlagUpdate", cartNum);
 	}
 
+	public List<UsersDTO> reviewUserImg(String userAlias) {
+		return session.selectList("ReviewsMapper.reviewUserImg",userAlias);
+	}
+	
+	public int CartCount(String userID) {
+		return session.selectOne("GoodsMapper.CartCount", userID);
+	}
 
 }

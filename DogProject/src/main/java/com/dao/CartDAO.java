@@ -55,4 +55,15 @@ public class CartDAO {
 		return session.update("CartMapper.dupleUpdate",map);
 	}
 
+	public int addAfterList(CartDTO CartDTO) {
+		return session.insert("CartMapper.addAfterList", CartDTO);
+	}
+
+	public List<CartDTO> selectAfterList(CartDTO cdto) {
+		return session.selectList("CartMapper.selectAfterList",cdto);
+	}
+
+	public List<CartDTO> selectOrderAllList(String userid) {
+		return session.selectList("CartMapper.selectOrderAllList", userid);
+	}
 }
