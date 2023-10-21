@@ -9,6 +9,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.js"></script>
 <script type="text/javascript">
+
 	
 	function delCheckedCart(){
 		if(confirm("선택한 상품 목록을 삭제하시겠습니까?")){
@@ -75,6 +76,7 @@
 			});	//end ajax
 	};
 
+
 	function amountdown(n){
 		$.ajax({
 			type: "get",
@@ -126,45 +128,191 @@
 		
 	})
 	
+	function prod(n){
+    	$("#prod"+n).submit();
+    }
+	
 	
 </script>
 <jsp:include page = "../common/top.jsp" flush="true"/><br>
 <jsp:include page = "../common/side.jsp" flush="true"/><br>
-<div style="margin-left: 10%">
-<table width="90%" cellpadding="10" border="0">
+<!-- <div style="margin-left: 10%"> -->
+<style type="text/css">
 
-	<tr>
+	#button {
+    padding-top: 60px;
+	}
+	.btn-group-vertical {
+    flex-direction: column;
+    padding-top: 35px;
+	}
+	table {
+		width: 70%;
+	}
+	strong{
+	margin: -91px;
+	}
+
+	.button-box button{
+	display: flex;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-left: 50px;
+    margin-right: 100px;
+    flex-wrap: nowrap;
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+	}
+	td.td_default p{
+	display: flex;
+	text-align: center;
+	}
+	.total-price{
+	display: flex;
+	text-align: center;
+	justify-content: center;
+	position: relative;
+	}
+	.total-price dl {
+    display: table-cell;
+    padding: 5px 10px 5px 10px;
+    font-size: 16px;
+    text-align: right;
+    padding-right: 10px;
+	}
+	.priceimg {
+	size: 30px;
+	padding-top: 15px;
+	padding-left: 20px;
+	padding-right: 20px;
+	}
+	.priceimg2 {
+	size: 30px;
+	padding-top: 5px;
+	padding-left: 20px;
+	padding-right: 20px;
+	}
+	
+	/* 체크박스 숨기기 */
+	input[type="checkbox"] {
+	    display: none;
+	}
+	
+	input[type="checkbox"] + label {
+	    width: 20px;
+	    height: 20px;
+	    background-image: url('resources/img/icon/check-off.png'); 
+		background-size: cover; 
+	    background-repeat: no-repeat;
+	    cursor: pointer;
+	    margin: -5px;
+	}
+	
+	input[type="checkbox"]:checked + label {
+	    background-image: url('resources/img/icon/check-on.png'); /* 체크된 상태일 때의 이미지 파일 경로를 넣어주세요 */
+	}
+	hr{
+	margin: 0;
+	}
+	.Cart-img {
+    display: flex;
+    justify-content: center; /* 수평 가운데 정렬 */
+    align-items: center; /* 수직 가운데 정렬 */
+    margin-bottom: 20px;
+	}
+
+	.Cart-img img {
+    max-width: 250px;
+    max-height: 250px;
+	}
+	a{
+    	text-decoration: none;
+    	color: black;
+    }
+    .no-data{
+    	display: flex;
+    	justify-content: center;
+    	padding: 100px 0;
+    	flex-direction: column;
+    	color: #707070;
+    	text-align: center;
+    	font-size: 30px;
+    	font-family: 'Hi-melody', sans-serif;
+    	font-weight: bolder;
+    }
+    .no-data img{
+    	height: 450px;
+    	width: 300px;
+    	padding-bottom: 25px;
+    }	
+    td{
+    padding-right: 45px;
+    margin-right: -5px;
+    margin-bottom: 30px;
+    }
+    .btn-group-vertical>.btn-group:not(:last-child)>.btn, .btn-group-vertical>.btn:not(:last-child):not(.dropdown-toggle) {
+    border-radius: 7px;
+    margin-bottom: 7px
+	}
+	.btn-group-vertical>.btn-group:not(:first-child)>.btn, .btn-group-vertical>.btn~.btn {
+  /*   border-top-left-radius: 0;
+    border-top-right-radius: 0; */
+    border-radius: 7px;
+	}
+	input {
+	border: initial;
+	}
+	
+</style>
+<!-- <div class="Cart-img"><img src="resources/img/dog/cart-img.png"></div> -->
+<%
+List<CartDTO> list = (List<CartDTO>)request.getAttribute("list");
+if(list.isEmpty()){
+ 	%>
+ 	<div class="no-data">
+    	<div><img src="resources/img/dog/nodata.png" alt="No Results Found"></div><br>
+    	<div><p>장바구니에 담겨있는 상품이 없습니다</p></div>
+    </div>
+<% } else { %>
+<div class="Cart-img"><img src="resources/img/dog/cart-img.png"></div>
+
+
+
+<!-- <div class="Cart-img"><img src="resources/img/dog/cart-img.png"></div>
+ -->
+
+
+<table cellpadding="10" class="mx-auto">
+
+<!-- 	<tr>
 		<td height="30">
 	</tr>
-
 	<tr>
-		<td colspan="5" class="td_default">&nbsp;&nbsp;&nbsp; <font
-			size="5"><b>- 장바구니-</b></font> &nbsp;
+		<td colspan="5" class="td_default">&nbsp;&nbsp;&nbsp; 
+		<font size="5"><b>장바구니</b></font> &nbsp;
 		</td>
 	</tr>
-
 	<tr>
 		<td height="15">
 	</tr>
-
 	<tr>
 		<td colspan="10">
 			<hr size="1" color="CCCCCC">
 		</td>
 	</tr>
-
 	<tr>
 		<td height="7">
-	</tr>
-
+	</tr> -->
 	<tr>
-		<td class="td_default" align="center">
-		<input type="checkbox" name="allCheck" id="allCheck"> <strong>전체선택</strong></td>
+		<td class="td_default" align="center"><strong>전체선택</strong>
+		<input type="checkbox" name="allCheck" id="allCheck"><label for="allCheck"></label></td>
 		<td class="td_default" align="center"><strong>주문번호</strong></td>
 		<td class="td_default" align="center" colspan="2"><strong>상품정보</strong></td>
 		<td class="td_default" align="center"><strong>판매가</strong></td>
 		<td class="td_default" align="center" colspan="2"><strong>수량</strong></td>
 		<td class="td_default" align="center"><strong>합계</strong></td>
+		<td></td>
 		<td></td>
 	</tr>
 
@@ -179,50 +327,54 @@
 			<hr size="1" color="CCCCCC">
 		</td>
 	</tr>
-
-
-	<form name="myForm">	    
 <%
-List<CartDTO> list = (List<CartDTO>)request.getAttribute("list");
 int totalPrice = 0;
-for(int i=0; i < list.size(); i++){
-	int num = list.get(i).getCartNum();
-	String UserID = list.get(i).getUserID();
-	int ProductID = list.get(i).getProductID();
-	String ProductName = list.get(i).getProductName();
-	int Price = list.get(i).getPrice();
-	String Psize = list.get(i).getPsize();
-	String Color = list.get(i).getColor();
-	int Amount = list.get(i).getAmount();
-	String Image = list.get(i).getImage();
-	
+int deliveryCharge= 0; 		
+	for(int i=0; i < list.size(); i++){
+		int num = list.get(i).getCartNum();
+		String UserID = list.get(i).getUserID();
+		int ProductID = list.get(i).getProductID();
+		String ProductName = list.get(i).getProductName();
+		int Price = list.get(i).getPrice();
+		String Psize = list.get(i).getPsize();
+		String Color = list.get(i).getColor();
+		int Amount = list.get(i).getAmount();
+		String Image = list.get(i).getImage();
 
-%>	    
-	<!-- hidden부분 설정부분 	
-	<input type="text" name="gImage81" value="bottom1" id="gImage81">
-		 <input type="text" name="gName81" value="제나 레이스 스커트" id="gName81">
-		  <input type="text" name="gSize81" value="L" id="gSize81">
-		   <input type="text" name="gColor81" value="navy" id="gColor81"> 
-		   <input type="text" name="gPrice81" value="9800" id="gPrice81"> -->
+%>	
+
+    
+<%-- <form id="prod<%= i %>" action="goodsRetrieve" method="post">
+	 <input type="hidden" name="gProductID" value="<%=ProductID%>">
+	 <a href="#" onclick="prod(<%=i%>)"></a>
+</form> --%>
 
 		<tr>
-			<td class="td_default" width="80">
+			
+			<td class="td_default" width="80" id="selectbox">
 			<!-- checkbox는 체크된 값만 서블릿으로 넘어간다. 따라서 value에 삭제할 num값을 설정한다. -->
-			<input type="checkbox"
-				name="check" id="check<%= num %>" class="check" value="<%= num %>"></td>
+			<input type="checkbox" name="check" id="mycheck<%= num %>" class="check" value="<%= num %>"/><label for="mycheck<%= num %>"></label></td>
 			<td class="td_default" width="80"><%= num %></td>
-			<td class="td_default" width="80"><img
-				src="resources/storeimages/<%= Image %>.jpg" border="0" align="center"
-				width="80" /></td>
-			<td class="td_default" width="300" style='padding-left: 30px'>
-				<%= ProductName %>
+			<td class="td_default" width="80">
+			<form id="prod<%= i %>" action="goodsRetrieve" method="post">
+			<input type="hidden" name="gProductID" value="<%=ProductID%>">
+			<a href="#" onclick="prod(<%=i%>)"><img src="resources/storeimages/<%= Image %>.jpg" border="0" align="center" width="80" /></a>
+			</form>
+			</td>
+				
+			<td class="td_default" width="300" style='padding-left: 30px;'>
+		      	  	<form id="prod<%= i %>" action="goodsRetrieve" method="post">
+					<input type="hidden" name="gProductID" value="<%=ProductID%>">
+					<a href="#" onclick="prod(<%=i%>)"> <%= ProductName %> </a>
+					</form>
 				<br> <font size="2" color="#665b5f">[옵션 : 사이즈(<%= Psize %>)
 					, 색상(<%= Color %>)]
 			</font></td>
-			<td id= "price<%= num %>" class="td_default" align="center" width="110">
-				<%= Price %>
+		
+			<td id= "price<%= num %>" class="td_default" align="center" width="150px" style="font-weight:600;">
+				<%= Price %>원
 			</td>
-			<td class="td_default" align="center" width="90"><input
+			<td class="td_default_amount" align="center" width="90"><input
 				class="input_default" type="text" name="cartAmount"
 				id="cartAmount<%=num%>" style="text-align: right" maxlength="3"
 				size="2" value="<%= Amount %>"></input></td>
@@ -230,23 +382,42 @@ for(int i=0; i < list.size(); i++){
 					  <button type="button" class="btn btn-secondary btn-sm" style="font-size:8px;" onclick="amountup(<%=num%>)">∧</button>
 					  <button type="button" class="btn btn-secondary btn-sm" style="font-size:8px;" onclick="amountdown(<%=num%>)">∨</button>
 					</td>
-			<td class="td_default" align="center" width="80"
-				style='padding-left: 5px'><span id="sum<%=num%>">
+			<td class="td_default" align="center" width="150px"
+				style='padding-left: 5px'><span id="sum<%=num%>" style="font-weight:600;" >
 				<%= Price*Amount %>
-				</span></td>
-			<td><input type="button" value="주문"
+				</span>원</td>
+				
+			<td width="130px">
+			    <button class="orderButton btn btn-primary" onclick="order(<%=num%>, '<%=UserID%>')">주문</button>
+			</td>
+			
+			<td width="130px">
+			    <button class="deleteButton delCart btn btn-danger" data-xxx="<%= num %>" onclick="delCart(<%=num%>)">삭제</button>
+			</td>
+
+				
+				
+<%-- 			<td><input type="button" value="주문"
 				onclick="order(<%=num%>, '<%=UserID%>')"></td>
+				
 			<td class="td_default" align="center" width="30"
 				style='padding-left: 10px'><input type="button" value="삭제"
-				data-xxx="<%= num %>" class="delCart" onclick="delCart(<%=num%>)"></td>
+				data-xxx="<%= num %>" class="delCart" onclick="delCart(<%=num%>)"></td> --%>	
+				
 			<td height="10"></td>
 		</tr>
+		<!-- 주문금액이 100000 이상 배송비 무료  -->
 <%	
 	totalPrice += Price*Amount;
+	if (totalPrice >= 100000) {
+		deliveryCharge = 0;
+	}else {
+		deliveryCharge = 3500;
+		}
+	int totalOrderPrice = totalPrice + deliveryCharge;
 	}
 %>
 
-	</form>
 	<tr>
 		<td colspan="10">
 			<hr size="1" color="CCCCCC">
@@ -256,58 +427,70 @@ for(int i=0; i < list.size(); i++){
 		<td height="20">
 	</tr>
 </table>
-<table width="90%" cellspacing="0" cellpadding="0" border="0">
+
+<div class="total-price">
+	<dl>
+		<dt>
+			총 상품금액
+		</dt >
+		<dd>
+			<span id="totalPrice" ><%= totalPrice %>원</span>
+		</dd>
+	</dl>
+	<span class="priceimg"><img src="resources/img/icon/plus.png" width="30" height="30"></span>
+	<dl>	
+		<dt>
+			총 배송비
+		</dt>
+		<dd>
+			<span id="deliveryCharge"><%= deliveryCharge%>원</span>
+		</dd>
+	</dl>
+	<span class="priceimg2"><img src="resources/img/icon/equal.png"></span>
+	<dl>	
+		<dt>
+			총 결제예정금액
+		</dt>
+		<dd>
+			<span id="totalOrderPrice" style="font-weight:600;">
+			<%= totalPrice+deliveryCharge %>원
+			</span>
+		</dd>
+	</dl>
+	<!-- <div class="total-money"> -->
+<%-- 		<div>
+			<span id="totalPrice"><%= totalPrice %>원</span>
+		</div>
+		<div>
+			<span id="deliveryCharge">3500원</span>
+		</div>
+		<div>
+			<span id="totalOrderPrice"><%= totalPrice + 3500 %>원</span>
+		</div> --%>
+	<!-- </div> -->
+</div>
+
+<div class="button-box">
+<table width="90%" cellspacing="0" cellpadding="0" border="0" class="mx-auto" id="button">
 	<tr>
-		<td align="center" colspan="5">
+		<td colspan="5">
 			<button class="btn btn-outline-Dark" onclick="orderCheckedConfirm()"> 선택한 상품 주문하기 </button>
 		</td>
-		<td align="center" colspan="5">
+		<td colspan="5">
 			<button class="btn btn-outline-danger" onclick="delAllCart()"> 장바구니 비우기</button>
 		</td>
-		<td align="center" colspan="5">
+		<td colspan="5">
 			<button class="btn btn-outline-danger" onclick="delCheckedCart()"> 선택한 상품 삭제하기</button>
 		</td>
-		<td>
+		<!-- <td>
 			<a class="a_black" href="dogshop_main"> 계속 쇼핑하기 </a>&nbsp;&nbsp;&nbsp;&nbsp;
-		</td>
+		</td> -->
 	</tr>
 	<tr>
 		<td height="50">
 	</tr>
 </table>
-<table width="90%" cellspacing="0" cellpadding="0" border="1">
-	<tr>
-		<td height="20">
-	</tr>
-	<tr align="center">
-		<td>
-			총 상품금액
-		</td>
-		<td>
-			총 배송비
-		</td>
-		<td>
-			총 결제예정금액
-		</td>
-	</tr>
-	<tr>
-		<td height="20">
-	</tr>
-	<tr align="center">
-		<td>
-			<span id="totalPrice"><%= totalPrice %>원</span>
-		</td>
-		<td>
-			<span id="deliveryCharge">3500원</span>
-		</td>
-		<td>
-			<span id="totalOrderPrice"><%= totalPrice + 3500 %>원</span>
-		</td>
-	</tr>
-	<tr>
-		<td height="20">
-	</tr>
-</table>
 </div>
+<% } %>
 <jsp:include page = "../common/footer.jsp" flush="true"/>
     

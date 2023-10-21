@@ -8,6 +8,10 @@
 	select * from PRODUCTS
 </select> 
 
+<select id="random" resultType="goods">
+   select * from products sample(35)
+</select>
+	
 <select id="selectOne" parameterType="String" resultType="com.dto.GoodsDTO">
 	select * from PRODUCTS where PRODUCTID = #{PRODUCTID} 
 
@@ -38,18 +42,8 @@
 	SELECT * FROM products WHERE PRODUCTNAME LIKE '%'||#{SearchName}||'%' OR category LIKE '%'||#{SearchName}||'%'
 </select>
 
-<!-- 
+<select id="CartCount" resultType="int" parameterType="String">
+	SELECT COUNT(*) FROM Cart WHERE UserID = #{userID}
+</select>
 
-<insert id="insert" parameterType="dept">
-	insert into dept (deptno, dname, loc)
-	values (#{deptno}, #{dname}, #{loc})
-
-</insert>
-
-<delete id="delete" parameterType="int">
- delete from dept where deptno in #{deptno} 
-
-</delete>
-
- -->
 </mapper>                                              

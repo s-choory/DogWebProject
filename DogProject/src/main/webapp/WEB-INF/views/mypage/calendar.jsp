@@ -27,7 +27,7 @@
                         console.log(data); // log 로 데이터 찍어주기.
                         var calendarEl = document.getElementById('calendar');
                         calendar = new FullCalendar.Calendar(calendarEl, {
-                            initialView: 'timeGridWeek',
+                            initialView: 'dayGridMonth',
                             timeZone: 'Asia/Seoul', // 서울 시간대로 설정 이거 설정안하면 시간꼬임
                             headerToolbar: {
                                 left: 'prev,next today',

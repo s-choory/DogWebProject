@@ -54,6 +54,18 @@ public class CartService {
 	public int dupleUpdate(Map<String, Integer> map) {
 		return dao.dupleUpdate(map);
 	}
+	
+	public int addAfterList(CartDTO CartDTO, String UserID, int OrderID) {
+		CartDTO.setUserID(UserID);
+		CartDTO.setOrderNumber(OrderID);
+		CartDTO.setOrderState("after");
+		return dao.addAfterList(CartDTO);
+	}
+	public List<CartDTO> selectAfterList(CartDTO cdto) {
+		return dao.selectAfterList(cdto);
+	}
 
-
+	public List<CartDTO> selectOrderAllList(String userid) {
+		return dao.selectOrderAllList(userid);
+	}
 }

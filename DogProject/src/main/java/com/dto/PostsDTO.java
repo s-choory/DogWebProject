@@ -1,6 +1,7 @@
 package com.dto;
 
 import java.sql.Date;
+import java.time.LocalDateTime;
 
 import org.apache.ibatis.type.Alias;
 
@@ -12,25 +13,25 @@ public class PostsDTO {
 	private String Title; // 제목
 	private String Tag; // 태그
 	private String Content; // 내용
-	private Date CreationTime; // 작성일
-	private Date UpdateTime; // 수정날짜
+	private String CreationTime; // 작성일
+	private String UpdateTime; // 수정날짜
+	//private Date CreationTime; // 작성일
+	//private Date UpdateTime; // 수정날짜
+	//private LocalDateTime creationtime;
+	//private LocalDateTime updatetime;
 	private int Likes; // 좋아요
 	private String Category; // 카테고리
 	private String Image; // 이미지
-	private String PostType;	//삭제 유무
+	private int Hit;   //조회수
+	private String PostType;	//삭제 유무    // 컬럼 타입 undeleted,deleted
 	
 	public PostsDTO() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public String getPostType() {
-		return PostType;
-	}
-	public void setPostType(String postType) {
-		PostType = postType;
-	}
-	public PostsDTO(int postID, String authorID, String title, String tag, String content, Date creationTime,
-			Date updateTime, int likes, String category, String image, String postType) {
+
+	public PostsDTO(int postID, String authorID, String title, String tag, String content, String creationTime,
+			String updateTime, int likes, String category, String image, int hit, String postType) {
 		super();
 		PostID = postID;
 		AuthorID = authorID;
@@ -42,14 +43,10 @@ public class PostsDTO {
 		Likes = likes;
 		Category = category;
 		Image = image;
+		Hit = hit;
 		PostType = postType;
 	}
-	@Override
-	public String toString() {
-		return "PostsDTO [PostID=" + PostID + ", AuthorID=" + AuthorID + ", Title=" + Title + ", Tag=" + Tag
-				+ ", Content=" + Content + ", CreationTime=" + CreationTime + ", UpdateTime=" + UpdateTime + ", Likes="
-				+ Likes + ", Category=" + Category + ", Image=" + Image + ", PostType=" + PostType + "]";
-	}
+
 	public int getPostID() {
 		return PostID;
 	}
@@ -90,19 +87,19 @@ public class PostsDTO {
 		Content = content;
 	}
 
-	public Date getCreationTime() {
+	public String getCreationTime() {
 		return CreationTime;
 	}
 
-	public void setCreationTime(Date creationTime) {
+	public void setCreationTime(String creationTime) {
 		CreationTime = creationTime;
 	}
 
-	public Date getUpdateTime() {
+	public String getUpdateTime() {
 		return UpdateTime;
 	}
 
-	public void setUpdateTime(Date updateTime) {
+	public void setUpdateTime(String updateTime) {
 		UpdateTime = updateTime;
 	}
 
@@ -129,6 +126,31 @@ public class PostsDTO {
 	public void setImage(String image) {
 		Image = image;
 	}
+
+	public int getHit() {
+		return Hit;
+	}
+
+	public void setHit(int hit) {
+		Hit = hit;
+	}
+
+	public String getPostType() {
+		return PostType;
+	}
+
+	public void setPostType(String postType) {
+		PostType = postType;
+	}
+
+	@Override
+	public String toString() {
+		return "PostsDTO [PostID=" + PostID + ", AuthorID=" + AuthorID + ", Title=" + Title + ", Tag=" + Tag
+				+ ", Content=" + Content + ", CreationTime=" + CreationTime + ", UpdateTime=" + UpdateTime + ", Likes="
+				+ Likes + ", Category=" + Category + ", Image=" + Image + ", Hit=" + Hit + ", PostType=" + PostType
+				+ "]";
+	}
+	
 	
 	
 }// end class

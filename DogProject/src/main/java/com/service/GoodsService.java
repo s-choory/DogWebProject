@@ -7,9 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.dao.GoodsDAO;
+import com.dto.CartDTO;
 import com.dto.GoodsDTO;
 import com.dto.OrdersDTO;
 import com.dto.ReviewsDTO;
+import com.dto.UsersDTO;
 
 @Service
 public class GoodsService {
@@ -30,7 +32,11 @@ public class GoodsService {
 	public List<GoodsDTO> select() {
 		return dao.select();
 	}
-
+	
+	public List<GoodsDTO> random(){
+		return dao.random();
+	}
+	
 	public GoodsDTO selectone(String gProductID) {
 		return dao.selectone(gProductID);
 	}
@@ -60,10 +66,6 @@ public class GoodsService {
 		return dao.addReview(rDTO);
 	}
 
-	public void orderFlagUpdate(int OrderID) {
-		dao.orderFlagUpdate(OrderID);
-	}
-
 	public List<ReviewsDTO> selectReview(String gProductID) {
 		return dao.selectReview(gProductID);
 	}
@@ -79,7 +81,21 @@ public class GoodsService {
 	public List<GoodsDTO> searchList(String SearchName) {
 		return dao.searchList(SearchName);
 	}
-	
 
+	public List<CartDTO> findCartOrder(HashMap<String, Object> map) {
+		return dao.findCartOrder(map);
+	}
+
+	public void ReviewFlagUpdate(int cartNum) {
+		dao.ReviewFlagUpdate(cartNum);
+	}
+
+	public List<UsersDTO> reviewUserImg(String userAlias) {
+		return dao.reviewUserImg(userAlias);
+	}
+	
+	public int CartCount(String userID) {
+		return dao.CartCount(userID);
+	}
 	
 }

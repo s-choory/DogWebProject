@@ -6,17 +6,10 @@ import org.apache.ibatis.type.Alias;
 public class OrdersDTO {
 	private int OrderID;
 	private String UserID;
-	private int ProductID;
-	private String ProductName;
-	private int Price;
-	private String Psize;
-	private String Color;
-	private int Amount;
-	private String Image;
+	private String OrderName;
 	private String UserName;
-	private String Email1;
-	private String Email2;
-	private int Post;
+	private String Email;
+	private int PostNumber;	
 	private String RodeAddress;
 	private String HouseAddress;
 	private String DetailAddress;
@@ -24,29 +17,25 @@ public class OrdersDTO {
 	private String PayMethod;
 	private String OrderTime;
 	private int TotalPrice;
-	private String ReviewFlag;
+	private String Requested;
+	private String OrderState;
+	private String paymethodcard;
+	private String paymethodnumber;
 	public OrdersDTO() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public OrdersDTO(int orderID, String userID, int productID, String productName, int price, String psize,
-			String color, int amount, String image, String userName, String email1, String email2, int post,
+	public OrdersDTO(int orderID, String userID, String orderName, String userName, String email, int postNumber,
 			String rodeAddress, String houseAddress, String detailAddress, String phoneNumber, String payMethod,
-			String orderTime, int totalPrice, String reviewFlag) {
+			String orderTime, int totalPrice, String requested, String orderState, String paymethodcard,
+			String paymethodnumber) {
 		super();
 		OrderID = orderID;
 		UserID = userID;
-		ProductID = productID;
-		ProductName = productName;
-		Price = price;
-		Psize = psize;
-		Color = color;
-		Amount = amount;
-		Image = image;
+		OrderName = orderName;
 		UserName = userName;
-		Email1 = email1;
-		Email2 = email2;
-		Post = post;
+		Email = email;
+		PostNumber = postNumber;
 		RodeAddress = rodeAddress;
 		HouseAddress = houseAddress;
 		DetailAddress = detailAddress;
@@ -54,16 +43,10 @@ public class OrdersDTO {
 		PayMethod = payMethod;
 		OrderTime = orderTime;
 		TotalPrice = totalPrice;
-		ReviewFlag = reviewFlag;
-	}
-	@Override
-	public String toString() {
-		return "OrdersDTO [OrderID=" + OrderID + ", UserID=" + UserID + ", ProductID=" + ProductID + ", ProductName="
-				+ ProductName + ", Price=" + Price + ", Psize=" + Psize + ", Color=" + Color + ", Amount=" + Amount
-				+ ", Image=" + Image + ", UserName=" + UserName + ", Email1=" + Email1 + ", Email2=" + Email2
-				+ ", Post=" + Post + ", RodeAddress=" + RodeAddress + ", HouseAddress=" + HouseAddress
-				+ ", DetailAddress=" + DetailAddress + ", PhoneNumber=" + PhoneNumber + ", PayMethod=" + PayMethod
-				+ ", OrderTime=" + OrderTime + ", TotalPrice=" + TotalPrice + ", ReviewFlag=" + ReviewFlag + "]";
+		Requested = requested;
+		OrderState = orderState;
+		this.paymethodcard = paymethodcard;
+		this.paymethodnumber = paymethodnumber;
 	}
 	public int getOrderID() {
 		return OrderID;
@@ -77,47 +60,11 @@ public class OrdersDTO {
 	public void setUserID(String userID) {
 		UserID = userID;
 	}
-	public int getProductID() {
-		return ProductID;
+	public String getOrderName() {
+		return OrderName;
 	}
-	public void setProductID(int productID) {
-		ProductID = productID;
-	}
-	public String getProductName() {
-		return ProductName;
-	}
-	public void setProductName(String productName) {
-		ProductName = productName;
-	}
-	public int getPrice() {
-		return Price;
-	}
-	public void setPrice(int price) {
-		Price = price;
-	}
-	public String getPsize() {
-		return Psize;
-	}
-	public void setPsize(String psize) {
-		Psize = psize;
-	}
-	public String getColor() {
-		return Color;
-	}
-	public void setColor(String color) {
-		Color = color;
-	}
-	public int getAmount() {
-		return Amount;
-	}
-	public void setAmount(int amount) {
-		Amount = amount;
-	}
-	public String getImage() {
-		return Image;
-	}
-	public void setImage(String image) {
-		Image = image;
+	public void setOrderName(String orderName) {
+		OrderName = orderName;
 	}
 	public String getUserName() {
 		return UserName;
@@ -125,23 +72,17 @@ public class OrdersDTO {
 	public void setUserName(String userName) {
 		UserName = userName;
 	}
-	public String getEmail1() {
-		return Email1;
+	public String getEmail() {
+		return Email;
 	}
-	public void setEmail1(String email1) {
-		Email1 = email1;
+	public void setEmail(String email) {
+		Email = email;
 	}
-	public String getEmail2() {
-		return Email2;
+	public int getPostNumber() {
+		return PostNumber;
 	}
-	public void setEmail2(String email2) {
-		Email2 = email2;
-	}
-	public int getPost() {
-		return Post;
-	}
-	public void setPost(int post) {
-		Post = post;
+	public void setPostNumber(int postNumber) {
+		PostNumber = postNumber;
 	}
 	public String getRodeAddress() {
 		return RodeAddress;
@@ -185,11 +126,39 @@ public class OrdersDTO {
 	public void setTotalPrice(int totalPrice) {
 		TotalPrice = totalPrice;
 	}
-	public String getReviewFlag() {
-		return ReviewFlag;
+	public String getRequested() {
+		return Requested;
 	}
-	public void setReviewFlag(String reviewFlag) {
-		ReviewFlag = reviewFlag;
+	public void setRequested(String requested) {
+		Requested = requested;
 	}
+	public String getOrderState() {
+		return OrderState;
+	}
+	public void setOrderState(String orderState) {
+		OrderState = orderState;
+	}
+	public String getPaymethodcard() {
+		return paymethodcard;
+	}
+	public void setPaymethodcard(String paymethodcard) {
+		this.paymethodcard = paymethodcard;
+	}
+	public String getPaymethodnumber() {
+		return paymethodnumber;
+	}
+	public void setPaymethodnumber(String paymethodnumber) {
+		this.paymethodnumber = paymethodnumber;
+	}
+	@Override
+	public String toString() {
+		return "OrdersDTO [OrderID=" + OrderID + ", UserID=" + UserID + ", OrderName=" + OrderName + ", UserName="
+				+ UserName + ", Email=" + Email + ", PostNumber=" + PostNumber + ", RodeAddress=" + RodeAddress
+				+ ", HouseAddress=" + HouseAddress + ", DetailAddress=" + DetailAddress + ", PhoneNumber=" + PhoneNumber
+				+ ", PayMethod=" + PayMethod + ", OrderTime=" + OrderTime + ", TotalPrice=" + TotalPrice
+				+ ", Requested=" + Requested + ", OrderState=" + OrderState + ", paymethodcard=" + paymethodcard
+				+ ", paymethodnumber=" + paymethodnumber + "]";
+	}
+	
 	
 }

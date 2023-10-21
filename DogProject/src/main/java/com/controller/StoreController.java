@@ -22,7 +22,9 @@ import com.dto.GoodsDTO;
 import com.dto.OrdersDTO;
 import com.dto.ReviewsDTO;
 import com.dto.UsersDTO;
+import com.service.CartService;
 import com.service.GoodsService;
+import com.service.OrdersService;
 import com.utils.UploadFileUtils;
 
 @Controller
@@ -30,6 +32,11 @@ public class StoreController {
 
 	@Autowired
 	GoodsService service;
+	@Autowired
+	OrdersService oService;
+	@Autowired
+	CartService cService;
+	
 	@Resource(name="uploadPath")
 	private String uploadPath;
 	
@@ -38,21 +45,31 @@ public class StoreController {
 	/* store */
 	//스토어메인
 	@RequestMapping(value = "/dogshop_main", method = RequestMethod.GET)
-	public String dogshop_main(@RequestParam( required = false, value = "gCategory" ) String gCategory,Model m) {
+	public String dogshop_main(@RequestParam( required = false, value = "gCategory" ) String gCategory,Model m, HttpSession session) {
 		
 		String Category=gCategory;
-		String gCategory1="장난감";
+		String gCategory1="사료";
 		if (Category != null) {
 			gCategory1 = Category;
 		}
 		List<GoodsDTO>list = service.goodList(gCategory1);
-		
-		//여기서 메인 응답이 찍히면 list를 가져와서 goodsretrieve에 보내줘야함
-		//전체 list
-			//System.out.println("list 받아오기");
-			//List<GoodsDTO> list = service.select();
-			//System.out.println(list);
 			m.addAttribute("list", list);
+			
+		//장바구니 몇개 있는지 count 구하기
+		UsersDTO uDTO = (UsersDTO)session.getAttribute("User");
+		int n = 0;
+		if(uDTO != null) {
+			String UserID = uDTO.getUserID();
+			 n = service.CartCount(UserID);
+		}
+			m.addAttribute("CartCount", n);
+		
+		//String UserID = uDTO.getUserID();
+		//int n = service.CartCount(UserID);
+		//System.out.println(n);
+			
+			
+			
 		return "store/dogshop_main";
 	}
 	
@@ -75,12 +92,18 @@ public class StoreController {
 	
 	
 	//결제확인
-	@RequestMapping(value = "/orderConfirm", method = RequestMethod.GET)
-	public String orderConfirm(Model model,HttpSession session) {
-		System.out.println(session.getAttribute("list"));
-		return "store/orderConfirm";
-	}
-	
+		@RequestMapping(value = "/orderConfirm", method = RequestMethod.GET)
+		public String orderConfirm(Model model,HttpSession session) {
+			List<CartDTO> list = (List<CartDTO>)session.getAttribute("cDTO");
+			System.out.println(list);
+			UsersDTO uDTO = (UsersDTO)session.getAttribute("User");
+			List<OrdersDTO> ordersAllList = oService.ordersAllList(uDTO.getUserID()); //OrderID 추출하기
+			System.out.println("현재 주문번호" + ordersAllList.size());
+	        int OrderID = ordersAllList.size() + 1; //OrderID 추출 후 주문번호 지정
+	        System.out.println("적용될 주문번호" + OrderID);
+	        session.setAttribute("OrderID", OrderID);
+			return "store/orderConfirm";
+		}
 	//카테고리 클릭시 
 	@RequestMapping(value = "/goodslist", method = RequestMethod.GET)
 	public String goodslist(@RequestParam("gCategory") String gCategory, Model m) {
@@ -110,6 +133,8 @@ public class StoreController {
 	    	if(rDTO.getReviewContent() != null) {
 	    		rDTO.setReviewContent(xss.xssFilter(rDTO.getReviewContent()));
 	    	}
+	    	List<UsersDTO> uDTO = service.reviewUserImg(rDTO.getUserAlias());
+	    	rDTO.setUSERIMG(uDTO.get(0).getUSERIMG());
 		}
 	    m.addAttribute("ReviewList", rList);
 	    return "store/goodsRetrieve"; 
@@ -117,27 +142,48 @@ public class StoreController {
 	
 	//스토어 메인에서  인기순 가격높은순 가격낮은순 클릭시 
 	@RequestMapping(value = "/dogshop_ASCPriceList", method = RequestMethod.GET)
-	public String dogshop_main2(@RequestParam( value = "gCategory" ) String gCategory,Model m) {
+	public String dogshop_main2(@RequestParam( value = "gCategory" ) String gCategory,Model m, HttpSession session) {
 		
 		// 가격  오름차순 
 		List<GoodsDTO>list = service.ASCPriceList(gCategory);
 		
 		m.addAttribute("list", list);
+		
+		//장바구니 몇개 있는지 count 구하기
+		UsersDTO uDTO = (UsersDTO)session.getAttribute("User");
+		int n = 0;
+		if(uDTO != null) {
+		String UserID = uDTO.getUserID();
+		n = service.CartCount(UserID);
+		}
+		m.addAttribute("CartCount", n);
+		
+		
 		return "store/dogshop_main";
 	}
 	//dogshop_DESCPriceList
 	@RequestMapping(value = "/dogshop_DESCPriceList", method = RequestMethod.GET)
-	public String dogshop_main3(@RequestParam( value = "gCategory" ) String gCategory,Model m) {
+	public String dogshop_main3(@RequestParam( value = "gCategory" ) String gCategory,Model m, HttpSession session) {
 		
 		// 가격  내림차순 
 		List<GoodsDTO>list = service.DESCPriceList(gCategory);
 		
 		m.addAttribute("list", list);
+		
+				//장바구니 몇개 있는지 count 구하기
+				UsersDTO uDTO = (UsersDTO)session.getAttribute("User");
+				int n = 0;
+				if(uDTO != null) {
+				String UserID = uDTO.getUserID();
+				n = service.CartCount(UserID);
+				}
+				m.addAttribute("CartCount", n);
+				
 		return "store/dogshop_main";
 	}
 	//dogshop_MostPopular 인기순 클릭시 
 	@RequestMapping(value = "/dogshop_MostPopular", method = RequestMethod.GET)
-	public String dogshop_main4(@RequestParam( value = "gCategory" ) String gCategory,Model m) {
+	public String dogshop_main4(@RequestParam( value = "gCategory" ) String gCategory,Model m, HttpSession session) {
 		
 		// 가격  내림차순 
 		List<GoodsDTO>list = service.MostPopular(gCategory);
@@ -146,6 +192,15 @@ public class StoreController {
 		System.out.println("=====MostPopular========>>>>>>"+list.size());
 		
 		m.addAttribute("list", list);
+		//장바구니 몇개 있는지 count 구하기
+		UsersDTO uDTO = (UsersDTO)session.getAttribute("User");
+		int n = 0;
+		if(uDTO != null) {
+		String UserID = uDTO.getUserID();
+		n = service.CartCount(UserID);
+		}
+		m.addAttribute("CartCount", n);
+		
 		return "store/dogshop_main";
 	}
 	
@@ -159,25 +214,14 @@ public class StoreController {
 		cDTO.setUserID(uDTO.getUserID());
 		List<CartDTO> list = new ArrayList<CartDTO>();
 		list.add(cDTO);
-		session.setAttribute("list", list);
+		session.setAttribute("orderList", list);
 		return "redirect:/orderConfirm";
 	}
 	
 	//리뷰등록
 	@RequestMapping(value = "/reviewAdd", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
 	public String reviewAdd(MultipartFile[] files,HttpSession session, ReviewsDTO rDTO, Model model) throws Exception{
-		//이미지 처리, 매개변수 MultipartFile도 추가했다.
-		System.out.println(files);
-		String ymdPath = null;
-		String fileName = "";
-		String imgUploadPath = File.separator + "imgUpload";
-		ymdPath = UploadFileUtils.calcPath(imgUploadPath);
-		// 여러개의 이미지 이름 사이사이에 기호 '@'를 넣어 저장. split으로 파일을 분리하기위함
-		for(int i=0; i<files.length; i++) {
-			fileName +=  "@"+UploadFileUtils.fileUpload(imgUploadPath, files[i].getOriginalFilename(), files[i].getBytes(), ymdPath);
-		}
 		int ProductID = rDTO.getProductID();
-		
 		UsersDTO uDTO = (UsersDTO)session.getAttribute("User");
 		//로그인 체크
 		if(uDTO == null) {
@@ -188,23 +232,31 @@ public class StoreController {
 		map.put("UserID",uDTO.getUserID());
 		map.put("ProductID",ProductID);
 		
-		OrdersDTO oDTO = service.OrderSelect(map);
-		//해당 상품이 주문정보가 있는지 체크
-		if(oDTO == null) {
-			model.addAttribute("msg", "상품 구매 후 리뷰 등록이 가능합니다.");
+		List<CartDTO> cDTO = service.findCartOrder(map);
+		if(cDTO.size() == 0) {
+			model.addAttribute("msg", "이미 리뷰를 등록했거나, 상품 구매 후 리뷰 등록이 가능합니다.");
 			return "forward:/goodsRetrieve?gProductID="+ProductID;
 		}
-		//orderFlag가 true라면 리뷰등록 안함. false라면 이미 리뷰등록함.
-		if(oDTO.getReviewFlag().equals("false")) {
-			model.addAttribute("msg", "이미 리뷰를 등록한 상품입니다.");
-			return "forward:/goodsRetrieve?gProductID="+ProductID;
+		
+		//이미지 처리, 매개변수 MultipartFile도 추가했다.
+		String ymdPath = null;
+		String fileName = "";
+		String imgUploadPath = File.separator + "imgUpload";
+		ymdPath = UploadFileUtils.calcPath(imgUploadPath);
+		// 여러개의 이미지 이름 사이사이에 기호 '@'를 넣어 저장. split으로 파일을 분리하기위함
+		for(int i=0; i<files.length; i++) {
+			fileName +=  "@"+UploadFileUtils.fileUpload(imgUploadPath, files[i].getOriginalFilename(), files[i].getBytes(), ymdPath);
 		}
-		rDTO.setOrderID(oDTO.getOrderID());
+		
+		rDTO.setOrderID(cDTO.get(0).getOrderNumber());
 		rDTO.setUserAlias(uDTO.getUserAlias());
 		
 		//리뷰 저장할 때, 텍스트 '&lt, &gt'를 DB에는 '<, >' 형태로 저장하기. 상품 상세페이지에서 리뷰 뿌릴때는 필터처리하여 '&lt, &gt' 로 변환.
 		rDTO.setReviewContent(xss.xssDecoding(rDTO.getReviewContent()));
 		//파일이 없을 때 fileName이 null이기 때문에 조건문추가
+		if(fileName.equals("@null")) {
+			fileName = null;
+		}
 		if(fileName != null) {
 			rDTO.setrImg(ymdPath + File.separator + fileName);
 			String [] fName = fileName.split("@");
@@ -216,9 +268,12 @@ public class StoreController {
 			rDTO.setrThumbImg(fString);
 		}
 		int n = service.addReview(rDTO);
-		//리뷰등록에 성공했다면 orderFlag를 true로 바꿔주고 등록 성공 메시지.
+		//리뷰등록에 성공했다면 ReviewFlag를 false로 바꿔주고 등록 성공 메시지.
 		if(n == 1) {
-			service.orderFlagUpdate(oDTO.getOrderID());
+			for (CartDTO cartDTO : cDTO) {	
+				service.ReviewFlagUpdate(cartDTO.getCartNum());
+			}
+			
 			model.addAttribute("msg", "리뷰를 등록했습니다");
 		}
 		return "forward:/goodsRetrieve?gProductID="+ProductID;
@@ -248,12 +303,22 @@ public class StoreController {
 	}
 	
 	// 검색기능  
-			@RequestMapping(value = "/search", method = RequestMethod.GET)
-			public String storeSearch(@RequestParam("SearchName") String SearchName,Model model) {
-				List<GoodsDTO>list  = service.searchList(SearchName);
-				model.addAttribute("list",list);
+	@RequestMapping(value = "/search", method = RequestMethod.GET)
+	public String storeSearch(@RequestParam("SearchName") String SearchName,Model model, HttpSession session) {
+		
+		List<GoodsDTO>list  = service.searchList(SearchName);
+		model.addAttribute("list",list);
+		
+				//장바구니 몇개 있는지 count 구하기
+				UsersDTO uDTO = (UsersDTO)session.getAttribute("User");
+				int n = 0;
+				if(uDTO != null) {
+				String UserID = uDTO.getUserID();
+				n = service.CartCount(UserID);
+				}
+				model.addAttribute("CartCount", n);
 				
-				return "store/dogshop_main";
-			}
+		return "store/dogshop_main";
+	}
 	
 }

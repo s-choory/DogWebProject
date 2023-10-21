@@ -5,11 +5,23 @@
 <mapper namespace="CartMapper">      
 
 <insert id="addCartList" parameterType="Cart">
-	INSERT INTO CART VALUES(CART_CARTNUM_SEQ.nextval, #{UserID}, #{ProductID}, #{ProductName}, #{Price}, #{Psize}, #{Amount}, #{Color}, #{Image}, 0, null)
+	INSERT INTO CART VALUES(CART_CARTNUM_SEQ.nextval, #{UserID}, #{ProductID}, #{ProductName}, #{Price}, #{Psize}, #{Amount}, #{Color}, #{Image}, 0, 'before', 'true')
 </insert>
 
+<insert id="addAfterList" parameterType="Cart">
+	INSERT INTO CART VALUES(CART_CARTNUM_SEQ.nextval, #{UserID}, #{ProductID}, #{ProductName}, #{Price}, #{Psize}, #{Amount}, #{Color}, #{Image}, #{OrderNumber}, #{OrderState}, 'true')
+</insert>
+
+<select id="findCartOrder" parameterType="hashmap" resultType="Cart">
+	SELECT * FROM CART WHERE UserID = #{UserID} and ProductID = #{ProductID} and OrderState = 'after' and ReviewFlag = 'true'
+</select>
+
+<update id="ReviewFlagUpdate" parameterType="int">
+	UPDATE CART SET ReviewFlag='false' WHERE CartNum=#{cartNum}
+</update>
+
 <select id="cartList" parameterType="string" resultType="Cart">
-	SELECT * FROM CART WHERE UserID = #{UserID}
+	SELECT * FROM CART WHERE UserID = #{UserID} and OrderState = 'before'
 </select>
 
 <delete id="delCart" parameterType="string">
@@ -50,4 +62,11 @@
 	UPDATE CART SET Amount = Amount+#{Amount} WHERE CartNum = #{CartNum}
 </update>
 
+<select id="selectAfterList" parameterType="Cart" resultType="Cart">
+	SELECT * FROM CART WHERE UserID = #{UserID} and OrderNumber = #{OrderNumber} and OrderState = 'after' 
+</select>
+
+<select id="selectOrderAllList" parameterType="string" resultType="Cart">
+	SELECT * FROM CART WHERE UserID = #{UserID} and OrderState = 'after'
+</select>
 </mapper>                                              
