@@ -4,11 +4,18 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="OrdersMapper">      
 
-<select id="OrderSelect" parameterType="map" resultType="Orders">
-	SELECT * FROM ORDERS WHERE UserID=#{UserID} and ProductID=#{ProductID}
+<select id="ordersAllList" parameterType="String" resultType="Orders">
+	SELECT * FROM ORDERS WHERE UserID=#{UserID} order by OrderID desc
 </select>
 
-<update id="orderFlagUpdate" parameterType="int">
-	UPDATE ORDERS SET ReviewFlag='false' where OrderID=#{OrderID}
-</update>
+<select id="orderSelect" parameterType="int" resultType="Orders">
+	SELECT * FROM ORDERS WHERE OrderID=#{OrderID}
+</select>
+
+<insert id="orderInsert" parameterType="Orders">
+	 INSERT INTO ORDERS 
+	(OrderID, UserID, OrderName, UserName, Email, RodeAddress, HouseAddress, DetailAddress, PhoneNumber, PayMethod, OrderTime, TotalPrice, Requested, OrderState, paymethodcard, paymethodnumber, PostNumber) 
+	VALUES
+	(#{OrderID}, #{UserID}, #{OrderName}, #{UserName}, #{Email}, #{RodeAddress}, #{HouseAddress}, #{DetailAddress}, #{PhoneNumber}, #{PayMethod}, to_char(sysdate, 'YYYY-MM-DD HH24:MI:SS'), #{TotalPrice}, #{Requested}, #{OrderState}, #{paymethodcard}, #{paymethodnumber}, #{PostNumber})
+ </insert>
 </mapper>

@@ -1,5 +1,7 @@
 package com.dto;
 
+import java.util.Arrays;
+
 import org.apache.ibatis.type.Alias;
 
 @Alias("Reviews")
@@ -16,8 +18,37 @@ public class ReviewsDTO {
 	private String rThumbImg;
 	
 	private String ReviewType;
+	private byte[] USERIMG;
 	
 	
+	public ReviewsDTO(int reviewID, int orderID, int productID, String userAlias, String creationTime, double rating,
+			String reviewContent, String rImg, String rThumbImg, String reviewType, byte[] uSERIMG) {
+		super();
+		ReviewID = reviewID;
+		OrderID = orderID;
+		ProductID = productID;
+		UserAlias = userAlias;
+		CreationTime = creationTime;
+		Rating = rating;
+		ReviewContent = reviewContent;
+		this.rImg = rImg;
+		this.rThumbImg = rThumbImg;
+		ReviewType = reviewType;
+		USERIMG = uSERIMG;
+	}
+	@Override
+	public String toString() {
+		return "ReviewsDTO [ReviewID=" + ReviewID + ", OrderID=" + OrderID + ", ProductID=" + ProductID + ", UserAlias="
+				+ UserAlias + ", CreationTime=" + CreationTime + ", Rating=" + Rating + ", ReviewContent="
+				+ ReviewContent + ", rImg=" + rImg + ", rThumbImg=" + rThumbImg + ", ReviewType=" + ReviewType
+				+ ", USERIMG=" + Arrays.toString(USERIMG) + "]";
+	}
+	public byte[] getUSERIMG() {
+		return USERIMG;
+	}
+	public void setUSERIMG(byte[] uSERIMG) {
+		USERIMG = uSERIMG;
+	}
 	public String getrThumbImg() {
 		return rThumbImg;
 	}
@@ -29,26 +60,6 @@ public class ReviewsDTO {
 		return ReviewType;
 	}
 	public void setReviewType(String reviewType) {
-		ReviewType = reviewType;
-	}
-	@Override
-	public String toString() {
-		return "ReviewsDTO [ReviewID=" + ReviewID + ", OrderID=" + OrderID + ", ProductID=" + ProductID + ", UserAlias="
-				+ UserAlias + ", CreationTime=" + CreationTime + ", Rating=" + Rating + ", ReviewContent="
-				+ ReviewContent + ", rImg=" + rImg + ", rThumbImg=" + rThumbImg + ", ReviewType=" + ReviewType + "]";
-	}
-	public ReviewsDTO(int reviewID, int orderID, int productID, String userAlias, String creationTime, double rating,
-			String reviewContent, String rImg, String rThumbImg, String reviewType) {
-		super();
-		ReviewID = reviewID;
-		OrderID = orderID;
-		ProductID = productID;
-		UserAlias = userAlias;
-		CreationTime = creationTime;
-		Rating = rating;
-		ReviewContent = reviewContent;
-		this.rImg = rImg;
-		this.rThumbImg = rThumbImg;
 		ReviewType = reviewType;
 	}
 	public ReviewsDTO() {

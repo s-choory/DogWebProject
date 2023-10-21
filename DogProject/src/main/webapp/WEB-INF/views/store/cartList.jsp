@@ -243,6 +243,7 @@
     td{
     padding-right: 45px;
     margin-right: -5px;
+    margin-bottom: 30px;
     }
     .btn-group-vertical>.btn-group:not(:last-child)>.btn, .btn-group-vertical>.btn:not(:last-child):not(.dropdown-toggle) {
     border-radius: 7px;
@@ -349,10 +350,13 @@ int deliveryCharge= 0;
 			<input type="checkbox" name="check" id="mycheck<%= num %>" class="check" value="<%= num %>"/><label for="mycheck<%= num %>"></label></td>
 			<td class="td_default" width="80"><%= num %></td>
 			<td class="td_default" width="80">
-			<img src="resources/storeimages/<%= Image %>.jpg" border="0" align="center" width="80" />
+			<form id="prod<%= i %>" action="goodsRetrieve" method="post">
+			<input type="hidden" name="gProductID" value="<%=ProductID%>">
+			<a href="#" onclick="prod(<%=i%>)"><img src="resources/storeimages/<%= Image %>.jpg" border="0" align="center" width="80" /></a>
+			</form>
 			</td>
 				
-			<td class="td_default" width="300" style='padding-left: 30px'>
+			<td class="td_default" width="300" style='padding-left: 30px;'>
 		      	  	<form id="prod<%= i %>" action="goodsRetrieve" method="post">
 					<input type="hidden" name="gProductID" value="<%=ProductID%>">
 					<a href="#" onclick="prod(<%=i%>)"> <%= ProductName %> </a>

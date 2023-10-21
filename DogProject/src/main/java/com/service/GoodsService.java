@@ -11,6 +11,7 @@ import com.dto.CartDTO;
 import com.dto.GoodsDTO;
 import com.dto.OrdersDTO;
 import com.dto.ReviewsDTO;
+import com.dto.UsersDTO;
 
 @Service
 public class GoodsService {
@@ -87,6 +88,10 @@ public class GoodsService {
 
 	public void ReviewFlagUpdate(int cartNum) {
 		dao.ReviewFlagUpdate(cartNum);
+	}
+
+	public List<UsersDTO> reviewUserImg(String userAlias) {
+		return dao.reviewUserImg(userAlias);
 	}
 	
 

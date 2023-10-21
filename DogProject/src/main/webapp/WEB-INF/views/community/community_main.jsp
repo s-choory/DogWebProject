@@ -102,13 +102,14 @@
 	}
 	
 	#search {
-    width: 40%; /* 너비 조정 */
-    margin: 0 auto; /* 가운데 정렬 */
-    font-size: 16px; /* 폰트 크기 조정 */
-    padding: 12px; /* 내부 여백 설정 */
-    display: block; /* 너비를 설정하려면 display를 block으로 변경 */
-   	border-radius: 24px;
-   	border: 2px solid #8a8984;
+	    width: 40%; /* 너비 조정 */
+	    margin: 0 auto; /* 가운데 정렬 */
+	    font-size: 16px; /* 폰트 크기 조정 */
+	    padding: 12px; /* 내부 여백 설정 */
+	    display: block; /* 너비를 설정하려면 display를 block으로 변경 */
+	   	border-radius: 24px;
+	   	border: 2px solid #8a8984;
+	   	box-shadow: 0 3px 5px 0 hsla(0, 0%, 0%, 0.2);
     }
 	
 	.addObject{
@@ -126,6 +127,8 @@
 		display: flex;
 	    gap: 3px;
 	    align-items: center;
+	    box-shadow: 0 4px 6px 0 hsla(0, 0%, 0%, 0.2);
+	    transition: background-color 0.3s, color 0.3s;
 	}
 	
 	#addPost{
@@ -134,11 +137,16 @@
 		border-radius: 10px;
 		display: flex;
     	gap: 5px;
+    	box-shadow: 0 4px 6px 0 hsla(0, 0%, 0%, 0.2);
+    	transition: background-color 0.3s, color 0.3s;
+
 	}
 	#addPost:hover {
         background-color: #5050FF;
-        color: #5050FF;
     }
+    #addPost a:hover {
+   		color: black;
+	}
 	
 	#addPost img, #findMetting img{
 		width: 30px;
@@ -146,7 +154,9 @@
 	
 	#findMetting:hover {
         background-color: #5050FF;
-        color: #5050FF;
+    }
+	#findMetting a:hover {
+        color: black;
     }
 	
 	.categories {
@@ -167,32 +177,31 @@
     }
     .page a, .page span {
         margin: 0 5px;
-        padding: 5px;
+        padding: 10px;
         text-decoration: none;
-        color: #3498db;
-        border: 1px solid #1b0df3;
-        border-radius: 15px;
+        color: #71777d;
         transition: background-color 0.3s, color 0.3s;
+        font-size: 18px;
     }
 
     .page a:hover {
-        background-color: #3498db;
+        background-color: #71777d;
         color: #fff;
     }
     .page-link .disabled {
     background-color: #f8bd24; /* 원하는 배경색 지정 */
 	color: #fff;
 	border: 1px solid #f8bd24;
+	
 	}
 	.pageon{
 		margin: 0 5px;
-        padding: 5px;
+        padding: 10px;
         text-decoration: none;
-        color: #003458;
-        border: 1px solid #1b0df3;
-        border-radius: 15px;
+        color: #71777d;
         transition: background-color 0.3s, color 0.3s;
-        
+        font-weight: 800;
+        font-size: 18px;
 	}
     a{
     	text-decoration: none;
@@ -411,6 +420,6 @@
 <div class="page">
 <jsp:include page = "../common/page.jsp" flush="true"/><br>
 </div>
-<jsp:include page = "../common/footer.jsp" flush="true"/><br>
+<jsp:include page = "../common/footer.jsp" flush="true"/>
 </body>
 </html>
