@@ -37,6 +37,7 @@
 }
 .main_Title{
 	display: flex;
+	font-weight: bolder;
 	gap: 50px;
 }
 .sub_Title{
@@ -49,7 +50,7 @@
 </style>
 <div class="all">
 <div class="main_Title">
-	<h7>Pick 가이드</h7>
+	Pick 가이드
 </div>
 <div class="sub_Title">
 	<h7>누구나 갈 수 있는 특별한 장소 가이드</h7>

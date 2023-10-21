@@ -248,7 +248,7 @@
 <body>
 <jsp:include page = "../common/top.jsp" flush="true"/><br>
 <jsp:include page = "../common/side.jsp" flush="true"/><br>
-<jsp:include page = "../common/map_ad.jsp" flush="true"/><br><hr>
+<jsp:include page = "../common/map_ad.jsp" flush="true"/><br>
 <div class = "container">
 	<span style="color: hsl(0, 0%, 45%); font-size: 13px;">※ 지도에 나오는 장소들은 모두 반려견과 동반 출입이 가능합니다.<span style="font-size: 11px;">(업소별 특정 견종 동반 출입 제한)</span></span>
 <div class = "map-container">
@@ -258,11 +258,11 @@
 			<div class="map-search-title">DoggyDoggy <b style="	font-size: 20px;">Map</b></div>
 			<input id = "address" class="address" type="text" placeholder="장소, 주소 검색">
 		<a id="categoryFilter">
-			<img class = "categoryimg" title="전체" src="${pageContext.request.contextPath}/resources/전체아이콘.png" width=40 height=40 id="all">
-			<img class = "categoryimg" title="의료" src="${pageContext.request.contextPath}/resources/반려의료아이콘.png" width=40 height=40 id="의료">
-			<img class = "categoryimg" title="식당" src="${pageContext.request.contextPath}/resources/식당아이콘.png" width=40 height=40 id="식당">
-			<img class = "categoryimg" title="여행지" src="${pageContext.request.contextPath}/resources/여행지아이콘.png" width=40 height=40 id="여행">
-			<img class = "categoryimg"  title="펫용품" src="${pageContext.request.contextPath}/resources/펫용품아이콘.png" width=40 height=40 id="서비스">
+			<img class = "categoryimg" title="전체" src="${pageContext.request.contextPath}/resources/전체아이콘.png" width=40 height=38 id="all">
+			<img class = "categoryimg" title="의료" src="${pageContext.request.contextPath}/resources/반려의료아이콘.png" width=40 height=38 id="의료">
+			<img class = "categoryimg" title="식당" src="${pageContext.request.contextPath}/resources/식당아이콘.png" width=40 height=38 id="식당">
+			<img class = "categoryimg" title="여행지" src="${pageContext.request.contextPath}/resources/여행지아이콘.png" width=40 height=38 id="여행">
+			<img class = "categoryimg"  title="펫용품" src="${pageContext.request.contextPath}/resources/펫용품아이콘.png" width=40 height=38 id="서비스">
 		</a>
 	<br>
 		</div>

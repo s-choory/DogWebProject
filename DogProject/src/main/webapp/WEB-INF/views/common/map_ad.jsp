@@ -1,12 +1,11 @@
-<!-- map 캐러셀  광고-->
 <style>
     .carousel {
-      margin: auto; /* 수평 가운데 정렬 */
-      max-width: 800px; /* 캐러셀의 최대 너비 설정 (원하는 값으로 조정) */
+      margin: auto; 
+      max-width: 800px; 
+      height:300px;
     }
     .carousel-item{
       margin-left: 150px;
-      /* align-items: center; */ /* 수평 가운데 정렬 */
     }
 </style>
 
