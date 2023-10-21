@@ -9,14 +9,10 @@ public class LikeDTO {
 	private int categoryID;  //카테고리 아이디   //게시글/댓글/리뷰의 고유한 번호
 	private String categories;  //카테고리   //게시글/댓글/리뷰를 나눠주는 문자
 	
-	
-	
 	public LikeDTO() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-
-
 
 	public LikeDTO(String userID, int categoryID, String categories) {
 		super();
@@ -25,13 +21,9 @@ public class LikeDTO {
 		this.categories = categories;
 	}
 
-
-
 	public String getUserID() {
 		return userID;
 	}
-
-
 
 	public void setUserID(String userID) {
 		this.userID = userID;
