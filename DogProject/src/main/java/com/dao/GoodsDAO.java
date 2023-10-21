@@ -82,6 +82,9 @@ public class GoodsDAO {
 	public List<UsersDTO> reviewUserImg(String userAlias) {
 		return session.selectList("ReviewsMapper.reviewUserImg",userAlias);
 	}
-
+	
+	public int CartCount(String userID) {
+		return session.selectOne("GoodsMapper.CartCount", userID);
+	}
 
 }

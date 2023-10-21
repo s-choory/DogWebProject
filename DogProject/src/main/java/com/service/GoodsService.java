@@ -94,6 +94,8 @@ public class GoodsService {
 		return dao.reviewUserImg(userAlias);
 	}
 	
-
+	public int CartCount(String userID) {
+		return dao.CartCount(userID);
+	}
 	
 }

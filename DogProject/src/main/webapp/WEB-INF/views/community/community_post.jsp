@@ -465,9 +465,6 @@ function getreplylist() { ////댓글 리스트 출력 이벤트
 
 	<hr align="center" style="border: ridge 3px orange; width: 85%;">
 <div class = "postContent" style="margin-left: 10%;">
-	<img src="resources/a.jpg" id="로고" width=500 height=300 value="">
-	<br>
-	<hr>
 	<span>${read.content}</span><br>
 	<hr>
 	file Link: <a href="${upload.downloadurl}" target="_blank">${upload.filename}</a>
