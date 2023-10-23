@@ -157,12 +157,14 @@
 	display: flex;
     padding-left: 20px;
     padding-right: 20px;
+    margin-top:30px;
     margin-left: 50px;
     margin-right: 100px;
     flex-wrap: nowrap;
     justify-content: center;
     flex-direction: row;
     align-items: center;
+    font-weight: bolder;
 	}
 	td.td_default p{
 	display: flex;
@@ -247,8 +249,6 @@
     	padding-bottom: 25px;
     }	
     td{
-    padding-right: 45px;
-    margin-right: -5px;
     margin-bottom: 30px;
     }
     .btn-group-vertical>.btn-group:not(:last-child)>.btn, .btn-group-vertical>.btn:not(:last-child):not(.dropdown-toggle) {
@@ -358,14 +358,14 @@ int deliveryCharge= 0;
 			<td class="td_default" width="80">
 			<form id="prod<%= i %>" action="goodsRetrieve" method="post">
 			<input type="hidden" name="gProductID" value="<%=ProductID%>">
-			<a href="#" onclick="prod(<%=i%>)"><img src="resources/storeimages/<%= Image %>.jpg" border="0" align="center" width="80" /></a>
+			<a href="#" onclick="prod(<%=i%>)"><img src="resources/storeimages/<%= Image %>.jpg" border="" align="center" width="80" height="60" /></a>
 			</form>
 			</td>
 				
-			<td class="td_default" width="300" style='padding-left: 30px;'>
+			<td class="td_default" width="300" style='padding-left: 20px;'>
 		      	  	<form id="prod<%= i %>" action="goodsRetrieve" method="post">
 					<input type="hidden" name="gProductID" value="<%=ProductID%>">
-					<a href="#" onclick="prod(<%=i%>)"> <%= ProductName %> </a>
+					<a href="#" onclick="prod(<%=i%>)" style="font-weight: bolder;"> <%= ProductName %> </a>
 					</form>
 				<br> <font size="2" color="#665b5f">[옵션 : 사이즈(<%= Psize %>)
 					, 색상(<%= Color %>)]
@@ -392,7 +392,7 @@ int deliveryCharge= 0;
 			</td>
 			
 			<td width="130px">
-			    <button class="deleteButton delCart btn btn-danger" data-xxx="<%= num %>" onclick="delCart(<%=num%>)">삭제</button>
+			    <button class="deleteButton delCart btn btn-secondary" data-xxx="<%= num %>" onclick="delCart(<%=num%>)">삭제</button>
 			</td>
 
 				

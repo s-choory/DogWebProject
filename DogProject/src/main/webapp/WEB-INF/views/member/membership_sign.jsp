@@ -5,20 +5,22 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <style type="text/css">
 	body {
 	    margin: 0;
 	    padding: 0;
 	    background-color: #3c3c3c; 
-	    font-family: Arial, sans-serif;
+	    font-family: 'Exo', sans-serif;
   	}
   	
 	.link-container {
-		margin-left: 30%;
-		margin-right: 30%;
+		margin-left: 37%;
+		margin-right: 37%;
 		margin-top: 2%;
 		color:white;
 		text-align: center; /* 중앙 정렬을 위해 추가 */
+		border-color: gray;
 	}
 	
 	#로고{	
@@ -30,14 +32,15 @@
 		bottom: 20px;
 		left: 42%;
 		transform: translateX(-50%);
-		background-color: #FFC81E;
+		background-color: #7AFF7A;
 		color: white;
 		padding: 10px 20px;
 		border: none;
 		border-radius: 5px;
 		cursor: pointer;
-		font-size: 14px;
+		font-size: 16px;
 		width: 200px;
+		font-weight: bolder;
 	}
 	.mem2 {
 		position: fixed;
@@ -50,7 +53,7 @@
 		border: none;
 		border-radius: 5px;
 		cursor: pointer;
-		font-size: 14px;
+		font-size: 16px;
 		width: 200px;
 	}
 	.form-list {
@@ -61,9 +64,10 @@
 	}
 	
 	.form-item {
-	    border: 0.5px solid;
+	    border: 0.1px solid gray;
 	    height:30px;
-	    padding : 5px;
+	    align-items: center;
+	    padding : 10px;
 	}
 	
 	.form-item label {
@@ -77,9 +81,31 @@
 	}
 	
 	#zipcode-button {
+		background: linear-gradient(135deg, #7AFF7A, #429F6B);
+		border: 0px;
+		height:30px;
 	    margin-left: 10px; /* 원하는 간격으로 조정하세요 */
+	    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1);
+	    font-size: 12px;
+	    font-weight: bolder;
+	    transition: transform 0.3s;
+	}
+	#zipcode-button:hover {
+		transform: translateY(-5px);
 	}
 
+	#select_email {
+		padding-left:5px;
+		background: linear-gradient(135deg, #7AFF7A, #429F6B);
+		height:30px;
+	    font-size: 12px;
+	    font-weight: bolder;
+	    transition: transform 0.3s;
+	}
+	#select_email:hover{
+		transform: translateY(-5px);
+	}
+	
 	.form-item input[type="text"],
 	.form-item input[type="password"] {
 	    width: 100%;
@@ -95,6 +121,8 @@
 <script>
 
 	$(function(){
+		
+    	
 		//아이디 중복 이벤트
 		$("#UserID").on("keyup",function(){
 			$.ajax({
@@ -149,7 +177,7 @@
 <script type="text/javascript">
 	<%	String msg = request.getParameter("msg");
 	if(msg != null){%>
-		alert("<%= msg %>");
+		Swal.fire('경고', '<%=msg%>', 'warning');
 	<% } %>
 	
     function All_check(){
@@ -165,107 +193,79 @@
         var PhoneNumber = document.getElementById("PhoneNumber");
         var PostNumber = document.getElementById("sample4_postcode");
         
-        var flag = true;
    /*id 유효성 검사  */
         
         if(id.value==''){
-            alert("아이디를 입력하세요.");
-            flag = false;
+        	Swal.fire('경고', '아이디를 입력하세요.', 'warning');
             return false;
         }
         if(!validate.test(id.value)){
-            $("#UserID").parent().attr("style","color:red");
-            alert("id는 4~12자의 영문 대&소문자와 숫자조합입니다.");        
+        	Swal.fire('경고', 'id는 4~12자의 영문 대&소문자와 숫자조합입니다.', 'warning');
             return false;
         }
         
         /*passwd 유효성 검사  */
         if(passwd.value==''){ 
-            alert("비밀번호를 입력하세요.");
-            $("#Password").parent().attr("style","color:red");
+        	Swal.fire('경고', '비밀번호를 입력하세요.', 'warning');
             return false;
         }
         if(!validate.test(passwd.value)){ 
-            alert("passwd는 4~12자의 영문 대소문자와 숫자조합입니다.");
-            $("#Password").parent().attr("style","color:red");
+        	Swal.fire('경고', 'passwd는 4~12자의 영문 대소문자와 숫자조합입니다.', 'warning');
             return false;
         }
    
         if(passwd2.value!=passwd.value){ 
-            alert("비밀번호가 일치하지 않습니다");
-            $("#Password").parent().attr("style","");
-            $("#passwd2").parent().attr("style","color:red");
+        	Swal.fire('경고', '비밀번호가 일치하지 않습니다.', 'warning');
             return false;
         }
         
         /*이름 유효성 검사  */       
         if(name.value ==''){
-            alert("이름을 입력하세요");
-            $("#Password").parent().attr("style","");
-            $("#passwd2").parent().attr("style","");
-            $("#UserName").parent().attr("style","color:red");
+        	Swal.fire('경고', '이름을 입력하세요', 'warning');
             return false;
         }
         
         if(!n_validate.test(name.value)){
-            $("#Password").parent().attr("style","");
-            $("#passwd2").parent().attr("style","");
-            $("#UserName").parent().attr("style","color:red");
-            alert("특수문자,영어,숫자는 사용할수 없습니다. 한글만 입력가능합니다.");
+        	Swal.fire('경고', '특수문자,영어,숫자는 사용할수 없습니다. 한글만 입력가능합니다.', 'warning');
             return false;
         }
        
         
         if(UserAlias.value ==''){
-            $("#Password").parent().attr("style","");
-            $("#passwd2").parent().attr("style","");
-            $("#UserName").parent().attr("style","");
-            $("#UserAlias").parent().attr("style","color:red");
-            alert("별명을 입력하세요");
+        	Swal.fire('경고', '별명을 입력하세요.', 'warning');
             return false;
         }
 		
         if($("#result").text() === "사용불가 아이디입니다."){
-        	alert("id를 확인하세요");
+        	Swal.fire('경고', '사용불가 아이디입니다. 아이디를 확인하세요', 'warning');
         	return false;
         }
         
         if(!p_validate.test(PhoneNumber.value)){
-            $("#Password").parent().attr("style","");
-            $("#passwd2").parent().attr("style","");
-            $("#UserName").parent().attr("style","");
-            $("#UserAlias").parent().attr("style","");
-            $("#PhoneNumber").parent().attr("style","color:red");
-            alert("휴대번호를 올바르게 입력하세요. (예: 010-1234-5678)");
+        	Swal.fire('경고', '휴대번호를 올바르게 입력하세요. (예: 010-1234-5678)', 'warning');
             return false;
         }
         
         if(!PostNumber.value){
-            $("#Password").parent().attr("style","");
-            $("#passwd2").parent().attr("style","");
-            $("#UserName").parent().attr("style","");
-            $("#UserAlias").parent().attr("style","");
-            $("#sample4_postcode").parent().parent().attr("style","color:red");
-            alert("우편번호를 입력하세요");
+        	Swal.fire('경고', '우편번호를 입력하세요', 'warning');
             return false;
         }
     	
         if(true){
-        	alert("회원가입 성공");
+        	Swal.fire('성공', '회원가입에 성공했습니다.<br><br>이메일과 반려견의 정보는<br>마이페이지에서 업데이트 가능합니다.', 'success');
         	return true;
         }
         
     }
-        function input_email(){
-        	document.getElementById("Email2").value=document.getElementById("select_email").value; 
-        }
-    
+       function input_email(){
+       	document.getElementById("Email2").value=document.getElementById("select_email").value; 
+       }
     
     </script>
 </head>
 <body>
 <div class="link-container">
-	<img src="resources/a.jpg" id="로고" width=60 height="60"><br>
+<a href="/test"><img src="resources/로고아이콘.png" id="로고" width=80 height="60"><br></a>
 	<form method="post" name="myForm" id="myForm" action="memberAdd" onsubmit="return All_check();">
 		
 <!-- 		<b>계정정보</b> -->

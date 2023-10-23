@@ -41,7 +41,8 @@
 	}
 	
 	.check:checked {
-		background-color: #FFC81E;
+		background-color: #7AFF7A;
+		transition: opacity 0.3s ease-in-out;
 	}
 	
 	.check::before {
@@ -63,6 +64,7 @@
 	
 	.chk_title {
 		color:white;
+		font-weight: bolder;
 	}
 	
 	.chk_content{
@@ -99,14 +101,15 @@
 		bottom: 20px;
 		left: 50%;
 		transform: translateX(-50%);
-		background-color: #FFC81E;
+		background-color: #7AFF7A;
 		color: white;
 		padding: 10px 20px;
 		border: none;
 		border-radius: 5px;
 		cursor: pointer;
-		font-size: 14px;
+		font-size: 16px;
 		width: 200px;
+		font-weight: bolder;
 	}
 	
 	.next-buttonOFF {
@@ -120,7 +123,7 @@
 		border: none;
 		border-radius: 5px;
 		cursor: pointer;
-		font-size: 14px;
+		font-size: 16px;
 		width: 200px;
 	}
 
@@ -129,7 +132,7 @@
 
 <body>
 <div class="link-container">
-<img src="resources/a.jpg" id="로고" width=60 height="60"><br>
+<a href="/test"><img src="resources/로고아이콘.png" id="로고" width=80 height="60"></a><br>
 
 <div class="check-container">
 	<input type="checkbox" id="chk_all" class="check" />
@@ -139,14 +142,14 @@
 <br>
 
 <input type="checkbox" id="chk1" class="check" />
-<span class="chk_title"><a style="color: #FFC81E; font-size: 15px">[필수]</a> 페이지 이용약관 ></span>
+<span class="chk_title"><a style="color: #7AFF7A; font-size: 15px">[필수]</a> 페이지 이용약관 ></span>
 <div class="mini-container">
-	<div class = "chk_content"><span style="font-size: 15px; color: white;">환영합니다.</span><br>이용약관 어쩌구...이용약관 어쩌구...이용약관 어쩌구...이용약관 어쩌구...이용약관 어쩌구...이용약관 어쩌구...이용약관 어쩌구...이용약관 어쩌구...이용약관 어쩌구...이용약관 어쩌구...이용약관 어쩌구...이용약관 어쩌구...이용약관 어쩌구...이용약관 어쩌구...이용약관 어쩌구...이용약관 어쩌구...이용약관 어쩌구...이용약관 어쩌구...이용약관 어쩌구...이용약관 어쩌구...이용약관 어쩌구...이용약관 어쩌구...이용약관 어쩌구...이용약관 어쩌구...이용약관 어쩌구...이용약관 어쩌구...</div>
+	<div class = "chk_content"><span style="font-size: 15px; color: white;">환영합니다.<br></span><br>이용약관 어쩌구...이용약관 어쩌구...이용약관 어쩌구...이용약관 어쩌구...이용약관 어쩌구...이용약관 어쩌구...이용약관 어쩌구...이용약관 어쩌구...이용약관 어쩌구...이용약관 어쩌구...이용약관 어쩌구...이용약관 어쩌구...이용약관 어쩌구...이용약관 어쩌구...이용약관 어쩌구...이용약관 어쩌구...이용약관 어쩌구...이용약관 어쩌구...이용약관 어쩌구...이용약관 어쩌구...이용약관 어쩌구...이용약관 어쩌구...이용약관 어쩌구...이용약관 어쩌구...이용약관 어쩌구...이용약관 어쩌구...</div>
 </div>
 <br>
 
 <input type="checkbox" id="chk2" class="check" />
-<span class="chk_title"><a style="color: #FFC81E; font-size: 15px">[필수]</a> 개인정보 수집 및 이용 ></span>
+<span class="chk_title"><a style="color: #7AFF7A; font-size: 15px">[필수]</a> 개인정보 수집 및 이용 ></span>
 <div class="mini-container">
 	<div class = "chk_content">
 		개인정보수집 어쩌구....개인정보수집 어쩌구....개인정보수집 어쩌구....개인정보수집 어쩌구....개인정보수집 어쩌구....개인정보수집 어쩌구....개인정보수집 어쩌구....개인정보수집 어쩌구....개인정보수집 어쩌구....개인정보수집 어쩌구....개인정보수집 어쩌구....개인정보수집 어쩌구....개인정보수집 어쩌구....개인정보수집 어쩌구....개인정보수집 어쩌구....개인정보수집 어쩌구....개인정보수집 어쩌구....개인정보수집 어쩌구....
@@ -155,7 +158,7 @@
 <br>
 
 <input type="checkbox" id="chk3" class="check" />
-<span class="chk_title"><a style="color: #FFC81E; font-size: 15px">[필수]</a> 위치기반서비스 이용약관 ></span>
+<span class="chk_title"><a style="color: #7AFF7A; font-size: 15px">[필수]</a> 위치기반서비스 이용약관 ></span>
 <div class="mini-container">
 	<div class = "chk_content">
 		위치기반서비스 약관 어쩌구....위치기반서비스 약관 어쩌구....위치기반서비스 약관 어쩌구....위치기반서비스 약관 어쩌구....위치기반서비스 약관 어쩌구....위치기반서비스 약관 어쩌구....위치기반서비스 약관 어쩌구....위치기반서비스 약관 어쩌구....위치기반서비스 약관 어쩌구....위치기반서비스 약관 어쩌구....위치기반서비스 약관 어쩌구....
@@ -164,7 +167,7 @@
 <br>
 
 <input type="checkbox" class="check" />
-<span class="chk_title"><a style="color: #828282; font-size: 15px">[선택]</a> 이벤트・혜택 정보 수신 ></span>
+<span class="chk_title"><a style="color: #b4b4b4; font-size: 15px">[선택]</a> 이벤트・혜택 정보 수신 ></span>
 <div class="mini-container">
 	<div class = "chk_content">
 		이벤트... 휴대폰/이메일 동의... 어쩌구...

@@ -823,7 +823,7 @@
 						<%}else{ %>
 							 <div class="carousel-item">
 						<% } %>
-								<img src="<%= rImgList2[0]+rImgList2[n] %>" class="d-block w-100 h-50" data-xxx="<%=rImgList2[0]+rImgList2[n]%>" loading="lazy">
+								<img src="<%= rImgList2[0]+rImgList2[n] %>" class="d-block w-100 h-50" data-xxx="<%=rImgList2[0]+rImgList2[n]%>">
 								
 							 </div>
 						<% }}} %> 
