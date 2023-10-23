@@ -91,7 +91,6 @@ public class UsersController {
 	@RequestMapping(value = "/aliasChk", method = RequestMethod.POST,  produces = "text/plain;charset=UTF-8")
 	public @ResponseBody String UserAlias(String UserAlias) {
 		int n  = service.aliasChk(UserAlias);
-		System.out.println(n);
 		String mesg = "사용가능 별명입니다";
 		if(n == 1) {
 			mesg = "사용불가 별명입니다";
@@ -111,9 +110,7 @@ public class UsersController {
 		
 		//암호화
 		String password = user.getPassword();
-		System.out.println("암호화 전 : " + password);
 		String encodePW = SecurityConfig.getPasswordEncoder().encode(password);
-		System.out.println("암호화 후 : " + encodePW);
 		user.setPassword(encodePW);
 		
 		int n = service.memberAdd(user);
@@ -154,7 +151,6 @@ public class UsersController {
 	@RequestMapping(value="/sendNumber", method = RequestMethod.POST)
 	@ResponseBody
 	public String sendNumber(String PhoneNumber){
-		System.out.println(PhoneNumber);
         Random rand  = new Random();
         String numStr = "";
         for(int i=0; i<6; i++) {
@@ -167,12 +163,12 @@ public class UsersController {
 		String domain = "https://api.coolsms.co.kr";
 		DefaultMessageService messageService = NurigoApp.INSTANCE.initialize(apiKey, apiSecretKey, domain);
 
-        System.out.println("수신자 번호 : " + PhoneNumber);
-        System.out.println("인증번호 : " + numStr);
+//        System.out.println("수신자 번호 : " + PhoneNumber);
+//        System.out.println("인증번호 : " + numStr);
         
         Message message = new Message();
         message.setFrom("01092681933");
-        message.setTo("01092681933");
+        message.setTo(PhoneNumber);
         message.setText("DogProject\n"+
         "인증번호는["+numStr+"]입니다.");
         
@@ -213,7 +209,6 @@ public class UsersController {
 		stringBuffer.insert(8, insertion);
 		String result = stringBuffer.toString();
 		uDTO.setPhoneNumber(result);
-		System.out.println(uDTO);
 		
 		UsersDTO user = service.findPW(uDTO);
 		if(user != null) {

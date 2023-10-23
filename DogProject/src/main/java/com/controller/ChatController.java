@@ -34,7 +34,6 @@ public class ChatController {
     @GetMapping("/roomList")
     public String roomList(Model model) {
         List<ChatRoomDTO> roomList = chatService.findAllRoom();
-        System.out.println("BE ====="+roomList);
         model.addAttribute("roomList", roomList);
         return "chatting/roomList";
     }
@@ -48,7 +47,6 @@ public class ChatController {
     //채팅방 등록
     @PostMapping("/roomAdd")
     public String doRoomAdd(ChatRoomDTO chatRoomDTO) {
-    	System.out.println("BE ====="+ chatRoomDTO);
     	chatService.createChatRoom(chatRoomDTO);
     	return "redirect:/roomList";
     }
@@ -58,7 +56,6 @@ public class ChatController {
     public String joinRoom(@PathVariable(required = false)int roomId, Model model) {
     	//채팅방 채팅내용 불러오기
     	List<ChatMessageDTO> chatList = chatService.findAllChatMessage(roomId);
-    	System.out.println(chatList);
     	model.addAttribute("roomId", roomId);
     	model.addAttribute("chatList", chatList);
     	return "chatting/chatRoom";

@@ -24,7 +24,6 @@ public class PageService {
 		// 카테고리별 정렬 함수
 		return dao.selectOrder(map, curPage, pDTO);
 		}
-		System.out.println("map>>>"+map);
 		// 검색조건별 정렬함수
 		return dao.selectSearch(map, curPage, pDTO);
 	}

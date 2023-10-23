@@ -66,7 +66,6 @@ public class StoreController {
 		
 		//String UserID = uDTO.getUserID();
 		//int n = service.CartCount(UserID);
-		//System.out.println(n);
 			
 			
 			
@@ -95,12 +94,9 @@ public class StoreController {
 		@RequestMapping(value = "/orderConfirm", method = RequestMethod.GET)
 		public String orderConfirm(Model model,HttpSession session) {
 			List<CartDTO> list = (List<CartDTO>)session.getAttribute("cDTO");
-			System.out.println(list);
 			UsersDTO uDTO = (UsersDTO)session.getAttribute("User");
 			List<OrdersDTO> ordersAllList = oService.ordersAllList(uDTO.getUserID()); //OrderID 추출하기
-			System.out.println("현재 주문번호" + ordersAllList.size());
 	        int OrderID = ordersAllList.size() + 1; //OrderID 추출 후 주문번호 지정
-	        System.out.println("적용될 주문번호" + OrderID);
 	        session.setAttribute("OrderID", OrderID);
 			return "store/orderConfirm";
 		}
@@ -187,9 +183,6 @@ public class StoreController {
 		
 		// 가격  내림차순 
 		List<GoodsDTO>list = service.MostPopular(gCategory);
-		
-		System.out.println("=====MostPopular========>>>>>>"+list);
-		System.out.println("=====MostPopular========>>>>>>"+list.size());
 		
 		m.addAttribute("list", list);
 		//장바구니 몇개 있는지 count 구하기

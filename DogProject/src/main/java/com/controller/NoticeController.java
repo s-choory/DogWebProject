@@ -45,12 +45,8 @@ public class NoticeController {
 		if(curPage == null) curPage = "1";
 		String search= request.getParameter("search");
 		String order= request.getParameter("order");
-		System.out.println(search);
 		
 		pnDTO = Pageservice.selectAll(Integer.parseInt(curPage), search, pnDTO, order);
-		System.out.println("curPage>>>>>>"+curPage);
-		System.out.println(pnDTO.getTotalCount());
-		System.out.println(pnDTO.getNlist());
 		model.addAttribute("pnDTO",pnDTO);
 		model.addAttribute("search", search);
 		model.addAttribute("order", order);
@@ -61,7 +57,6 @@ public class NoticeController {
 	@RequestMapping(value = "/ContactCenter_Notice_page", method = RequestMethod.GET)
 		public String read(Locale locale, Model model, 
 				@RequestParam("NoticeID") int NoticeID, PageNoticeDTO pnDTO){
-		System.out.println("Notice read===");
 		NoticeDTO ndto = NoticeService.read(NoticeID);
 
 		NoticeService.hitadd(NoticeID); //조회수 처리
@@ -77,9 +72,7 @@ public class NoticeController {
 	//고객센터 FAQ
 	@RequestMapping(value = "/ContactCenter_FAQ", method = RequestMethod.GET)
 	public String ContactCenter_FAQ(Locale locale, Model model) {
-		System.out.println("FAQ list()=================");
 		List<FAQDTO> flist=FAQService.list();
-		System.out.println(flist);		
 		model.addAttribute("list", flist);
 		return "customer_center/ContactCenter_FAQ";
 	}

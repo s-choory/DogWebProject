@@ -591,13 +591,11 @@ $(function() {
     	}
 %>   
    <!-- </form> -->
- 	<picture class="user"> 
  	<% if(userFlag == true){%>
       <img src="resources/<%= imageSrc %>.JPG" alt="julius avatar">
  	<% } else{%>
       <img src="resources/강아지기본이미지.JPG" alt="julius avatar">
      <% } }%>
-	</picture>	
     <button class="btn btn1" type="button" name="button" id="submit-button">Send</button>
     
   

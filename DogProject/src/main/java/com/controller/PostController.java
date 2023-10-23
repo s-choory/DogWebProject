@@ -55,7 +55,6 @@ public class PostController {
 	public String community(Locale locale, Model model) {
 		List<PostsDTO> list = Postsservice.selectList();
 		model.addAttribute("list",list);
-		System.out.println(list); // list 확인
 		
 		return "community/community_main";
 	}
@@ -67,25 +66,9 @@ public class PostController {
 		if(curPage == null) curPage = "1";
 		String search= request.getParameter("search");
 		String order= request.getParameter("order");
-		System.out.println("!!!!!"+search);
 		
 		pDTO = Pageservice.selectAll(Integer.parseInt(curPage), search, pDTO, order);
-		System.out.println("curPage>>>>>>"+curPage);
-		System.out.println(pDTO.getTotalCount());
-		System.out.println(pDTO.getList());
 		model.addAttribute("pDTO",pDTO);
-		List<PostsDTO> list = pDTO.getList();
-		
-		
-		for (PostsDTO psDTO : list) {
-			if(psDTO.getPostType().equals("deleted")) {  
-				System.out.println(psDTO.getPostType());
-			} else {
-				System.out.println("!!!!!!~");
-			}
-		}
-	
-		
 		model.addAttribute("search", search);
 		model.addAttribute("order", order);
 		return "community/community_main";
@@ -96,15 +79,12 @@ public class PostController {
 			public String post(Locale locale, Model model, 
 				@RequestParam("PostID") int PostID, LikeDTO ldto, HttpServletResponse response, HttpServletRequest request,
 				HttpSession session, PageDTO ppDTO, CommentsDTO cdto) {
-				
 				UsersDTO uDTO = (UsersDTO)session.getAttribute("User");
 				
 				//ldto.setUserID(uDTO.getUserID());
-				System.out.println("Posts read===");
 				PostsDTO pdto = Postsservice.read(PostID);//게시글 상세보기
 			
 				FileDTO fdto = fservice.fileSelect(PostID);
-				System.out.println(fdto);
 						
 						
 				//조회수-Cookie or 세션 이용해서 조회수 중복 방지
@@ -127,19 +107,15 @@ public class PostController {
 				model.addAttribute("replyCount", n6); //댓글 갯수
 				
 				List<LikeDTO> likeList = LikeService.selectLikeList();
-				System.out.println("@@!#"+likeList);
 				int n2222;
 				for (LikeDTO like : likeList) {
 					if(like.getCategoryID() == PostID) {
 						n2222 = LikeService.like_likeTotalCount(like); //좋아요 갯수
 						model.addAttribute("n2222", n2222);
-						System.out.println("!!!"+n2222);
 					}else if(likeList == null) {
 						model.addAttribute("n2222", 0);
-						System.out.println(0);
 					}
 				}
-				System.out.println("DSDS11~~"+uDTO);
 				model.addAttribute("uDTO", uDTO);
 				model.addAttribute("read", pdto);// 게시글 상세보기
 				model.addAttribute("upload", fdto);// 게시글 상세보기
@@ -161,23 +137,18 @@ public class PostController {
 		@RequestMapping(value = "/like", method = RequestMethod.POST)
 		@ResponseBody
 		public int like(Locale locale, Model model, HttpSession session, int PostID, PostsDTO pdto, LikeDTO ldto) {
-			System.out.println("Posts read===~~~~");
-			System.out.println(PostID+"fsasad");
 			UsersDTO uDTO = (UsersDTO)session.getAttribute("User");
 			
 			ldto.setUserID(uDTO.getUserID());
 			ldto.setCategoryID(PostID);
 			ldto.setCategories("posts");    //컨트롤러에서 임의로 설정
-			System.out.println(ldto.toString());
 			
 			int n = 0;
 			if(LikeService.like_likeCount(ldto) == 0) { //좋아요 갯수 db 
 				LikeService.likeinsert(ldto); //좋아요 버튼 클릭 시  db 1개 추가
-				System.out.println("likeinsert===="+ldto);
 				n = LikeService.like_likeTotalCount(ldto);
 			}else if(LikeService.like_likeCount(ldto) != 0) {
 				LikeService.likedelete(ldto); //좋아요 버튼 클릭 시  db 1개 감소
-				System.out.println("likedelete===="+ldto);
 				n = LikeService.like_likeTotalCount(ldto);
 			}
 			//return "redirect:/community/community_post";
@@ -197,12 +168,9 @@ public class PostController {
 			}
 			
 			if(uDTO.getUserID().toString().equals(dto.getAuthorID().toString())) { //로그인 아이디와 작성자 아이디 일치여부
-				System.out.println("delete==");
 				int n = Postsservice.delete_column(dto);
-				System.out.println("delete 갯수"+n);
 				return "redirect:/";
 			}else {
-				System.out.println("삭제할 수 없습니다");
 				return "error";
 				
 			}
@@ -260,7 +228,6 @@ public class PostController {
 	 // 글쓰기 업로드
 	    	
 	    	int find_postid = Postsservice.addPost(post); 
-	    	System.out.println(find_postid+"dddddddsd");
 	    	 // 멀티 파일 업로드 기능 구현
 		    for (MultipartFile file : files) {
 		        if (!file.isEmpty()) {
@@ -322,14 +289,12 @@ public class PostController {
 				return "redirect:/login";
 			}
 		    model.addAttribute("read", Postsservice.read(PostID));
-	    	System.out.println("무야호");
 			return "community/community_updatePost";
 		}
 		
 		
 		@RequestMapping(value = "/updatePost", method = RequestMethod.POST)
 		public String updatePost(HttpSession session, PostsDTO post, @RequestParam("files") MultipartFile[] files, Model model) {
-			System.out.println("찍혀라!!");
 		    UsersDTO udto = (UsersDTO) session.getAttribute("User");
 		    post.setAuthorID(udto.getUserID());
 		    
@@ -363,7 +328,6 @@ public class PostController {
 		        }
 		    }
 		 // 글쓰기 업로드
-		    	System.out.println("=!+!+!+!+Post이다"+post);
 		    	int find_postid = Postsservice.updateContent(post); 
 		    	 // 멀티 파일 업로드 기능 구현
 			    for (MultipartFile file : files) {
