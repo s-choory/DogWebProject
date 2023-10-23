@@ -75,21 +75,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     	</if>
 </select>
 
-
-<!-- 카테고리 SelectAll -->
-<!-- <select id="selectOrder" parameterType="map" resultType="com.dto.PostsDTO">
-	  select *	from posts
-    	<if test="order == '전체' ">
-    		order by CreationTime desc
-    	</if>
-    	<if test="order == '인기게시물' ">
-    		order by Likes desc
-    	</if>
-    	<if test="order == 'QnA'">
-    		 where Category = 'QnA' 
-    	</if>
-</select> -->
-
 <select id="selectOrder2" parameterType="map" resultType="com.dto.PostsDTO">
 	    SELECT *
 	    FROM posts
