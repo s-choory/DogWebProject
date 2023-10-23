@@ -18,6 +18,17 @@ public class FileDAO {
 		session.insert("FileMapper.insert",fileDto);
 		
 	}
+	
+	public FileDTO fileSelect(int postID) {
+		return session.selectOne("FileMapper.fileSelect",postID);
+	}
+
+
+	public void update(FileDTO fileDto) {
+		session.update("FileMapper.update",fileDto);
+		
+	}
+	
 
 
 }

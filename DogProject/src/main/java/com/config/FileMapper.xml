@@ -12,4 +12,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             #{uploadpath}, #{fileurl}, #{postid})
 
 </insert>
+<select id="fileSelect" resultType="file">
+select * from files where postid= #{postid}
+</select> 
+
+
+<update id="update" parameterType="file">
+		  UPDATE Files SET realname=#{realname}, extension=#{extension},filename=#{filename},
+		  uploadpath=#{uploadpath}, fileurl=#{fileurl} WHERE postid = #{postid} and fileid=#{fileid}
+</update> 
+
+
+
 </mapper>

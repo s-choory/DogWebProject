@@ -173,7 +173,9 @@ VALUES (Posts_PostID_SEQ.nextval, #{AuthorID}, #{Title}, #{Tag},
 </insert>
 
 
-
+<update id="updateContent" parameterType="Posts">
+		  UPDATE posts SET content= #{Content} , tag=#{Tag}, title=#{Title} WHERE PostID = #{PostID}
+</update> 
 
 
 <!-- 제목 클릭시 상세페이지 이동 -->
