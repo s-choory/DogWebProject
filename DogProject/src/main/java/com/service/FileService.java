@@ -19,4 +19,16 @@ public class FileService {
 		dao.insert(fileDto);
 		
 	}
+	
+	public FileDTO fileSelect(int postID) {
+		return dao.fileSelect(postID);
+	}
+	
+	public void update(FileDTO fileDto) {
+		System.out.println("업데이터 됨");
+		dao.update(fileDto);
+		
+	}
+	
+	
 }
