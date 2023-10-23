@@ -53,8 +53,7 @@ public class HomeController {
 	//마이페이지
 	@RequestMapping(value = "/mypage", method = RequestMethod.GET)
 	public String mypage(HttpSession session, Model model, String curPage, PageDTO pDTO, PageDAO dao ,HttpServletRequest request, HttpServletResponse response) {
-		System.out.println("mypage 호출됨");
-
+	
 		UsersDTO user = (UsersDTO)session.getAttribute("User");
 		if(user == null) {
 			return "redirect:/login";
@@ -64,34 +63,19 @@ public class HomeController {
 		
 		// 글쓰기 정보들도 jsp로 같이 넘겨줌 + 페이징 
 		String UserID = user.getUserID(); //로그인한 유저의 ID 
-		System.out.println("UserID>>>>"+UserID); // UserID 확인
 		List<PostsDTO> list2 = Postsservice.selectList2(UserID);   //여기서 해당 userid로 해당 user가 쓴 글만 넘겨줘야함 - 수정 필요
 		model.addAttribute("list2",list2);
-		System.out.println("list2>>>>"+list2); // list2 확인
-		System.out.println("pdto>>>>>>>>>"+pDTO);
 		if(curPage == null) curPage = "1";
-		//String search= request.getParameter("search");
 		String order= request.getParameter("order");
-		System.out.println("넘어가는 order>>>>"+order);
-		//System.out.println("search>>>>"+search);
 		
 		//pdto의 total은 전체 total이라 특정userid의 total로 바꿔줘야함
 		int totalCountByUser = Pageservice.selecTotalCount2(UserID);
-		System.out.println("제발제발제발제발>>>>>>>>"+totalCountByUser);
 		pDTO.setTotalCount(totalCountByUser);
-		System.out.println(pDTO.getTotalCount());
-		System.out.println("1>>"+pDTO);
 		model.addAttribute("pDTO",pDTO);
 		//pdto부분 수정해야함 현재 모든 글쓰기 정보가 나옴 
 		PageDTO pDTO2;
 		pDTO2 = Pageservice.selectAll2(Integer.parseInt(curPage), pDTO, order, UserID);
 		
-		System.out.println("curPage>>>>>>"+curPage);
-		System.out.println("pDTO2.getTotalCount()>>>>>>"+pDTO.getTotalCount());
-		System.out.println("pDTO2.getList()>>>>>>"+pDTO.getList());
-		System.out.println("넘어가는 pDTO"+pDTO);
-		//model.addAttribute("pDTO",pDTO);
-		//model.addAttribute("search", search);
 		model.addAttribute("order", order);
 		
 		return "mypage/mypage_white";
@@ -100,7 +84,6 @@ public class HomeController {
 	//마이페이지 모달창 파일 db에 업로드하기 
 	@RequestMapping(value = "/profil-img", method = RequestMethod.POST)
 	public ResponseEntity<String> profil(HttpServletRequest request, HttpSession session) {
-	    System.out.println("/test/profil-img 호출됨");
 
 	    // 파일 업로드 처리
 	    MultipartResolver multipartResolver = new CommonsMultipartResolver(request.getSession().getServletContext());
@@ -110,11 +93,9 @@ public class HomeController {
 
 	        if (file != null && !file.isEmpty()) {
 	            String fileName = file.getOriginalFilename();
-	            System.out.println("업로드된 파일 이름: " + fileName);
 
 	            try {
 	                byte[] fileBytes = file.getBytes();
-	                System.out.println("업로드된 파일 크기: " + fileBytes.length);
 
 	                // Base64 인코딩
 	                String encodedFile = Base64.getEncoder().encodeToString(fileBytes);
@@ -152,18 +133,15 @@ public class HomeController {
 	// 모달창에서 이미지 삭제 => 기본이미지로   
 	@RequestMapping(value = "/delete-profil-img", method = RequestMethod.POST)
 	public  ResponseEntity<String> profildelete(HttpSession session, Model model, String curPage, PageDTO pDTO, HttpServletRequest request) {
-		System.out.println("이미지 삭제 호출됨");
 
 		UsersDTO user = (UsersDTO)session.getAttribute("User");
 		String UserID = user.getUserID();
 		int n = usersservice.profilImgDelete(UserID);
 		
-		System.out.println("삭제 업데이트 행>>"+n);
 		
 		// 이미지 삭제 후에 세션의 User 객체를 업데이트해야 함
 	    UsersDTO updatedUser = usersservice.userinfo(UserID);
 	    session.setAttribute("User", updatedUser); // 세션에 업데이트된 User 객체 저장
-	    System.out.println("userimg 삭제된  유저정보>>"+updatedUser);
 
 		
 		List<CartDTO> list = cartservice.cartList(user.getUserID());
@@ -175,7 +153,6 @@ public class HomeController {
 		if(curPage == null) curPage = "1";
 		//String search= request.getParameter("search");
 		String order= request.getParameter("order");
-		System.out.println("넘어가는 order>>>>"+order);
 		
 		return ResponseEntity.ok().build();
 	}
@@ -183,9 +160,6 @@ public class HomeController {
 	//프로필 모달창  프로필 정보 변경 클릭시  // profil-text
 	@RequestMapping(value = "/profil-text", method = RequestMethod.POST)
 	public String profilupdate(HttpSession session, Model model, UsersDTO dto) {
-		System.out.println("회원 정보 컨트롤러로 넘어옴");
-		
-		System.out.println(dto); //새로 수정한 dto 정보 찍어보기 
 		
 		UsersDTO user = (UsersDTO)session.getAttribute("User");
 		if(user == null) {
@@ -243,7 +217,6 @@ public class HomeController {
 		List<PostsDTO> popular=Postsservice.popular();
 		model.addAttribute("random", random);
 		model.addAttribute("popular",popular);
-		System.out.println("이것이 popular:"+popular);
 		return "main";
 	}
 	//검색

@@ -19,7 +19,6 @@ public class PageDAO {
 	
 	// 카테고리 total값 계산
 	public int totalCount(HashMap<String, String> map) {
-		System.out.println("DAO totalCount>>>>>>"+ map.toString());	
 		return session.selectOne("PostsMapper.totalCount", map);
 	}
 	
@@ -33,13 +32,11 @@ public class PageDAO {
 		pDTO.setCurPage(curPage);//현재 페이지번호
 		pDTO.setList(list);//페이지 에 해당 데이터
 		pDTO.setTotalCount(totalCount(map));//전체 레코드 갯수 저장
-		System.out.println(pDTO);
 		return pDTO;
 	}
 	
 	// 검색조건 total값 계산
 	public int selectTotalCount(HashMap<String, String> map) {
-		System.out.println("DAO selecttotalCount>>>>>>"+ map.toString());	
 		return session.selectOne("PostsMapper.selectTotalCount", map);
 	}
 	
@@ -53,7 +50,6 @@ public class PageDAO {
 		pDTO.setCurPage(curPage);//현재 페이지번호
 		pDTO.setList(list);//페이지 에 해당 데이터
 		pDTO.setTotalCount(selectTotalCount(map));//전체 레코드 갯수 저장
-		System.out.println(pDTO);
 		return pDTO;
 	}
 	
@@ -67,7 +63,6 @@ public class PageDAO {
 			pDTO.setCurPage(curPage);//현재 페이지번호
 			pDTO.setList(list);//페이지 에 해당 데이터
 			pDTO.setTotalCount(selectTotalCount(map));//전체 레코드 갯수 저장
-			System.out.println(pDTO);
 			return pDTO;
 		}
 
@@ -85,7 +80,6 @@ public class PageDAO {
 			pDTO.setCurPage(curPage);//현재 페이지번호
 			pDTO.setList(list);//페이지 에 해당 데이터
 			//pDTO.setTotalCount(totalCount(map));//전체 레코드 갯수 저장
-			System.out.println(pDTO);
 			return pDTO;
 		}
 

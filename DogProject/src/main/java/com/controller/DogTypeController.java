@@ -32,9 +32,7 @@ public class DogTypeController {
 	
 	@RequestMapping(value = "/dogSearch", method = RequestMethod.GET)
 	public ModelAndView dogSearch(@RequestParam(value="dogSearch", required=false) String dogSearch) {
-		System.out.println("dogSearch ==="+ dogSearch);
 		List<DogTypeDTO> list = service.dogSearch(dogSearch);//DB SelectList
-		System.out.println("list ==="+ list);
 		ModelAndView mav = new ModelAndView();//�ʱ�ȭ
 		mav.addObject("list", list);
 		mav.setViewName("dogsList/dogsList");//dogsList.jsp

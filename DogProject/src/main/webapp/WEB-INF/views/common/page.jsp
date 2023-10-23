@@ -18,9 +18,7 @@
 	if(search==null){search="";}
 //	if(order==null){order="";}
 	
-	System.out.println("페이지 서치 >>>>"+search);
 	
-	System.out.println("페이지 오더 >>>>"+order);
 	
 	int perBlock = pdto.getPerBlock();
 	

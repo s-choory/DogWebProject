@@ -55,7 +55,6 @@ public class CartController {
 			map.put("Amount", cDTO.getAmount());
 			map.put("CartNum", duplecDTO.getCartNum());
 			n = service.dupleUpdate(map);
-			System.out.println("중복 업데이트"+ n);
 		}else {
 			n = service.addCartList(cDTO);
 		}

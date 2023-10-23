@@ -159,7 +159,6 @@ html, body {
 <%
 	//채팅방 리스트
 	List<ChatRoomDTO> roomList = (List<ChatRoomDTO>)request.getAttribute("roomList");
-	System.out.println("FE ====="+roomList);
 	for(int i= 1; i<= roomList.size(); i++){
 		int roomId = roomList.get(i-1).getRoomId();
 		String roomName = roomList.get(i-1).getRoomName();

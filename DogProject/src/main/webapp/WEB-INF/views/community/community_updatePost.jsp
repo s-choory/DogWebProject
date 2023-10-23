@@ -95,16 +95,16 @@ $(function () {
 <jsp:include page = "../common/top.jsp" flush="true"/><br>
 <jsp:include page = "../common/side.jsp" flush="true"/><br>
 <div class="container" style="width: 65%; margin: auto;">
-    <form action="addPost" method="post" enctype="multipart/form-data">
-
+    <form action="updatePost" method="post" enctype="multipart/form-data">
+		<input type="hidden" name="PostID" value="${read.postID}">
         <label for="postTitle"></label><br>
-        <input type="text" id="postTitle" name="title" placeholder="제목을 입력하세요." style="width:99%"><br><br>
+        <input type="text" id="postTitle" name="title" value="${read.title}" placeholder="제목을 입력하세요." style="width:99%"><br><br>
 
 		<!-- <label for="postTags"></label><br> -->
-        <input type="text" id="postTags" name="tag"  placeholder="태그를 입력하세요. spacebar로 구분됩니다." style="width:23%"><br><br>
+        <input type="text" id="postTags" name="tag" value="${read.tag}" placeholder="태그를 입력하세요. spacebar로 구분됩니다." style="width:23%"><br><br>
 		
         <label for="content" ></label><br>
-       <textArea id="editor" name="content" style="display: none" ></textArea><br>
+       <textArea id="editor" name="content" style="display: none" >${read.content}</textArea><br>
         
         <label>첨부 파일:</label><br>
     	<input type="file" name="files" multiple/><br><br>
