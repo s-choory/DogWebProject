@@ -81,7 +81,6 @@ public class CalendarController {
 	public String addEvent(@RequestBody List<Map<String, Object>> param, HttpSession session, UsersDTO dto){
 		
 		DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'",Locale.KOREA);
-		System.out.println("param"+param);
 		for (int i = 0; i < param.size(); i++) {
 			String eventName= (String)param.get(i).get("title");
 			String startDateString= (String)param.get(i).get("start");
@@ -104,7 +103,6 @@ public class CalendarController {
             
             int n= calservice.addEvent(calDTO, userid);
             
-            System.out.println("생성: "+n);
 		} // end for
 		return "mypage/calendar/addEvent";
 	}// end addEvent
@@ -115,7 +113,6 @@ public class CalendarController {
 	public String deleteEvent(@RequestBody List<Map<String, Object>> param, HttpSession session) {
 		
 		DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'",Locale.KOREA);
-		System.out.println("param>>>"+param);
 		for (Map<String, Object> list : param) {
             
            String startDateString = (String) list.get("start");
@@ -129,7 +126,6 @@ public class CalendarController {
            Integer calNO= calDTO.getCalendarNo();
           
            int n= calservice.deleteEvent(calNO);
-           System.out.println("삭제: "+n);
            
         }
 		

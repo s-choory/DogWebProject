@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <html>
 <head>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 	<meta charset="UTF-8">
 	<!-- Site Title -->
 	<title>Login</title>
@@ -9,6 +10,7 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 	<link rel="stylesheet" href="resources/css/main.css">
 	<link rel="stylesheet" href="resources/css/font-awesome.min.css">
+
 </head>
 <script type="text/javascript">
 <%	String msg = (String)session.getAttribute("msg");
@@ -30,7 +32,16 @@
 		location.href = "findPW";
 	}
 </script>
-
+<style type="text/css">
+	
+  .find-btn{
+    border-radius: 0px;
+    line-height: 35px;
+    width: 25%;
+    text-transform: uppercase;
+    border: none;
+  }
+</style>
 <body>
 
 <jsp:include page = "../common/top.jsp" flush="true"/><br>
@@ -65,8 +76,8 @@
 							</div>
 <%-- 							    <input name="${_csrf.parameterName}" type="hidden" value="${_csrf.token}"/> --%>
 						</form>
-								<button class="primary-btn" onclick="findID()">Find ID</button>
-								<button class="primary-btn" onclick="findPW()">Find PW</button>
+								<button class="primary-btn find-btn" onclick="findID()">Find ID</button>
+								<button class="primary-btn find-btn" onclick="findPW()">Find PW</button>
 					</div>
 				</div>
 				

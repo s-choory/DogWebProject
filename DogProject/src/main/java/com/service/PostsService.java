@@ -30,6 +30,12 @@ public class PostsService {
 		return post.getPostID();
 	}
 	
+	public int updateContent(PostsDTO post) {
+		dao.updateContent(post);
+		return post.getPostID();
+		
+	}
+	
 	public PostsDTO read(int PostID) {
 		System.out.println("ss");
 		return dao.read(PostID);

@@ -34,7 +34,6 @@ public class CommentsController {
 			List<CommentsDTO> replylist = service.replylist(PostID);
 			
 			
-			System.out.println("replylist========"+replylist);
 			return replylist;
 		}
 		
@@ -181,12 +180,10 @@ public class CommentsController {
 				replybean.setCommentID(CommentID);
 				replybean.setAuthorID(AuthorID);
 				if(uDTO.getUserID().toString().equals(replybean.getAuthorID())){ //로그인 아이디와 작성자 아이디 일치여부
-					System.out.println("delete==");
 					service.replydelete(replybean);
 					map.put("result", "success");
 				
 				}else {
-					System.out.println("삭제할 수 없습니다");
 					map.put("result", "error");
 					
 				}

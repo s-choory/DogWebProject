@@ -25,9 +25,12 @@
         <!-- 스크립트부분 -->
         <script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script type="text/javascript">
-
-$(function () {
+	function cartList(){
+		location.href = "cartList";
+	}
 	
+$(function () {
+
     
 	//구매 버튼 클릭시  상세구매페이지로 이동   
 	$(document).on('click', '#buyitem', function () {
@@ -58,6 +61,7 @@ $(function () {
  		  }//end if
  	});
   
+
  	/* const myModal = document.getElementById('myModal')
  	const myInput = document.getElementById('myInput')
 
@@ -66,6 +70,8 @@ $(function () {
  	}) */
     
 });//end dom
+
+
 </script>
         <!-- 스크립트부분 끝 -->
         
@@ -143,7 +149,7 @@ $(function () {
                         <li class="nav-item"><a class="nav-link active" aria-current="page" href="dogshop_main?gCategory=식기">관련용품</a></li>
                         <li class="nav-item"><a class="nav-link active" aria-current="page" href="dogshop_main?gCategory=의류">의류</a></li>
                         <li class="nav-item"><a class="nav-link active" aria-current="page" href="dogshop_main?gCategory=사료">사료</a></li>
-                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="dogshop_main?gCategory=간식">간식</a></li>
+                        <li class="nav-item" style="border-right: 1px solid gray"><a class="nav-link active" aria-current="page" href="dogshop_main?gCategory=간식">간식</a></li> 
    <% 
 		// 지금 열려있는 특정 카태고리를 컨트롤러에 담아 보내주기 위해 파싱 과정 
 		List<GoodsDTO>list3 = (List<GoodsDTO>) request.getAttribute("list");
@@ -162,14 +168,12 @@ $(function () {
 	}
    %> 
                     </ul>
-                    <form class="d-flex">
-                        <a href="/test/cartList"><button class="btn btn-outline-dark" type="submit">
+                        <button class="btn btn-outline-dark" onclick="cartList()">
                             <i class="bi-cart-fill me-1"></i>
                             Cart
                            <% int CartCount = (int)request.getAttribute("CartCount");%>
                             <span class="badge bg-dark text-white ms-1 rounded-pill"><%=CartCount %></span>
-                        </button></a>
-                    </form>
+                        </button>
                 </div>
             </div>
         </nav> 

@@ -31,14 +31,11 @@ public class OrdersController {
 	//주문확인 페이지
 			@RequestMapping(value = "/orderConfirmation", method = RequestMethod.POST)
 		    public String orderConfirmation(String cardname, String cardnumber, OrdersDTO ordersdto, HttpSession session) {
-				System.out.println("orderConfirmation 호출");
 				int postnum = ordersdto.getPostNumber();
 				//UserID 값 넣기
 				UsersDTO usersdto = (UsersDTO) session.getAttribute("User");
-				System.out.println(usersdto);
 				String UserID = usersdto.getUserID();
 				int OrderID = ordersdto.getOrderID();
-				System.out.println(OrderID);
 				ordersdto.setUserID(UserID);
 				//OrderName 값 넣기 & list의 state 'before' -> 'after'로 변경 
 				List<CartDTO> CartDTO_list = (List<CartDTO>)session.getAttribute("orderList");
@@ -75,7 +72,6 @@ public class OrdersController {
 		        OrdersDTO odto = oService.orderSelect(OrderID);
 		        session.setAttribute("orderDate", odto);
 		        session.setAttribute("orderAfterList", CartDTO_AfterList);
-		        System.out.println("ordercontroller 정상 작동");
 		        return "redirect:/orderConfirmation";
 		    }
 
@@ -102,7 +98,6 @@ public class OrdersController {
 	//고객센터 문의하기  구분
 			@RequestMapping(value = "/requestPage", method = RequestMethod.GET)
 			public String requestPage(HttpSession session, String userid, @RequestParam("orderid") int requestid) {
-				System.out.println("requestPage 호츌 " + userid + requestid);
 				RequestDTO rdto = new RequestDTO();
 				if(userid == null) {
 					userid = (String) session.getAttribute("request_userid");
@@ -112,9 +107,7 @@ public class OrdersController {
 				}
 				rdto.setUserid(userid);
 				rdto.setRequestid(requestid);
-				System.out.println("rdto!!이다~"+rdto);
 				List<RequestDTO> rlist = rService.UserOrderSelectList(rdto);
-				System.out.println(rlist.size());
 				session.setAttribute("request_userid", userid);
 				session.setAttribute("request_requestid", requestid);
 				session.setAttribute("request_category", "상품주문");
@@ -131,7 +124,6 @@ public class OrdersController {
 				RequestDTO rdto = new RequestDTO();
 				rdto.setUserid(dto.getUserid());
 				rdto.setRequestid(dto.getRequestid());
-				System.out.println("rdto이다~"+rdto);
 				List<RequestDTO> rlist = rService.UserOrderSelectList(rdto);
 				session.setAttribute("request_UserOrderSelectList", rlist);
 				return "request/requestList";

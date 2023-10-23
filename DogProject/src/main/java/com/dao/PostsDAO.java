@@ -35,6 +35,12 @@ public class PostsDAO {
 		session.insert("PostsMapper.addPost",post);
 	}
 	
+	public int updateContent(PostsDTO post) {
+		int n = session.update("PostsMapper.updateContent", post);
+		System.out.println("업뎃됨:========"+n);
+		return n;
+	}
+	
 	public PostsDTO read(int PostID){
 		System.out.println("sss");
 		return session.selectOne("PostsMapper.Posts_read", PostID);
