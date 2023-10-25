@@ -9,9 +9,12 @@ String userid = (String)session.getAttribute("request_userid");
 int requestid = (int)session.getAttribute("request_requestid");
 String category = (String)session.getAttribute("request_category");
 List<RequestDTO> rlist = (List<RequestDTO>)session.getAttribute("request_UserOrderSelectList");
+List<RequestDTO> rlistSee = (List<RequestDTO>)session.getAttribute("request_PageSee");
+int num = (int)session.getAttribute("request_num");
 %>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>DOGGYDOGGY 문의하기</title>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.css">
 <style>
 .requestForm_sitename {
 	font-size: 25px;
@@ -41,47 +44,54 @@ select {
 td {
 text-align: center;
 }
+.onpaging {
+    border: 1px solid;
+    width: 15px;
+    height: 15px;
+}
+ul {
+margin-bottom: 6px;
+}
 </style>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js" integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa" crossorigin="anonymous"></script>
 <script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script type="text/javascript">
-var rlistSize = ""; //전체 데이터 갯수
-var rangeSize = ""; //페이지당 출력 갯수.
-var pageSwitch = ""; //초기 페이지 값.
-function pageChange() {
-	console.log("호출");
-}
-function pageChangeOne() {
-	
-}
-
 $(document).ready(function(){
-	
-	rlistSize = $("#rlistSize").val(); //전체 데이터 갯수
-	rangeSize = 9; //페이지당 출력 갯수.
-	pageSwitch = 1; //초기 페이지 값.
-	
-	$(".rlistinfo").slice(rangeSize).hide();
-	
+	$(".rlistinfo").slice(9).hide();
 });
 
-
-function pageChange(num){
-	pageSwitch = num;
-$(".rlistinfo").slice().hide();
-var hideLists = $(".rlistinfo:hidden").length;
-hideLists.slice((pageSwitch-1)*rangeSize, rangeSize*pageSwitch).show();
-var count = hideLists.length;
-if (count > maxOrders) {
-	count = maxOrders;
+function pageChange(num) {
+	console.log(num)
+	$("#num").val(num);
+	console.log($("#num").val(num))
+	$("#pageMove").submit();
+}
+function pageChange2(num) {
+	console.log(num)
+	var num2 = $("#num").val()+num;
+	if(num2 <= 0) {
+		num2 = 1;
+	}
+	if(num2 >= $("#pageMax").val()){
+		num2 = $("#pageMax").val()
+	}
+	pageChange(num2)
 }
 
+function Requestclose(){
+	opener.location.reload();
+	window.close();
+}
 </script>
 </head>
 <body>
 <div>
 <input id="rlistSize" type="hidden" value="<%=rlist.size()%>">	
 	<form id="request">
-	<div class="requestForm_sitename">사이트 이름</div>
+	<div class="requestForm_sitename">
+	<img alt="" src="/test/resources/서브로고.png" width="200">
+	</div>
 	<!-- <div> 문의하기 > 주문내역 : ???? > 취소문의</div> -->
 	<table>
 		<tr>
@@ -91,30 +101,40 @@ if (count > maxOrders) {
 			<td width="91px">문의 현황</td>
 		</tr>
 	</table>
-		<% for(int i = rlist.size()-1; i>0; i-- ) { %>
+		<% int pageSize = 0; 
+		for(int i = rlistSee.size()-1; i>=0; i-- ) { %>
 		<table class="rlistinfo">
 		<tr>
-			<td width="61px"><%= i+1 %></td>
+			<td width="61px"><%= rlistSee.get(i).getCount() %></td>
 			<td width="218px">
-				<a href="requestPost?requestid=<%= rlist.get(i).getRequestid() %>&userid=<%=userid%>&count=<%=rlist.get(i).getCount() %>">
-				<%= rlist.get(i).getCategory() %> > <%= rlist.get(i).getTag() %> > <%= rlist.get(i).getRequestid() %>
+				<a href="requestPost?requestid=<%= rlistSee.get(i).getRequestid() %>&userid=<%=userid%>&count=<%=rlistSee.get(i).getCount() %>">
+				<%= rlistSee.get(i).getCategory() %> > <%= rlistSee.get(i).getTag() %> > <%= rlistSee.get(i).getRequestid() %>
 				</a>
 			</td>
-			<td width="112px"><%= rlist.get(i).getCreatetime().substring(0, 10) %></td>
-			<td width="91px"><%= rlist.get(i).getRequeststate() %></td>
+			<td width="112px"><%= rlistSee.get(i).getCreatetime().substring(0, 10) %></td>
+			<td width="91px"><%= rlistSee.get(i).getRequeststate() %></td>
 		</tr>
 		</table>
-		<% } %>
+		<% 
+		pageSize++;
+		} %>
+	</form>
+</div>
+<div style="margin-bottom: 10px;"></div>
+	<nav aria-label="Page navigation example">
+  		<ul class="pagination justify-content-center">
+    		<li class="page-item"><a class="page-link" href="javascript:pageChange(1)">&#60;</a></li>
+    		<%  for(int i = 1; i<= (rlist.size()/9)+1; i++) { %>
+    		<li class="page-item"><a class="page-link" href="javascript:pageChange(<%= i %>)"><%= i %></a></li>
+    		<% } %>
+    		<li class="page-item"><a class="page-link" href="javascript:pageChange(<%=(rlist.size()/9)+1%>)">&#62;</a></li>
+  		</ul>
+	</nav>
+	<form id="pageMove" action="requestPageChange">
+		<input type="hidden" name="num" id="num">
 	</form>
 	<div style="text-align: center;">
-	<a href="javascript:pageChange(1)">&#60;&#60;</a>
-	<a href="javascript:(-1)">&#60;</a>
-	<% for(int i = 1; i<rlist.size()%10+1; i++) { %>
-		<a href="javascript:test(<%= i %>)"><%= i %></a>
-	<% } %>
-	<a href="javascript:(-1)">&#62;</a>
-	<a href="javascript:pageChange(<%=rlist.size()%10+1%>)">&#62;&#62;</a>
+		<input type="hidden" id="pageMax" value="<%=(rlist.size()/9)+1%>">
+		<input type="button" onclick="Requestclose()" value="닫기">
 	</div>
-</div>
-
 </body>
