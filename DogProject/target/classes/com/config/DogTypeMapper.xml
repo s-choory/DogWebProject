@@ -14,7 +14,10 @@
 		<if test="dogSize == 'small'">
 			dogSize= #{dogSize}
 		</if>
-		<if test="dogSize == 'big'">
+		<if test="dogSize == 'medium'">
+			dogSize= #{dogSize}
+		</if>
+		<if test="dogSize == 'large'">
 			dogSize= #{dogSize}
 		</if>
 	</where>
