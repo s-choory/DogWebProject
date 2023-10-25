@@ -431,11 +431,6 @@
 <div class="page">
 <jsp:include page = "../common/page.jsp" flush="true"/><br>
 </div>
-<<<<<<< HEAD
 <jsp:include page = "../common/footer.jsp" flush="true"/>
-=======
-
-<jsp:include page = "../common/footer.jsp" flush="true"/><br>
->>>>>>> branch 'mypage-calendar' of https://github.com/s-choory/DogWebProject.git
 </body>
 </html>
