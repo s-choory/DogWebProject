@@ -5,7 +5,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="SearchMapper">
    
    <select id="AccompanyingFacilities_search" parameterType="String" resultType="AccompanyingFacilities">
-   		SELECT * FROM AccompanyingFacilities WHERE FACILITIESNAME LIKE '%' || #{search} || '%'
+   		SELECT * FROM AccompanyingFacilities WHERE FACILITIESNAME LIKE '%' || #{search} || '%' AND ROWNUM &lt; 100
    </select>
    <select id="Notices_search" parameterType="String" resultType="Notice">
    		SELECT * FROM Notices WHERE title LIKE '%' || #{search} || '%'

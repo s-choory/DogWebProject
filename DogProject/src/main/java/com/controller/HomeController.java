@@ -234,7 +234,6 @@ public class HomeController {
 		@RequestMapping(value = "/main_searchList", method = RequestMethod.GET)
 		public String main_searchList(String search, Model m) {
 			
-			System.out.println("컨트롤러");
 			List<AccompanyingFacilitiesDTO> AccompanyingFacilities_list = searchService.AccompanyingFacilities_search(search);
 			List<NoticeDTO> Notices_list = searchService.Notices_search(search);
 			List<PostsDTO> Posts_list = searchService.Posts_search(search);
@@ -249,10 +248,6 @@ public class HomeController {
 			m.addAttribute("Products_list",Products_list);
 			m.addAttribute("Like_list",Like_list);
 			m.addAttribute("Review_list",Review_list);
-			System.out.println(AccompanyingFacilities_list);
-			System.out.println(Notices_list);
-			System.out.println(Posts_list);
-			System.out.println(Products_list);
 			
 			return "main_searchList";
 		}
