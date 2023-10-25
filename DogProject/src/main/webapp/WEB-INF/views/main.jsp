@@ -240,12 +240,21 @@
 </div>
 <br>
 <div class="icon">
+<<<<<<< HEAD
 <!-- 종분류 --><a href="dogsList"><img width="70" height="70" src="${pageContext.request.contextPath}/resources/main-icon/종분류.png" alt="puppy"/><br>반려견 분류</a>&nbsp;&nbsp;&nbsp;
 <!-- 커뮤니티 --><a href=""><img width="70" height="70" src="${pageContext.request.contextPath}/resources/main-icon/커뮤니티.png" alt="chat--v1"/><br>커뮤니티</a>&nbsp;&nbsp;&nbsp;
 <!-- 스토어 --><a href="dogshop_main"><img width="70" height="70" src="${pageContext.request.contextPath}/resources/main-icon/스토어.png" alt="shopping-bag--v1"/><br>스토어</a>&nbsp;&nbsp;&nbsp;
 <!-- 모임찾기 --><a href="roomList"><img width="70" height="70" src="${pageContext.request.contextPath}/resources/main-icon/모임.png" alt="group-task"/><br>모임찾기</a>&nbsp;&nbsp;&nbsp;
 <!-- 맵 --><a href="map"><img width="70" height="70" src="${pageContext.request.contextPath}/resources/main-icon/가이드.png" alt="where"/><br>동반업소 찾기</a>&nbsp;&nbsp;&nbsp;
 <!-- 공지문의 --><a href="ContactCenter_FAQ"><img width="70" height="70" src="${pageContext.request.contextPath}/resources/main-icon/FAQ.png" alt="help--v1"/><br>공지사항</a>
+=======
+<!-- 종분류 --><a href="/test/dogsList"><img width="70" height="70" src="${pageContext.request.contextPath}/resources/main-icon/종분류.png" alt="puppy"/><br>견종 백과</a>&nbsp;&nbsp;&nbsp;
+<!-- 커뮤니티 --><a href="/test"><img width="70" height="70" src="${pageContext.request.contextPath}/resources/main-icon/커뮤니티.png" alt="chat--v1"/><br>커뮤니티</a>&nbsp;&nbsp;&nbsp;
+<!-- 스토어 --><a href="/test/dogshop_main"><img width="70" height="70" src="${pageContext.request.contextPath}/resources/main-icon/스토어.png" alt="shopping-bag--v1"/><br>스토어</a>&nbsp;&nbsp;&nbsp;
+<!-- 모임찾기 --><a href="/test/roomList"><img width="70" height="70" src="${pageContext.request.contextPath}/resources/main-icon/모임.png" alt="group-task"/><br>모임찾기</a>&nbsp;&nbsp;&nbsp;
+<!-- 맵 --><a href="/test/map"><img width="70" height="70" src="${pageContext.request.contextPath}/resources/main-icon/가이드.png" alt="where"/><br>동반업소 찾기</a>&nbsp;&nbsp;&nbsp;
+<!-- 공지문의 --><a href="/test/ContactCenter_FAQ"><img width="70" height="70" src="${pageContext.request.contextPath}/resources/main-icon/FAQ.png" alt="help--v1"/><br>공지사항</a>
+>>>>>>> branch 'mypage-calendar' of https://github.com/s-choory/DogWebProject.git
 </div>
 
 <br><br>
