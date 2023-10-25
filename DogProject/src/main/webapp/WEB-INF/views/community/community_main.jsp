@@ -32,7 +32,7 @@
 	.post {
         display: flex;
         align-items: flex-start;
-       	border: 3px solid #b2c3d3/* #ccc */;
+       	border: 1px solid #F0FFF0;
 	    padding-left: 15px;
 	    border-radius: 10px;
 	    margin-top: 20px;
@@ -340,13 +340,14 @@
 <!-- 게시물 jsp로 반복문 돌리기 -->
  <% 
 	List<PostsDTO> list = pDTO.getList();
- 	if(list ==null && list.isEmpty()){
+ 	/* if(list.isEmpty()){ */
  	%>
+ 	<!-- if(list.isEmpty()){
  	<div class="no-data">
     	<div><img src="resources/img/dog/nodata.png" alt="No Results Found"></div><br>
     	<div><p>검색 결과가 없습니다</p></div>
-	</div>
- 	<% } else
+	</div> -->
+ 	<%/*  } else */
  	
 	
  	for(int i = 0; i<list.size(); i++){
@@ -404,13 +405,24 @@
     </div>
  </div>
 <%
-	
- 	} %>
+ 	}
+ 		%>
+ 	
 <br>
+<% if(list.isEmpty()){
 
+	%>	
+ 	<div class="no-data">
+    	<div><img src="resources/img/dog/nodata.png" alt="No Results Found"></div><br>
+    	<div><p>검색 결과가 없습니다</p></div>
+	</div>
+	
+	
+	<%} %>
 <div class="page">
 <jsp:include page = "../common/page.jsp" flush="true"/><br>
 </div>
+
 <jsp:include page = "../common/footer.jsp" flush="true"/><br>
 </body>
 </html>
