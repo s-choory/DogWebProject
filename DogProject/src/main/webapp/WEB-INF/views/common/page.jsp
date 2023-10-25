@@ -16,7 +16,7 @@
 	String order= (String)request.getAttribute("order");
 	
 	if(search==null){search="";}
-//	if(order==null){order="";}
+	/* if(order==null){order="";} */
 	
 	
 	

@@ -21,16 +21,23 @@ import org.springframework.web.multipart.MultipartResolver;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
 import com.dao.PageDAO;
+import com.dto.AccompanyingFacilitiesDTO;
 import com.dto.CartDTO;
 import com.dto.GoodsDTO;
+import com.dto.LikeDTO;
+import com.dto.NoticeDTO;
 import com.dto.PageDTO;
 import com.dto.PostsDTO;
+import com.dto.ProductsDTO;
+import com.dto.ReviewsDTO;
 import com.dto.UsersDTO;
 import com.service.AccompanyingFacilitiesService;
 import com.service.CartService;
 import com.service.GoodsService;
+import com.service.LikeService;
 import com.service.PageService;
 import com.service.PostsService;
+import com.service.SearchService;
 import com.service.UsersService;
 
 @Controller
@@ -48,6 +55,10 @@ public class HomeController {
 	PageService Pageservice;
 	@Autowired
 	GoodsService gservice;
+	@Autowired
+	SearchService searchService;
+	@Autowired
+	LikeService likeService;
 	
 	/* mypage */
 	//마이페이지
@@ -220,9 +231,25 @@ public class HomeController {
 		return "main";
 	}
 	//검색
-	@RequestMapping(value = "/main_searchList", method = RequestMethod.GET)
-	public String main_searchList(Locale locale, Model model) {
-		return "main_searchList";
-	}
+		@RequestMapping(value = "/main_searchList", method = RequestMethod.GET)
+		public String main_searchList(String search, Model m) {
+			
+			List<AccompanyingFacilitiesDTO> AccompanyingFacilities_list = searchService.AccompanyingFacilities_search(search);
+			List<NoticeDTO> Notices_list = searchService.Notices_search(search);
+			List<PostsDTO> Posts_list = searchService.Posts_search(search);
+			List<ProductsDTO> Products_list = searchService.Products_search(search);
+			List<LikeDTO> Like_list = searchService.Like_search();
+			List<ReviewsDTO> Review_list = searchService.Review_search();
+			//댓글 관련으로 list 필요
+			m.addAttribute("search",search);
+			m.addAttribute("AccompanyingFacilities_list",AccompanyingFacilities_list);
+			m.addAttribute("Notices_list",Notices_list);
+			m.addAttribute("Posts_list",Posts_list);
+			m.addAttribute("Products_list",Products_list);
+			m.addAttribute("Like_list",Like_list);
+			m.addAttribute("Review_list",Review_list);
+			
+			return "main_searchList";
+		}
 	
 }

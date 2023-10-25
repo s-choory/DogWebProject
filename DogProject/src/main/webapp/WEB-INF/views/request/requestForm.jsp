@@ -53,7 +53,8 @@ function RequestFormSubmit() {
 <body>
 <div>
 	<form id="request">
-	<div class="requestForm_sitename">사이트 이름</div>
+	<img alt="" src="/test/resources/서브로고.png" width="200">
+	<div class="requestForm_sitename"></div>
 	<!-- <div> 문의하기 > 주문내역 : ???? > 취소문의</div> -->
 	<% if(category == "상품주문") { %>
 	<div class="requestForm_div">
@@ -76,7 +77,9 @@ function RequestFormSubmit() {
 	<input type="hidden" name="requeststate" value="답변대기">
 	<input type="button" onclick="RequestFormSubmit()" value="전송">
 	<span class="button-space"></span>
-	<input type="reset" value="취소">
+	<% if(rlist.size() == 0) { %>
+	<input type="button" onclick="Requestclose()" value="닫기">
+	<% } %>
 	</div>
 	</form>
 </div>

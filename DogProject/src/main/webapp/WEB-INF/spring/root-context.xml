@@ -42,6 +42,7 @@
 				<value>classpath:com/config/LikeMapper.xml</value>
 				<value>classpath:com/config/ChatMapper.xml</value>
 				<value>classpath:com/config/RequestMapper.xml</value>
+				<value>classpath:com/config/SearchMapper.xml</value>
 			</list>
 		</property>
 		<property name="typeAliases">
@@ -63,6 +64,7 @@
 				<value>com.dto.CommentsDTO</value> 
 				<value>com.dto.LikeDTO</value> 
 				<value>com.dto.RequestDTO</value> 
+				<value>com.dto.ProductsDTO</value> 
 			</list>
 		</property>
 	</bean>
