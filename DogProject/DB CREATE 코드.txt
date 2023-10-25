@@ -232,13 +232,13 @@ CREATE TABLE AccompanyingFacilities(
 
 --반려견종분류 테이블(DogType)
 CREATE TABLE DogType (
-    DogName VARCHAR2(35) PRIMARY KEY,
-    Picture VARCHAR2(5) NOT NULL,
-    Personality VARCHAR2(999) NOT NULL,
-    Characteristic VARCHAR2(999) NOT NULL,
+    DogName VARCHAR2(70) PRIMARY KEY,
+    Picture VARCHAR2(255) NOT NULL,
+    Personality VARCHAR2(1999) NOT NULL,
+    Characteristic VARCHAR2(1999) NOT NULL,
     Introduction VARCHAR2(999) NOT NULL,
-    DogSize VARCHAR2(5) NOT NULL,
-    Popularity NUMBER(5) default 0
+    DogSize VARCHAR2(10) NOT NULL,
+    Popularity NUMBER(5,0) default 0
 );
 
 
