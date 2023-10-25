@@ -1,6 +1,10 @@
 package com.controller;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 
 import javax.servlet.http.HttpSession;
 
@@ -9,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.dto.CartDTO;
 import com.dto.OrdersDTO;
@@ -113,11 +118,12 @@ public class OrdersController {
 				rdto.setUserid(userid);
 				rdto.setRequestid(requestid);
 				List<RequestDTO> rlist = rService.UserOrderSelectList(rdto);
-				System.out.println(rlist.size());
 				session.setAttribute("request_userid", userid);
 				session.setAttribute("request_requestid", requestid);
 				session.setAttribute("request_category", "상품주문");
 				session.setAttribute("request_UserOrderSelectList", rlist);
+				session.setAttribute("request_PageSee", rlist);
+				session.setAttribute("request_num", 1);
 				if(rlist.size() == 0) {
 					return "request/requestForm";
 				} else {
@@ -150,6 +156,22 @@ public class OrdersController {
 			@RequestMapping(value = "/requestRerequest")
 			public String requestRerequest(HttpSession session) {
 				return "request/requestForm";
+			}
+			@RequestMapping(value = "/requestPageChange")
+			public String requestRerequest(HttpSession session, int num) {
+				System.out.println("requestRerequest" + num);
+				List<RequestDTO> pageChangList = new ArrayList<RequestDTO>();
+ 				List<RequestDTO> rlist = (List<RequestDTO>)session.getAttribute("request_UserOrderSelectList");
+				int rlistMax = rlist.size();
+ 				for (int i = rlistMax-(num*9); i < rlistMax-((num-1)*9); i++) {
+ 					if(i >= 0) {
+ 					pageChangList.add(rlist.get(i));
+ 					System.out.println(rlist.get(i));
+ 					}
+				}
+				session.setAttribute("request_PageSee", pageChangList);
+				session.setAttribute("request_num", num);
+				return "request/requestList";
 			}
 			
 }

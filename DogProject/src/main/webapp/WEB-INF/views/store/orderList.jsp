@@ -98,7 +98,7 @@ List<OrdersDTO> olist = (List<OrdersDTO>)session.getAttribute("olist");
 	justify-content: center;  
 }
 .order_middle_box1 {
-	width: calc(15% - (5px + (10% /3))); 
+	width:15%; 
 	border-right: 1px solid #ccc;
 	display: flex;
 	flex-direction: column;
