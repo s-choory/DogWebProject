@@ -58,7 +58,8 @@ function Requestclose(){
 </head>
 <body>
 <div>
-	<div class="requestForm_sitename">사이트 이름</div>
+	<img alt="" src="/test/resources/서브로고.png" width="200">
+	<div class="requestForm_sitename"></div>
 	<!-- <div> 문의하기 > 주문내역 : ???? > 취소문의</div> -->
 	<% for(int i = 0; i<rlist.size(); i++) { %>
 	<% if(rdto.getCount() == rlist.get(i).getCount() && rdto.getRequestid() == rlist.get(i).getRequestid()) { %>
@@ -69,11 +70,13 @@ function Requestclose(){
 			<td width="112px">작성 시간</td>
 			<td width="91px">문의 현황</td>
 		</tr>
+		</table>
+		<table>
 		<tr>
-			<td><%= i+1 %></td>
-			<td><%= rlist.get(i).getCategory() %> > <%= rlist.get(i).getTag() %> > <%= rlist.get(i).getRequestid() %></td>
-			<td><%= rlist.get(i).getCreatetime().substring(0, 10) %></td>
-			<td><%= rlist.get(i).getRequeststate() %></td>
+			<td width="61px"><%= rlist.get(i).getCount() %></td>
+			<td width="218px"><%= rlist.get(i).getCategory() %> > <%= rlist.get(i).getTag() %> > <%= rlist.get(i).getRequestid() %></td>
+			<td width="112px"><%= rlist.get(i).getCreatetime().substring(0, 10) %></td>
+			<td width="91px"><%= rlist.get(i).getRequeststate() %></td>
 		</tr>
 	</table>
 		<div> 문의 내용</div>
